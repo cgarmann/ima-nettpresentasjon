@@ -772,7 +772,8 @@
       position: relative;
     }
 
-    .metric.explained {
+    .metric.explained,
+    .confidence.explained {
       outline: none;
     }
 
@@ -831,7 +832,10 @@
 
     .metric.explained:hover .tooltip,
     .metric.explained:focus .tooltip,
-    .metric.explained:focus-within .tooltip {
+    .metric.explained:focus-within .tooltip,
+    .confidence.explained:hover .tooltip,
+    .confidence.explained:focus .tooltip,
+    .confidence.explained:focus-within .tooltip {
       opacity: 1;
       transform: translateY(0);
     }
@@ -1138,7 +1142,10 @@
 
       .metric.explained:hover .tooltip,
       .metric.explained:focus .tooltip,
-      .metric.explained:focus-within .tooltip {
+      .metric.explained:focus-within .tooltip,
+      .confidence.explained:hover .tooltip,
+      .confidence.explained:focus .tooltip,
+      .confidence.explained:focus-within .tooltip {
         display: block;
       }
     }
@@ -1165,7 +1172,7 @@
   <main>
     <section class="shell hero" id="top">
       <div>
-        <p class="eyebrow">HelseAgent · tjeneste bygget på egen metode</p>
+        <p class="eyebrow">IMA · tjeneste bygget på egen metode</p>
         <h1>Å gjøre atferdsmønstre synlige</h1>
         <p class="lead">
           Vi tilbyr en analysebasert tjeneste som finner gjentakende sammenhenger i pleienotater og
@@ -1182,7 +1189,7 @@
       <aside class="program-window" aria-label="Forenklet visning av programmet">
         <div class="window-head">
           <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <div class="window-title">HelseAgent · Analyserom</div>
+          <div class="window-title">IMA · Analyserom</div>
         </div>
         <div class="app-chrome">
           <div class="side-rail" role="tablist" aria-label="Programrom">
@@ -1298,9 +1305,10 @@
                 <h3 id="analysis-title">Analyse</h3>
                 <p id="analysis-intro"></p>
               </div>
-              <div class="confidence">
+              <div class="confidence explained" tabindex="0">
                 <span>Trygghet</span>
                 <strong id="confidence-text"></strong>
+                <div class="tooltip" role="tooltip">Trygghet viser hvor forsiktig funnet bør leses. Lav betyr svakere grunnlag eller flere mulige forklaringer. Middels betyr bedre støtte, men fortsatt hypotese.</div>
               </div>
             </div>
             <div class="cluster-lab" aria-label="Animasjon av klyngefunn">
@@ -1376,14 +1384,14 @@
           <h3>Skjermbilder fra programmet</h3>
           <div class="screenshot-grid">
             <figure class="screenshot-card">
-              <img src="assets/analyserom.png" alt="Skjermbilde av HelseAgent Analyserom med nøkkeltall, innsikt og hypoteser.">
+              <img src="assets/analyserom.png" alt="Skjermbilde av IMA Analyserom med nøkkeltall, innsikt og hypoteser.">
               <figcaption>
                 <strong>Analyserom</strong>
                 <span>Mønstre, hypoteser, nøkkeltall og faglig vurderingsgrunnlag.</span>
               </figcaption>
             </figure>
             <figure class="screenshot-card">
-              <img src="assets/kvalitetsrom.png" alt="Skjermbilde av HelseAgent Kvalitetsrom med dager, kvalitetspanel og dag-preview.">
+              <img src="assets/kvalitetsrom.png" alt="Skjermbilde av IMA Kvalitetsrom med dager, kvalitetspanel og dag-preview.">
               <figcaption>
                 <strong>Kvalitetsrom</strong>
                 <span>Dager, avvik, forhåndsvisning og godkjenning.</span>
@@ -1512,12 +1520,12 @@
           <article class="slide-card">
             <div class="slide-number">04 · Avgrensning</div>
             <h3>Hva det er, og hva det ikke er</h3>
-            <p>Tjenesten synliggjør mønstre, gir hypotesegrunnlag og støtter faglig vurdering. IMA er intern metode og forretningshemmelighet. Det er ikke diagnose, årsaksbevis eller erstatning for faglig vurdering.</p>
+            <p>Tjenesten synliggjør mønstre, gir hypotesegrunnlag og støtter faglig vurdering. Det er ikke diagnose, årsaksbevis eller erstatning for faglig vurdering.</p>
           </article>
           <article class="slide-card">
             <div class="slide-number">05 · Fagfeltet</div>
             <h3>Bygget for omsorgsboliger</h3>
-            <p>Tjenesten er bygget for omsorgsboliger. Første retning er rus og psykiatri, ROP og PU. ABC, sensorisk regulering og observasjonsdomener er sentralt.</p>
+            <p>Tjenesten er bygget for omsorgsboliger. Første pilotmiljø avklares med partner, med særlig relevans for PU, ROP, rus og psykisk helse. ABC, sensorisk regulering og observasjonsdomener er sentralt.</p>
           </article>
           <article class="slide-card">
             <div class="slide-number">06 · Arbeidsflyt</div>
@@ -1527,12 +1535,12 @@
           <article class="slide-card">
             <div class="slide-number">07 · Eksempel</div>
             <h3>Ukjent person til stede</h3>
-            <p>Mønster: ukjent person til stede → krevende/krise-dag. Lift 3,95. Støtte 5 av 6 dager. Vurdering: hypotese, ikke konklusjon.</p>
+            <p>Mønster: ukjent person til stede → krevende dag. Lift 3,95. Støtte 5 av 6 dager. Vurdering: hypotese, ikke konklusjon.</p>
           </article>
           <article class="slide-card">
             <div class="slide-number">08 · Ambisjon</div>
             <h3>To nivåer</h3>
-            <p>Først pilotert tjeneste med IMA som intern motor. På sikt klinisk beslutningsstøtte bygget mot CE-merking.</p>
+            <p>Først pilotert tjeneste med IMA som intern motor. På sikt kan regulert klinisk beslutningsstøtte vurderes som eget utviklingsspor.</p>
           </article>
           <article class="slide-card">
             <div class="slide-number">09 · Teknisk arkitektur</div>
@@ -1568,7 +1576,7 @@
   <footer class="footer">
     <div class="shell">
       <span>Intelligent Mønsteranalyse (IMA)</span>
-      <span>Tidligere arbeidstittel: HelseAgent · Kvalitet før alt</span>
+      <span>Kvalitet før alt</span>
     </div>
   </footer>
 
@@ -1602,7 +1610,7 @@
         leftRows: [["M1", "Ukjent person → krevende dag"], ["M2", "Overgang uten varsel → uro"], ["T1", "ABC-kjede støttet av teori"]],
         rightTitle: "Hypotese",
         rightRows: [["Lift", "3,95"], ["Støtte", "5 av 6 dager"], ["Vurdering", "Hypotese, ikke konklusjon"]],
-        footer: "Analyserommet viser mønstre, teori, hypoteser, avvik, trender og prognosefelt."
+        footer: "Analyserommet viser mønstre, teori, hypoteser, avvik, trender og signalfelt."
       }
     };
 
@@ -1611,7 +1619,7 @@
         {
           title: "Ukjent person til stede",
           note: "I fem av seks krevende dager var ukjent person eller vikar registrert i miljøet.",
-          intro: "Programmet kobler et gjentakende miljøsignal til krevende/krise-dag, men viser det som samvariasjon.",
+          intro: "Programmet kobler et gjentakende miljøsignal til krevende dag, men viser det som samvariasjon.",
           a: "Ukjent person er til stede, ofte samtidig med endring i rutine eller overgang.",
           b: "Beboer viser uro, søker bort eller trenger mer støtte enn vanlig.",
           c: "Personalet skjermer, reduserer krav og bruker kjent personale som støtte.",
@@ -1622,7 +1630,7 @@
           source: "M1 + T1",
           confidence: "Lav",
           cluster: "Klynge 1 samler notater med ukjent person, endret rutine og krevende dag. Ett punkt holdes utenfor som avvik.",
-          evidence: [["Mønster", "Signalet dukker oftere opp før krevende dager enn i grunnnivået."], ["Teori", "ABC-modellen gjør foranledning og konsekvens relevant."], ["Tiltak", "Test varslet introduksjon, kjent personale og roligere overgang."]]
+          evidence: [["Mønster", "Signalet dukker oftere opp før krevende dager enn i grunnnivået."], ["Teori", "ABC-modellen gjør foranledning og konsekvens relevant."], ["Mulig tiltak", "Fagpersonen kan vurdere varslet introduksjon, kjent personale og roligere overgang."]]
         },
         {
           title: "Ukjent person og kveld",
@@ -1638,7 +1646,7 @@
           source: "M4",
           confidence: "Lav",
           cluster: "Motoren finner en liten klynge, men markerer at kveldsvakt og ukjent person overlapper.",
-          evidence: [["Forveksling", "Kveldsvakt og ukjent person overlapper."], ["Behov", "Se etter dager med kveldsovergang uten ukjent person."], ["Tiltak", "Ikke endre praksis før mønsteret er vurdert manuelt."]]
+          evidence: [["Forveksling", "Kveldsvakt og ukjent person overlapper."], ["Behov", "Se etter dager med kveldsovergang uten ukjent person."], ["Mulig tiltak", "Fagpersonen bør ikke endre praksis før mønsteret er vurdert manuelt."]]
         }
       ],
       overgang: [
@@ -1656,7 +1664,7 @@
           source: "ABC",
           confidence: "Middels",
           cluster: "Flere observasjoner samles rundt raske overganger uten varsel. Klyngen peker mot en mulig A→B-sammenheng.",
-          evidence: [["A→B", "Rask overgang kommer før uro i flere notater."], ["B→C", "Redusert tempo og valg følges ofte av roligere forløp."], ["Tiltak", "Varsel 5 minutter før, visuell støtte og to konkrete valg."]]
+          evidence: [["A→B", "Rask overgang kommer før uro i flere notater."], ["B→C", "Redusert tempo og valg følges ofte av roligere forløp."], ["Mulig tiltak", "Fagpersonen kan vurdere varsel 5 minutter før, visuell støtte og to konkrete valg."]]
         },
         {
           title: "Fast kveldsovergang",
@@ -1672,7 +1680,7 @@
           source: "M2",
           confidence: "Middels",
           cluster: "Notater med fast kveldsovergang grupperes tett og skiller seg fra dager med uvarslede endringer.",
-          evidence: [["Trend", "Lavere uro på dager med fast rekkefølge."], ["Teori", "Forutsigbarhet kan redusere behov for bekreftelse."], ["Tiltak", "Behold rekkefølgen og logg avvik systematisk."]]
+          evidence: [["Trend", "Lavere uro på dager med fast rekkefølge."], ["Teori", "Forutsigbarhet kan redusere behov for bekreftelse."], ["Mulig tiltak", "Fagpersonen kan vurdere å beholde rekkefølgen og logge avvik systematisk."]]
         }
       ],
       sensorikk: [
@@ -1690,7 +1698,7 @@
           source: "T3",
           confidence: "Lav",
           cluster: "Sensoriske signaler samles i én klynge, men støtten er lav. Funnet bør leses som et spørsmål.",
-          evidence: [["Domene", "Miljø og sensorisk regulering er registrert samtidig."], ["Respons", "Skjerming av ører og tilbaketrekning gjentas."], ["Tiltak", "Roligere plass, tydelig start/slutt og lavere lydnivå."]]
+          evidence: [["Domene", "Miljø og sensorisk regulering er registrert samtidig."], ["Respons", "Skjerming av ører og tilbaketrekning gjentas."], ["Mulig tiltak", "Fagpersonen kan vurdere roligere plass, tydelig start/slutt og lavere lydnivå."]]
         },
         {
           title: "Skjermet pause før eskalering",
@@ -1706,7 +1714,7 @@
           source: "M7 + T2",
           confidence: "Middels",
           cluster: "Motoren skiller planlagte pauser før krav fra pauser etter eskalering. Det gjør tiltaket lettere å vurdere.",
-          evidence: [["Operant", "Pause etter uro kan være faglig relevant."], ["Mønster", "Planlagt pause før krav henger sammen med roligere forløp."], ["Tiltak", "Skill mellom forebyggende pause og pause etter eskalering."]]
+          evidence: [["Operant", "Pause etter uro kan være faglig relevant."], ["Mønster", "Planlagt pause før krav henger sammen med roligere forløp."], ["Mulig tiltak", "Fagpersonen kan vurdere skillet mellom forebyggende pause og pause etter eskalering."]]
         }
       ]
     };
