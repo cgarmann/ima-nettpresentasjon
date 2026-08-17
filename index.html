@@ -1207,7 +1207,7 @@
           <h2>Slik fungerer tjenesten</h2>
           <p>
             Tjenesten analyserer observasjoner, finner gjentakende sammenhenger og presenterer dem som hypoteser.
-            Fagpersoner vurderer funnene.
+            Vi gir tilbakemelding til leder. Leder og bolig velger hvilke tiltak som settes inn.
           </p>
         </div>
         <div class="pipeline" aria-label="Fire steg i IMA">
@@ -1224,7 +1224,7 @@
             <div class="step-number">3</div>
           </div>
           <div class="step">
-            <div><strong>Faglig vurdering</strong><span>Fagpersonen vurderer, forkaster, justerer eller tester tiltak.</span></div>
+            <div><strong>Tilbakemelding</strong><span>Vi gir funn til leder. Leder og bolig vurderer og velger eventuelle tiltak.</span></div>
             <div class="step-number">4</div>
           </div>
         </div>
@@ -1406,7 +1406,7 @@
         <div class="section-head">
           <h2>Trygghet og avgrensning</h2>
           <p>
-            Tjenesten skal gjøre faglige spørsmål tydeligere. Den skal ikke ta vurderingen fra fagpersonen.
+            Tjenesten skal gjøre faglige spørsmål tydeligere. Den skal ikke ta vurderingen fra leder eller bolig.
           </p>
         </div>
         <div class="compare">
@@ -1629,7 +1629,7 @@
           source: "M1 + T1",
           confidence: "Lav",
           cluster: "Klynge 1 samler notater med ukjent person, endret rutine og krevende dag. Ett punkt holdes utenfor som avvik.",
-          evidence: [["Mønster", "Signalet dukker oftere opp før krevende dager enn i grunnnivået."], ["Teori", "ABC-modellen gjør foranledning og konsekvens relevant."], ["Mulig tiltak", "Fagpersonen kan vurdere varslet introduksjon, kjent personale og roligere overgang."]]
+          evidence: [["Mønster", "Signalet dukker oftere opp før krevende dager enn i grunnnivået."], ["Teori", "ABC-modellen gjør foranledning og konsekvens relevant."], ["Til leder", "Varslet introduksjon, kjent personale og roligere overgang kan vurderes av leder og bolig."]]
         },
         {
           title: "Ukjent person og kveld",
@@ -1645,7 +1645,7 @@
           source: "M4",
           confidence: "Lav",
           cluster: "Motoren finner en liten klynge, men markerer at kveldsvakt og ukjent person overlapper.",
-          evidence: [["Forveksling", "Kveldsvakt og ukjent person overlapper."], ["Behov", "Se etter dager med kveldsovergang uten ukjent person."], ["Mulig tiltak", "Fagpersonen bør ikke endre praksis før mønsteret er vurdert manuelt."]]
+          evidence: [["Forveksling", "Kveldsvakt og ukjent person overlapper."], ["Behov", "Se etter dager med kveldsovergang uten ukjent person."], ["Til leder", "Praksis bør ikke endres før mønsteret er vurdert manuelt."]]
         }
       ],
       overgang: [
@@ -1663,7 +1663,7 @@
           source: "ABC",
           confidence: "Middels",
           cluster: "Flere observasjoner samles rundt raske overganger uten varsel. Klyngen peker mot en mulig A→B-sammenheng.",
-          evidence: [["A→B", "Rask overgang kommer før uro i flere notater."], ["B→C", "Redusert tempo og valg følges ofte av roligere forløp."], ["Mulig tiltak", "Fagpersonen kan vurdere varsel 5 minutter før, visuell støtte og to konkrete valg."]]
+          evidence: [["A→B", "Rask overgang kommer før uro i flere notater."], ["B→C", "Redusert tempo og valg følges ofte av roligere forløp."], ["Til leder", "Varsel 5 minutter før, visuell støtte og to konkrete valg kan vurderes av leder og bolig."]]
         },
         {
           title: "Fast kveldsovergang",
@@ -1679,7 +1679,7 @@
           source: "M2",
           confidence: "Middels",
           cluster: "Notater med fast kveldsovergang grupperes tett og skiller seg fra dager med uvarslede endringer.",
-          evidence: [["Trend", "Lavere uro på dager med fast rekkefølge."], ["Teori", "Forutsigbarhet kan redusere behov for bekreftelse."], ["Mulig tiltak", "Fagpersonen kan vurdere å beholde rekkefølgen og logge avvik systematisk."]]
+          evidence: [["Trend", "Lavere uro på dager med fast rekkefølge."], ["Teori", "Forutsigbarhet kan redusere behov for bekreftelse."], ["Til leder", "Fast rekkefølge og systematisk avvikslogg kan vurderes av leder og bolig."]]
         }
       ],
       sensorikk: [
@@ -1697,12 +1697,12 @@
           source: "T3",
           confidence: "Lav",
           cluster: "Sensoriske signaler samles i én klynge, men støtten er lav. Funnet bør leses som et spørsmål.",
-          evidence: [["Domene", "Miljø og sensorisk regulering er registrert samtidig."], ["Respons", "Skjerming av ører og tilbaketrekning gjentas."], ["Mulig tiltak", "Fagpersonen kan vurdere roligere plass, tydelig start/slutt og lavere lydnivå."]]
+          evidence: [["Domene", "Miljø og sensorisk regulering er registrert samtidig."], ["Respons", "Skjerming av ører og tilbaketrekning gjentas."], ["Til leder", "Roligere plass, tydelig start/slutt og lavere lydnivå kan vurderes av leder og bolig."]]
         },
         {
           title: "Skjermet pause før eskalering",
           note: "Kort pause før ny aktivitet ser ut til å dempe uro i situasjoner med mange krav.",
-          intro: "IMA løfter fram tiltak som ofte kommer før positiv endring.",
+          intro: "IMA løfter fram sammenhenger som ofte kommer før positiv endring.",
           a: "Beboer møter flere krav tett etter hverandre.",
           b: "Tempoet går ned, blikket flakker og beboer blir urolig.",
           c: "Personalet gir kort skjermet pause før aktiviteten tas opp igjen.",
@@ -1712,8 +1712,8 @@
           support: "6/9",
           source: "M7 + T2",
           confidence: "Middels",
-          cluster: "Motoren skiller planlagte pauser før krav fra pauser etter eskalering. Det gjør tiltaket lettere å vurdere.",
-          evidence: [["Operant", "Pause etter uro kan være faglig relevant."], ["Mønster", "Planlagt pause før krav henger sammen med roligere forløp."], ["Mulig tiltak", "Fagpersonen kan vurdere skillet mellom forebyggende pause og pause etter eskalering."]]
+          cluster: "Motoren skiller planlagte pauser før krav fra pauser etter eskalering. Det gjør funnet lettere å vurdere.",
+          evidence: [["Operant", "Pause etter uro kan være faglig relevant."], ["Mønster", "Planlagt pause før krav henger sammen med roligere forløp."], ["Til leder", "Skillet mellom forebyggende pause og pause etter eskalering kan vurderes av leder og bolig."]]
         }
       ]
     };
