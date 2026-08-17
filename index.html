@@ -1,0 +1,1811 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Intelligent Mønsteranalyse (IMA)</title>
+  <meta name="description" content="Presentasjon og klikkbar demo av Intelligent Mønsteranalyse.">
+  <style>
+    :root {
+      --ink: #172034;
+      --muted: #5b6677;
+      --paper: #ffffff;
+      --soft: #f5f7f1;
+      --line: #d8dfd4;
+      --green: #2f6f4e;
+      --teal: #287a88;
+      --gold: #b98020;
+      --red: #a54b45;
+      --shadow: 0 18px 48px rgba(23, 32, 52, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(135deg, #fbfbf7 0%, #eef5f1 48%, #f8f1e5 100%);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(16px);
+      background: rgba(251, 251, 247, 0.92);
+      border-bottom: 1px solid rgba(216, 223, 212, 0.95);
+    }
+
+    .nav {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--green);
+      box-shadow: 0 8px 22px rgba(47, 111, 78, 0.24);
+      font-size: 0.83rem;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .navlinks a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.93rem;
+      padding: 8px 10px;
+      border-radius: 7px;
+    }
+
+    .navlinks a:hover {
+      background: rgba(47, 111, 78, 0.08);
+      color: var(--ink);
+    }
+
+    .hero {
+      min-height: calc(100svh - 64px);
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+      align-items: center;
+      gap: 42px;
+      padding: 48px 0 34px;
+      scroll-margin-top: 82px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-weight: 800;
+      margin: 0 0 12px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 5.8vw, 4.8rem);
+      line-height: 0.96;
+      max-width: 850px;
+    }
+
+    .lead {
+      margin: 22px 0 0;
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      max-width: 710px;
+      color: #2a3448;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(23, 32, 52, 0.06);
+    }
+
+    .button.primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 28px;
+      max-width: 720px;
+    }
+
+    .trust-item {
+      border-left: 3px solid var(--teal);
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.58);
+      border-radius: 0 8px 8px 0;
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .program-window,
+    .analysis-panel,
+    .card,
+    .slide-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .program-window {
+      overflow: hidden;
+    }
+
+    .window-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(245, 247, 241, 0.94);
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--line);
+    }
+
+    .window-title {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .app-chrome {
+      display: grid;
+      grid-template-columns: 138px 1fr;
+      min-height: 458px;
+    }
+
+    .side-rail {
+      border-right: 1px solid var(--line);
+      background: #f7f8f4;
+      padding: 14px 10px;
+      display: grid;
+      align-content: start;
+      gap: 8px;
+    }
+
+    .rail-item,
+    .tab,
+    .note {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .rail-item {
+      border: 0;
+      border-radius: 8px;
+      padding: 9px 10px;
+      background: transparent;
+      color: var(--muted);
+      text-align: left;
+      font-weight: 800;
+    }
+
+    .rail-item[aria-selected="true"] {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .app-stage {
+      padding: 16px;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 14px;
+    }
+
+    .status-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #edf6ef;
+      color: var(--green);
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .mini-grid,
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .mini-panel,
+    .stat-box,
+    .metric {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .mini-label,
+    .metric span,
+    .stat-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1.1;
+    }
+
+    .mock-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 8px;
+      align-items: start;
+      font-size: 0.83rem;
+    }
+
+    .event time {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .section {
+      padding: 76px 0;
+      scroll-margin-top: 82px;
+    }
+
+    .section.alt {
+      background: rgba(255, 255, 255, 0.56);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      max-width: 800px;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.04;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin: 16px 0 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card,
+    .slide-card {
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(23, 32, 52, 0.07);
+    }
+
+    .card h3,
+    .slide-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .card p,
+    .slide-card p,
+    .slide-card li {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .slide-card ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    .slide-number {
+      color: var(--green);
+      font-weight: 900;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .step {
+      min-height: 166px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .step strong {
+      display: block;
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(47, 111, 78, 0.12);
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .demo-layout {
+      display: grid;
+      grid-template-columns: 0.42fr 0.58fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .screenshot-block {
+      margin-top: 34px;
+    }
+
+    .screenshot-block h3 {
+      margin: 0 0 14px;
+      font-size: 1.4rem;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .screenshot-card {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(23, 32, 52, 0.07);
+    }
+
+    .screenshot-card img {
+      display: block;
+      width: 100%;
+      height: 440px;
+      object-fit: contain;
+      object-position: top left;
+      background: #f3f2e9;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .screenshot-card figcaption {
+      display: grid;
+      gap: 4px;
+      padding: 14px 16px 16px;
+    }
+
+    .screenshot-card strong {
+      font-size: 1.02rem;
+    }
+
+    .screenshot-card span {
+      color: var(--muted);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .tab {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      min-height: 40px;
+      padding: 8px 12px;
+      font-weight: 800;
+    }
+
+    .tab[aria-selected="true"] {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+    }
+
+    .note-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .note {
+      text-align: left;
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 13px;
+      color: var(--ink);
+    }
+
+    .note[aria-pressed="true"] {
+      border-color: var(--green);
+      box-shadow: inset 0 0 0 1px var(--green);
+      background: #f6fbf5;
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .note span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .analysis-panel {
+      padding: 18px;
+    }
+
+    .analysis-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .analysis-top h3 {
+      margin: 0 0 5px;
+    }
+
+    .analysis-top p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .confidence {
+      min-width: 98px;
+      text-align: center;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      padding: 10px;
+      background: #f8fbf7;
+    }
+
+    .confidence span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .confidence strong {
+      font-size: 1.4rem;
+    }
+
+    .abc-grid,
+    .result-grid {
+      display: grid;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .abc-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .result-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .abc-box {
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      padding: 12px;
+      min-height: 132px;
+      background: #fbfdf9;
+    }
+
+    .abc-box b {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .abc-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .cluster-lab {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbf7;
+      margin: 12px 0;
+      padding: 12px;
+    }
+
+    .cluster-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .cluster-head strong {
+      display: block;
+    }
+
+    .cluster-head span,
+    .cluster-caption {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .cluster-status {
+      color: var(--green);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .cluster-canvas {
+      position: relative;
+      height: 168px;
+      border-radius: 8px;
+      background:
+        linear-gradient(rgba(216, 223, 212, 0.38) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(216, 223, 212, 0.38) 1px, transparent 1px),
+        #ffffff;
+      background-size: 28px 28px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .scan-line {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 2px;
+      background: rgba(40, 122, 136, 0.45);
+      box-shadow: 0 0 18px rgba(40, 122, 136, 0.35);
+      animation: scan 3s ease-in-out infinite;
+    }
+
+    .cluster-core {
+      position: absolute;
+      width: 82px;
+      height: 58px;
+      border: 1px dashed rgba(47, 111, 78, 0.55);
+      border-radius: 50%;
+      opacity: 0;
+      animation: corePulse 3s ease-in-out infinite;
+    }
+
+    .cluster-core.one {
+      left: 18%;
+      top: 26%;
+    }
+
+    .cluster-core.two {
+      right: 19%;
+      top: 42%;
+      border-color: rgba(185, 128, 32, 0.6);
+      animation-delay: 0.35s;
+    }
+
+    .cluster-dot {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+      transform: translate(0, 0);
+      animation: clusterMove 3s ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+
+    .cluster-dot.green {
+      background: var(--green);
+    }
+
+    .cluster-dot.gold {
+      background: var(--gold);
+    }
+
+    .cluster-dot.outlier {
+      background: #aab3bd;
+      animation-name: outlierDrift;
+    }
+
+    .cluster-caption {
+      margin-top: 9px;
+    }
+
+    .hypothesis,
+    .safety-box {
+      padding: 12px 14px;
+      border-radius: 8px;
+    }
+
+    .hypothesis {
+      border-left: 4px solid var(--gold);
+      background: #fff9ec;
+    }
+
+    .safety-box {
+      border-left: 4px solid var(--teal);
+      background: #eff8f8;
+    }
+
+    .hypothesis strong,
+    .safety-box strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .hypothesis p,
+    .safety-box p {
+      margin: 0;
+      color: #4d5662;
+    }
+
+    .metrics {
+      margin-top: 14px;
+    }
+
+    .metric {
+      position: relative;
+    }
+
+    .metric.explained {
+      outline: none;
+    }
+
+    .metric.explained::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      bottom: 10px;
+      width: calc(100% - 24px);
+      height: 2px;
+      background: rgba(47, 111, 78, 0.18);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 160ms ease;
+    }
+
+    .metric.explained:hover::after,
+    .metric.explained:focus::after,
+    .metric.explained:focus-within::after {
+      transform: scaleX(1);
+    }
+
+    .metric strong {
+      font-size: 1.28rem;
+      line-height: 1.1;
+    }
+
+    .tooltip {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: calc(100% + 8px);
+      z-index: 8;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 12px 32px rgba(23, 32, 52, 0.24);
+      font-size: 0.86rem;
+      font-weight: 600;
+      line-height: 1.35;
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .tooltip::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 100%;
+      border: 7px solid transparent;
+      border-top-color: var(--ink);
+    }
+
+    .metric.explained:hover .tooltip,
+    .metric.explained:focus .tooltip,
+    .metric.explained:focus-within .tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .evidence-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .evidence-item {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .evidence-item strong {
+      color: var(--ink);
+    }
+
+    .pilot-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .pilot-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(23, 32, 52, 0.07);
+    }
+
+    .pilot-card h3 {
+      margin: 0 0 10px;
+    }
+
+    .pilot-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pilot-list,
+    .privacy-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pilot-item,
+    .privacy-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdf9;
+    }
+
+    .pilot-item b,
+    .privacy-item b {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(47, 111, 78, 0.12);
+      color: var(--green);
+      font-size: 0.88rem;
+    }
+
+    .pilot-item strong,
+    .privacy-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .pilot-item span,
+    .privacy-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    details {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 30px rgba(23, 32, 52, 0.06);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    details p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .do-dont {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .do-dont div {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+    }
+
+    .needs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .need {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 126px;
+    }
+
+    .need strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .need span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      padding: 40px 0 54px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    .footer .shell {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes scan {
+      0%, 100% {
+        transform: translateX(0);
+        opacity: 0.2;
+      }
+      45%, 55% {
+        opacity: 1;
+      }
+      50% {
+        transform: translateX(560px);
+      }
+    }
+
+    @keyframes corePulse {
+      0%, 18% {
+        opacity: 0;
+        transform: scale(0.78);
+      }
+      42%, 76% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes clusterMove {
+      0%, 18% {
+        transform: translate(0, 0);
+      }
+      52%, 100% {
+        transform: translate(var(--dx), var(--dy));
+      }
+    }
+
+    @keyframes outlierDrift {
+      0%, 18% {
+        transform: translate(0, 0);
+      }
+      52%, 100% {
+        transform: translate(12px, -8px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scan-line,
+      .cluster-core,
+      .cluster-dot {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .demo-layout,
+      .screenshot-grid,
+      .pilot-layout,
+      .compare {
+        grid-template-columns: 1fr;
+      }
+
+      .grid,
+      .pipeline,
+      .needs,
+      .faq-grid,
+      .mini-grid,
+      .metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      .navlinks {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .trust-row,
+      .app-chrome,
+      .mock-row,
+      .grid,
+      .pipeline,
+      .abc-grid,
+      .result-grid,
+      .metrics,
+      .needs,
+      .faq-grid,
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side-rail {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .rail-item {
+        text-align: center;
+        font-size: 0.86rem;
+      }
+
+      .analysis-top {
+        display: block;
+      }
+
+      .confidence {
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      .tooltip {
+        position: static;
+        display: none;
+        margin-top: 8px;
+        transform: none;
+      }
+
+      .metric.explained:hover .tooltip,
+      .metric.explained:focus .tooltip,
+      .metric.explained:focus-within .tooltip {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="shell nav" aria-label="Hovednavigasjon">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">IMA</div>
+        <span>Intelligent Mønsteranalyse</span>
+      </div>
+      <div class="navlinks">
+        <a href="#losning">Løsning</a>
+        <a href="#pilot">Pilot</a>
+        <a href="#demo">Demo</a>
+        <a href="#sikkerhet">Sikkerhet</a>
+        <a href="#avklaringer">Avklaringer</a>
+        <a href="#neste-steg">Neste steg</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shell hero" id="top">
+      <div>
+        <p class="eyebrow">HelseAgent / IMA · egenutviklet prototype</p>
+        <h1>Å gjøre atferdsmønstre synlige</h1>
+        <p class="lead">
+          Intelligent Mønsteranalyse finner gjentakende sammenhenger i observasjoner og løfter dem
+          fram som sporbare hypoteser. Målet er bedre faglig vurdering, mer forutsigbar hverdag for
+          beboeren og mindre tid brukt på manuelt letearbeid.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#demo">Se programdemo</a>
+          <a class="button" href="#pilot">Se pilotopplegg</a>
+        </div>
+        <div class="trust-row" aria-label="Tre viktige avklaringer">
+          <div class="trust-item">Screening- og forskningsverktøy</div>
+          <div class="trust-item">Hypotesegrunnlag, ikke klinisk fasit</div>
+          <div class="trust-item">Fagpersonen bestemmer alltid</div>
+        </div>
+      </div>
+
+      <aside class="program-window" aria-label="Forenklet visning av programmet">
+        <div class="window-head">
+          <div class="dots" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="window-title">HelseAgent · Analyserom</div>
+        </div>
+        <div class="app-chrome">
+          <div class="side-rail" role="tablist" aria-label="Programrom">
+            <button class="rail-item" type="button" aria-selected="false" data-room="control">Kontrollrom</button>
+            <button class="rail-item" type="button" aria-selected="false" data-room="quality">Kvalitet</button>
+            <button class="rail-item" type="button" aria-selected="true" data-room="analysis">Analyserom</button>
+          </div>
+          <div class="app-stage" id="hero-room"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="losning">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Slik fungerer IMA</h2>
+          <p>
+            Programmet analyserer observasjoner, finner gjentakende sammenhenger og presenterer dem som hypoteser.
+            Fagpersoner vurderer funnene. Ingen funn er også et gyldig resultat.
+          </p>
+        </div>
+        <div class="pipeline" aria-label="Fire steg i IMA">
+          <div class="step">
+            <div><strong>Data</strong><span>Pleienotater, strukturerte felt, ABC-episoder og observasjonsdomener.</span></div>
+            <div class="step-number">1</div>
+          </div>
+          <div class="step">
+            <div><strong>Mønstermotor</strong><span>Forklarbar analyse av A→B, B→C, A→B→C og signaler over tid.</span></div>
+            <div class="step-number">2</div>
+          </div>
+          <div class="step">
+            <div><strong>Teori og hypoteser</strong><span>ABC, operant betinging, sensorikk og tidsvindu gir faglig ramme.</span></div>
+            <div class="step-number">3</div>
+          </div>
+          <div class="step">
+            <div><strong>Faglig vurdering</strong><span>Fagpersonen vurderer, forkaster, justerer eller tester tiltak.</span></div>
+            <div class="step-number">4</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="pilot">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Et trygt pilotprosjekt</h2>
+          <p>
+            Pilot må være liten, avklart og faglig styrt. Målet er å teste metode og nytte, ikke å bruke IMA som klinisk fasit.
+          </p>
+        </div>
+        <div class="pilot-layout">
+          <article class="pilot-card">
+            <h3>Rammen for pilot</h3>
+            <p>
+              En god pilot bør ha få reelle beboere, tydelig ansvar og en kort evalueringsperiode. Syntetiske data brukes til forberedelse, stresstesting og videre utvikling.
+            </p>
+            <div class="pilot-list">
+              <div class="pilot-item"><b>1</b><div><strong>Avgrenset miljø</strong><span>Én tjeneste, én faggruppe eller ett avklart testmiljø.</span></div></div>
+              <div class="pilot-item"><b>2</b><div><strong>Faglig ansvarlig</strong><span>En person som vurderer språk, metode, funn og praktisk nytte.</span></div></div>
+              <div class="pilot-item"><b>3</b><div><strong>Klare dataregler</strong><span>Hvilke data som brukes, hvor de lagres, hvem som har tilgang, og når de slettes.</span></div></div>
+              <div class="pilot-item"><b>4</b><div><strong>Evalueringspunkt</strong><span>Hva som skal måles: forståelighet, nytte, risiko, tidsbruk og faglig treff.</span></div></div>
+            </div>
+          </article>
+          <article class="pilot-card">
+            <h3>Hva piloten skal svare på</h3>
+            <div class="privacy-list">
+              <div class="privacy-item"><b>?</b><div><strong>Ser fagpersoner nytte?</strong><span>Gir IMA bedre oversikt over mønstre som ellers tar tid å finne?</span></div></div>
+              <div class="privacy-item"><b>?</b><div><strong>Er språket forsvarlig?</strong><span>Blir hypoteser formulert nøkternt, presist og uten å overdrive sikkerhet?</span></div></div>
+              <div class="privacy-item"><b>?</b><div><strong>Er risikoen håndterbar?</strong><span>Er det tydelig nok at funn er samvariasjon og må vurderes av fagperson?</span></div></div>
+              <div class="privacy-item"><b>?</b><div><strong>Finnes det en forretning?</strong><span>Er nytten stor nok til at pilot kan bli tjeneste, produkt eller samarbeid?</span></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Programdemo</h2>
+          <p>
+            Velg et syntetisk funn. Demoen viser veien fra observasjon til mønster, teori, hypotese og forsiktighetsmerking.
+          </p>
+        </div>
+
+        <div class="demo-layout">
+          <div>
+            <div class="tabs" role="tablist" aria-label="Demovalg">
+              <button class="tab" type="button" role="tab" aria-selected="true" data-tab="ukjent">Ukjent person</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="overgang">Overgang</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="sensorikk">Sensorikk</button>
+            </div>
+            <div class="note-list" id="notes"></div>
+          </div>
+
+          <article class="analysis-panel" aria-live="polite">
+            <div class="analysis-top">
+              <div>
+                <h3 id="analysis-title">Analyse</h3>
+                <p id="analysis-intro"></p>
+              </div>
+              <div class="confidence">
+                <span>Trygghet</span>
+                <strong id="confidence-text"></strong>
+              </div>
+            </div>
+            <div class="cluster-lab" aria-label="Animasjon av klyngefunn">
+              <div class="cluster-head">
+                <div>
+                  <strong>Motoren finner klynger</strong>
+                  <span>Observasjoner med like signaler samles. Avvik blir liggende utenfor.</span>
+                </div>
+                <div class="cluster-status">Analyserer</div>
+              </div>
+              <div class="cluster-canvas" aria-hidden="true">
+                <div class="scan-line"></div>
+                <div class="cluster-core one"></div>
+                <div class="cluster-core two"></div>
+                <span class="cluster-dot green" style="--x: 8%; --y: 22%; --dx: 65px; --dy: 20px; --delay: 0s;"></span>
+                <span class="cluster-dot green" style="--x: 15%; --y: 70%; --dx: 42px; --dy: -48px; --delay: 0.1s;"></span>
+                <span class="cluster-dot green" style="--x: 31%; --y: 30%; --dx: -25px; --dy: 18px; --delay: 0.2s;"></span>
+                <span class="cluster-dot green" style="--x: 40%; --y: 78%; --dx: -70px; --dy: -46px; --delay: 0.28s;"></span>
+                <span class="cluster-dot gold" style="--x: 70%; --y: 20%; --dx: 18px; --dy: 58px; --delay: 0.12s;"></span>
+                <span class="cluster-dot gold" style="--x: 88%; --y: 32%; --dx: -46px; --dy: 34px; --delay: 0.22s;"></span>
+                <span class="cluster-dot gold" style="--x: 79%; --y: 78%; --dx: 10px; --dy: -26px; --delay: 0.32s;"></span>
+                <span class="cluster-dot outlier" style="--x: 54%; --y: 18%; --dx: 12px; --dy: -8px; --delay: 0.18s;"></span>
+              </div>
+              <div class="cluster-caption" id="cluster-caption"></div>
+            </div>
+            <div class="abc-grid">
+              <div class="abc-box">
+                <b>A</b>
+                <p id="abc-a"></p>
+              </div>
+              <div class="abc-box">
+                <b>B</b>
+                <p id="abc-b"></p>
+              </div>
+              <div class="abc-box">
+                <b>C</b>
+                <p id="abc-c"></p>
+              </div>
+            </div>
+            <div class="result-grid">
+              <div class="hypothesis">
+                <strong>Mulig hypotese</strong>
+                <p id="hypothesis-text"></p>
+              </div>
+              <div class="safety-box">
+                <strong>Forsiktighet</strong>
+                <p id="safety-text"></p>
+              </div>
+            </div>
+            <div class="metrics">
+              <div class="metric explained" tabindex="0">
+                <span>Lift</span>
+                <strong id="metric-lift"></strong>
+                <div class="tooltip" role="tooltip">Lift viser hvor mye oftere et signal opptrer sammen med et utfall enn forventet i resten av datagrunnlaget. Høy lift betyr sterkere samvariasjon, ikke bevist årsak.</div>
+              </div>
+              <div class="metric explained" tabindex="0">
+                <span>Støtte</span>
+                <strong id="metric-support"></strong>
+                <div class="tooltip" role="tooltip">Støtte viser hvor mange relevante observasjoner mønsteret bygger på. Lav støtte betyr at funnet må tolkes ekstra forsiktig.</div>
+              </div>
+              <div class="metric"><span>Kilde</span><strong id="metric-source"></strong></div>
+              <div class="metric"><span>Vurdering</span><strong>Hypotese</strong></div>
+            </div>
+            <div class="evidence-list" id="evidence"></div>
+          </article>
+        </div>
+
+        <div class="screenshot-block">
+          <h3>Skjermbilder fra programmet</h3>
+          <div class="screenshot-grid">
+            <figure class="screenshot-card">
+              <img src="assets/analyserom.png" alt="Skjermbilde av HelseAgent Analyserom med nøkkeltall, innsikt og hypoteser.">
+              <figcaption>
+                <strong>Analyserom</strong>
+                <span>Mønstre, hypoteser, nøkkeltall og faglig vurderingsgrunnlag.</span>
+              </figcaption>
+            </figure>
+            <figure class="screenshot-card">
+              <img src="assets/kvalitetsrom.png" alt="Skjermbilde av HelseAgent Kvalitetsrom med dager, kvalitetspanel og dag-preview.">
+              <figcaption>
+                <strong>Kvalitetsrom</strong>
+                <span>Dager, avvik, forhåndsvisning og godkjenning.</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="sikkerhet">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Trygghet og avgrensning</h2>
+          <p>
+            IMA skal gjøre faglige spørsmål tydeligere. Det skal ikke ta vurderingen fra fagpersonen.
+          </p>
+        </div>
+        <div class="compare">
+          <article class="card">
+            <h3>Det er</h3>
+            <div class="do-dont">
+              <div>Et screening- og forskningsverktøy.</div>
+              <div>Hypotesegrunnlag for faglig vurdering.</div>
+              <div>Samvariasjon som kan etterprøves.</div>
+              <div>Et hjelpemiddel som kan spare fagtid.</div>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Det er ikke</h3>
+            <div class="do-dont">
+              <div>Et diagnoseverktøy.</div>
+              <div>En klinisk konklusjon.</div>
+              <div>En påstand om årsak.</div>
+              <div>En erstatning for faglig vurdering.</div>
+            </div>
+          </article>
+        </div>
+        <div class="pilot-card" style="margin-top: 16px;">
+          <h3>Taushetsplikt, GDPR og personvern</h3>
+          <p>
+            Dette må være avklart før pilot med reelle beboere. Syntetiske data kan brukes til forberedelse, men selve piloten må ha tydelige personvernrammer.
+          </p>
+          <div class="privacy-list">
+            <div class="privacy-item"><b>✓</b><div><strong>Taushetserklæring</strong><span>Alle som får innsyn i prosjektet må ha tydelig rolle og taushetsplikt.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Dataminimering</strong><span>Kun data som er nødvendig for pilotformålet skal brukes.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Tilgangsstyring</strong><span>Fagpersoner skal bare se det de har saklig behov for å se.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Avtaler</strong><span>Databehandleravtale, behandlingsgrunnlag og eventuell personvernkonsekvensvurdering må vurderes før ekte data.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Sletting</strong><span>Pilotdata skal ha definert lagringstid og slettes når formålet er oppfylt.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="avklaringer">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Vanlige avklaringer</h2>
+          <p>
+            Kort svar på det viktigste før noen går videre med pilot.
+          </p>
+        </div>
+        <div class="faq-grid">
+          <details open>
+            <summary>Kan IMA brukes klinisk nå?</summary>
+            <p>Nei. Dagens versjon er en prototype for screening, forskning og metodeutvikling. Den skal ikke brukes til kliniske beslutninger om reelle personer.</p>
+          </details>
+          <details>
+            <summary>Hva får pilotmiljøet igjen?</summary>
+            <p>En strukturert gjennomgang av hvordan IMA kan støtte faglig refleksjon, mønsterforståelse og evaluering av tiltak. Pilotmiljøet får påvirke metode og retning tidlig.</p>
+          </details>
+          <details>
+            <summary>Hva må være på plass før oppstart?</summary>
+            <p>Pilotkontakt, faglig ansvarlig, formål, dataramme, taushetsplikt, GDPR-avklaring, evalueringskriterier og en enkel avtale om ansvar og videre prosess.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="neste-steg">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Hva vi trenger videre</h2>
+          <p>
+            Neste steg er kontakt med et pilotprosjekt og tydelige rammer for en forsvarlig utprøving.
+          </p>
+        </div>
+        <div class="needs">
+          <div class="need"><strong>Pilotprosjekt</strong><span>Et konkret miljø som vil teste IMA i liten skala.</span></div>
+          <div class="need"><strong>Fagperson på plass</strong><span>En faglig ansvarlig som kan vurdere metode, språk og nytte.</span></div>
+          <div class="need"><strong>Taushetsplikt</strong><span>Klare rammer for hvem som får se hva, og hvordan informasjon håndteres.</span></div>
+          <div class="need"><strong>GDPR og personvern</strong><span>Avklare rettslig grunnlag, dataminimering, tilgang og sletting.</span></div>
+          <div class="need"><strong>Forretning</strong><span>Avklare pilotkostnad, ansvar, betalingsmodell og veien videre.</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="presentasjon">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Hele presentasjonen</h2>
+        </div>
+
+        <div class="grid">
+          <article class="slide-card">
+            <div class="slide-number">01 · Invitasjon</div>
+            <h3>Å gjøre atferdsmønstre synlige</h3>
+            <p>En invitasjon til samarbeid om et verktøy som støtter faglig vurdering.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">02 · Utfordringen</div>
+            <h3>Mønstrene finnes allerede</h3>
+            <ul>
+              <li>Mye registreres i pleienotater.</li>
+              <li>ABC-sammenhenger ligger spredt og implisitt.</li>
+              <li>Tid er knapphetsgodet.</li>
+            </ul>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">03 · Hva verktøyet er</div>
+            <h3>Gjør det implisitte eksplisitt</h3>
+            <ul>
+              <li>Løfter fram gjentakende mønstre.</li>
+              <li>Foreslår hypoteser med forbehold.</li>
+              <li>Gjør resonnementet sporbart.</li>
+            </ul>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">04 · Avgrensning</div>
+            <h3>Hva det er, og hva det ikke er</h3>
+            <p>Det er screening, forskning og hypotesegrunnlag. Det er ikke diagnose, årsaksbevis eller erstatning for faglig vurdering.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">05 · Fagfeltet</div>
+            <h3>Bygget for omsorgsboliger</h3>
+            <p>IMA er bygget for omsorgsboliger. Første retning er rus og psykiatri, ROP og PU. ABC, sensorisk regulering og observasjonsdomener er sentralt.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">06 · Arbeidsflyt</div>
+            <h3>Fra notat til hypotese</h3>
+            <p>Data går gjennom en forklarbar mønstermotor, videre til hypoteser med forbehold, og ender i faglig vurdering.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">07 · Eksempel</div>
+            <h3>Ukjent person til stede</h3>
+            <p>Mønster: ukjent person til stede → krevende/krise-dag. Lift 3,95. Støtte 5 av 6 dager. Vurdering: hypotese, ikke konklusjon.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">08 · Ambisjon</div>
+            <h3>To nivåer</h3>
+            <p>Først forskningsmotor på syntetiske data. På sikt klinisk beslutningsstøtte bygget mot CE-merking.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">09 · Standard</div>
+            <h3>Bygget til standard fra dag én</h3>
+            <p>MDR, ISO 14971 og IEC 62304 brukes som rettesnor lenge før eventuell sertifisering.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">10 · Sikkerhet</div>
+            <h3>Forsiktighet er innebygd</h3>
+            <p>Ikke-klinisk standardmodus, streng aktivering av klinisk modus, pseudonymisering, logging og krav til kryptering.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">11 · Behov</div>
+            <h3>Her trengs fagligheten</h3>
+            <p>Språk, risikovurdering, prognosegrenser og klinisk validering må vurderes sammen med fagpersoner.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">12 · Partnerskap</div>
+            <h3>Hva vi tilbyr og ber om</h3>
+            <p>Faglig påvirkning fra start, metode-/forskningssamarbeid og validering av at funnene er forsvarlige.</p>
+          </article>
+          <article class="slide-card">
+            <div class="slide-number">13 · Neste steg</div>
+            <h3>Pilotdialog</h3>
+            <p>Første steg er å avklare pilotmiljø, faglig ansvar, taushetsplikt, GDPR og forretningsmodell.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <span>Intelligent Mønsteranalyse (IMA)</span>
+      <span>Tidligere arbeidstittel: HelseAgent · Kvalitet før alt</span>
+    </div>
+  </footer>
+
+  <script>
+    const roomData = {
+      control: {
+        title: "Kontrollrom",
+        pill: "Klar til kjøring",
+        stats: [["Beboer", "nn_005", "syntetisk profil"], ["Periode", "90", "dager"], ["Status", "Fase 1", "analyse valgt"], ["Mappe", "v2", "sporbar lagring"]],
+        leftTitle: "Pipeline",
+        leftRows: [["1", "Generer syntetiske pleienotater"], ["2", "Kjør fase 1: ingest + analyse"], ["3", "Finn mønstre og teorifunn"]],
+        rightTitle: "Logg",
+        rightRows: [["09:14", "Daglager validert"], ["09:16", "ABC-episoder funnet"], ["09:18", "Mønstermotor fullført"]],
+        footer: "Tungt arbeid kjører i bakgrunnen, slik at programmet ikke låser seg."
+      },
+      quality: {
+        title: "Kvalitetsrom",
+        pill: "Manuell kontroll",
+        stats: [["Dager", "90", "komplette"], ["ABC", "18%", "episoder"], ["Avvik", "3", "til kontroll"], ["Vurdert", "12", "godkjent"]],
+        leftTitle: "Kvalitetssjekk",
+        leftRows: [["01", "Mangler i observasjonsdomener"], ["02", "Uvanlig risikoscore"], ["03", "Tekst som trenger faglig vurdering"]],
+        rightTitle: "Eksempelnotat",
+        rightRows: [["07:30", "Uro ved rask overgang"], ["11:15", "Ro etter skjermet pause"], ["18:40", "Stress ved uvarslet endring"]],
+        footer: "Kvalitetsrommet viser hva som bør leses manuelt først."
+      },
+      analysis: {
+        title: "Analyserom",
+        pill: "Hypoteser klare",
+        stats: [["Obs", "990", "observasjoner"], ["Avvik", "14", "til vurdering"], ["ABC", "22%", "andel"], ["Klynger", "6", "+ støy"]],
+        leftTitle: "Mønstre",
+        leftRows: [["M1", "Ukjent person → krevende dag"], ["M2", "Overgang uten varsel → uro"], ["T1", "ABC-kjede støttet av teori"]],
+        rightTitle: "Hypotese",
+        rightRows: [["Lift", "3,95"], ["Støtte", "5 av 6 dager"], ["Vurdering", "Hypotese, ikke konklusjon"]],
+        footer: "Analyserommet viser mønstre, teori, hypoteser, avvik, trender og prognosefelt."
+      }
+    };
+
+    const demoData = {
+      ukjent: [
+        {
+          title: "Ukjent person til stede",
+          note: "I fem av seks krevende dager var ukjent person eller vikar registrert i miljøet.",
+          intro: "Programmet kobler et gjentakende miljøsignal til krevende/krise-dag, men viser det som samvariasjon.",
+          a: "Ukjent person er til stede, ofte samtidig med endring i rutine eller overgang.",
+          b: "Beboer viser uro, søker bort eller trenger mer støtte enn vanlig.",
+          c: "Personalet skjermer, reduserer krav og bruker kjent personale som støtte.",
+          hypothesis: "Ukjent person kan være et varseltegn eller en forvekslingsfaktor. Faglig vurdering må avklare om signalet handler om personen, overgangen, bemanning eller noe annet.",
+          safety: "Kan ikke brukes som årsakspåstand. Alternative forklaringer må vurderes.",
+          lift: "3,95",
+          support: "5/6",
+          source: "M1 + T1",
+          confidence: "Lav",
+          cluster: "Klynge 1 samler notater med ukjent person, endret rutine og krevende dag. Ett punkt holdes utenfor som avvik.",
+          evidence: [["Mønster", "Signalet dukker oftere opp før krevende dager enn i grunnnivået."], ["Teori", "ABC-modellen gjør foranledning og konsekvens relevant."], ["Tiltak", "Test varslet introduksjon, kjent personale og roligere overgang."]]
+        },
+        {
+          title: "Ukjent person og kveld",
+          note: "Tre episoder oppstår på kveldsvakt. Det er ikke nok til å skille vakt fra personfaktor.",
+          intro: "IMA markerer mulig forvekslingsfaktor før funnet blir brukt som hypotese.",
+          a: "Ukjent person og kveldsovergang opptrer samtidig i flere notater.",
+          b: "Beboer spør gjentatte ganger hva som skal skje og forlater fellesrom.",
+          c: "Personalet gjentar planen og tilbyr kjent aktivitet.",
+          hypothesis: "Det kan være kveldsovergangen, ikke den ukjente personen, som driver uroen.",
+          safety: "Merket som usikkert fordi to signaler opptrer samtidig.",
+          lift: "2,10",
+          support: "3/5",
+          source: "M4",
+          confidence: "Lav",
+          cluster: "Motoren finner en liten klynge, men markerer at kveldsvakt og ukjent person overlapper.",
+          evidence: [["Forveksling", "Kveldsvakt og ukjent person overlapper."], ["Behov", "Se etter dager med kveldsovergang uten ukjent person."], ["Tiltak", "Ikke endre praksis før mønsteret er vurdert manuelt."]]
+        }
+      ],
+      overgang: [
+        {
+          title: "Overgang uten tydelig varsel",
+          note: "Ved rask overgang fra frokost til morgenstell blir beboer urolig og går bort fra badet.",
+          intro: "IMA henter ut en mulig ABC-kjede fra observasjonen.",
+          a: "Overgang til morgenstell skjer raskt, uten tydelig forvarsel.",
+          b: "Beboer går bort fra situasjonen og viser uro.",
+          c: "Personalet senker tempo, gir valg og bruker visuell støtte.",
+          hypothesis: "Uvarslede overganger kan være en foranledning til uro. Mer forutsigbar varsling kan prøves og evalueres.",
+          safety: "Tiltak bør testes skånsomt og evalueres over tid.",
+          lift: "2,80",
+          support: "4/6",
+          source: "ABC",
+          confidence: "Middels",
+          cluster: "Flere observasjoner samles rundt raske overganger uten varsel. Klyngen peker mot en mulig A→B-sammenheng.",
+          evidence: [["A→B", "Rask overgang kommer før uro i flere notater."], ["B→C", "Redusert tempo og valg følges ofte av roligere forløp."], ["Tiltak", "Varsel 5 minutter før, visuell støtte og to konkrete valg."]]
+        },
+        {
+          title: "Fast kveldsovergang",
+          note: "Når kveldsovergangen følger samme rekkefølge, bruker beboer kortere tid på å falle til ro.",
+          intro: "Systemet sammenligner like tidsrom på tvers av dager.",
+          a: "Kveldsovergang følger fast rekkefølge med kjent visuell støtte.",
+          b: "Beboer deltar og søker mindre bekreftelse.",
+          c: "Personalet bekrefter planen og holder strukturen lik.",
+          hypothesis: "Fast rekkefølge kan gjøre kvelden mer forutsigbar og redusere stress.",
+          safety: "Positivt mønster, men fortsatt bare grunnlag for evaluering.",
+          lift: "1,90",
+          support: "5/6",
+          source: "M2",
+          confidence: "Middels",
+          cluster: "Notater med fast kveldsovergang grupperes tett og skiller seg fra dager med uvarslede endringer.",
+          evidence: [["Trend", "Lavere uro på dager med fast rekkefølge."], ["Teori", "Forutsigbarhet kan redusere behov for bekreftelse."], ["Tiltak", "Behold rekkefølgen og logg avvik systematisk."]]
+        }
+      ],
+      sensorikk: [
+        {
+          title: "Høyt lydnivå i fellesrom",
+          note: "Beboer trekker seg unna og holder hendene over ørene under travel middagssituasjon.",
+          intro: "IMA skiller mellom miljøsignal, observerbar respons og personalrespons.",
+          a: "Fellesrommet har høyt lydnivå og mange personer samtidig.",
+          b: "Beboer trekker seg unna og skjermer ørene.",
+          c: "Personalet tilbyr roligere plass og kort pause.",
+          hypothesis: "Sensorisk belastning kan bidra til stress. Roligere rammer rundt måltid kan vurderes.",
+          safety: "Krever observasjoner på tvers av flere måltider før tiltak låses.",
+          lift: "2,35",
+          support: "3/5",
+          source: "T3",
+          confidence: "Lav",
+          cluster: "Sensoriske signaler samles i én klynge, men støtten er lav. Funnet bør leses som et spørsmål.",
+          evidence: [["Domene", "Miljø og sensorisk regulering er registrert samtidig."], ["Respons", "Skjerming av ører og tilbaketrekning gjentas."], ["Tiltak", "Roligere plass, tydelig start/slutt og lavere lydnivå."]]
+        },
+        {
+          title: "Skjermet pause før eskalering",
+          note: "Kort pause før ny aktivitet ser ut til å dempe uro i situasjoner med mange krav.",
+          intro: "IMA løfter fram tiltak som ofte kommer før positiv endring.",
+          a: "Beboer møter flere krav tett etter hverandre.",
+          b: "Tempoet går ned, blikket flakker og beboer blir urolig.",
+          c: "Personalet gir kort skjermet pause før aktiviteten tas opp igjen.",
+          hypothesis: "Planlagte pauser før nye krav kan forebygge eskalering og gjøre dagen mer håndterbar.",
+          safety: "Tiltaket må vurderes slik at pause ikke utilsiktet forsterker unngåelse.",
+          lift: "2,60",
+          support: "6/9",
+          source: "M7 + T2",
+          confidence: "Middels",
+          cluster: "Motoren skiller planlagte pauser før krav fra pauser etter eskalering. Det gjør tiltaket lettere å vurdere.",
+          evidence: [["Operant", "Pause etter uro kan være faglig relevant."], ["Mønster", "Planlagt pause før krav henger sammen med roligere forløp."], ["Tiltak", "Skill mellom forebyggende pause og pause etter eskalering."]]
+        }
+      ]
+    };
+
+    const heroRoom = document.getElementById("hero-room");
+    const railItems = Array.from(document.querySelectorAll(".rail-item"));
+
+    function renderRoom(roomKey) {
+      const room = roomData[roomKey];
+      heroRoom.innerHTML = `
+        <div class="status-line">
+          <strong>${room.title}</strong>
+          <span class="pill">${room.pill}</span>
+        </div>
+        <div class="mini-grid">
+          ${room.stats.map(([label, value, suffix]) => `<div class="stat-box"><span>${label}</span><strong>${value}</strong><span>${suffix}</span></div>`).join("")}
+        </div>
+        <div class="mock-row">
+          <div class="mini-panel">
+            <span class="mini-label">${room.leftTitle}</span>
+            <div class="timeline">${room.leftRows.map(([time, text]) => `<div class="event"><time>${time}</time><span>${text}</span></div>`).join("")}</div>
+          </div>
+          <div class="mini-panel">
+            <span class="mini-label">${room.rightTitle}</span>
+            <div class="timeline">${room.rightRows.map(([time, text]) => `<div class="event"><time>${time}</time><span>${text}</span></div>`).join("")}</div>
+          </div>
+        </div>
+        <div class="mini-panel">
+          <span class="mini-label">Hva dette viser</span>
+          <strong>${room.footer}</strong>
+        </div>
+      `;
+    }
+
+    railItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        railItems.forEach((candidate) => {
+          candidate.setAttribute("aria-selected", candidate === item ? "true" : "false");
+        });
+        renderRoom(item.dataset.room);
+      });
+    });
+
+    const notesEl = document.getElementById("notes");
+    const evidenceEl = document.getElementById("evidence");
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    let activeTab = "ukjent";
+    let activeIndex = 0;
+
+    function renderNotes() {
+      notesEl.innerHTML = "";
+      demoData[activeTab].forEach((item, index) => {
+        const button = document.createElement("button");
+        button.className = "note";
+        button.type = "button";
+        button.setAttribute("aria-pressed", index === activeIndex ? "true" : "false");
+        button.innerHTML = `<strong>${item.title}</strong><span>${item.note}</span>`;
+        button.addEventListener("click", () => {
+          activeIndex = index;
+          renderNotes();
+          renderAnalysis();
+        });
+        notesEl.appendChild(button);
+      });
+    }
+
+    function renderAnalysis() {
+      const item = demoData[activeTab][activeIndex];
+      document.getElementById("analysis-title").textContent = item.title;
+      document.getElementById("analysis-intro").textContent = item.intro;
+      document.getElementById("abc-a").textContent = item.a;
+      document.getElementById("abc-b").textContent = item.b;
+      document.getElementById("abc-c").textContent = item.c;
+      document.getElementById("hypothesis-text").textContent = item.hypothesis;
+      document.getElementById("safety-text").textContent = item.safety;
+      document.getElementById("metric-lift").textContent = item.lift;
+      document.getElementById("metric-support").textContent = item.support;
+      document.getElementById("metric-source").textContent = item.source;
+      document.getElementById("confidence-text").textContent = item.confidence;
+      document.getElementById("cluster-caption").textContent = item.cluster;
+      evidenceEl.innerHTML = item.evidence.map(([label, text]) => `<div class="evidence-item"><strong>${label}</strong><span>${text}</span></div>`).join("");
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        activeTab = tab.dataset.tab;
+        activeIndex = 0;
+        tabs.forEach((candidate) => {
+          candidate.setAttribute("aria-selected", candidate === tab ? "true" : "false");
+        });
+        renderNotes();
+        renderAnalysis();
+      });
+    });
+
+    renderRoom("analysis");
+    renderNotes();
+    renderAnalysis();
+  </script>
+</body>
+</html>
