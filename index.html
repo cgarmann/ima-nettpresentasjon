@@ -6,7 +6,7 @@
   <title>Intelligent Mønsteranalyse (IMA)</title>
   <meta name="description" content="IMA finner gjentakende mønstre i pleiedokumentasjon og løfter dem fram som sporbare hypoteser til faglig vurdering.">
   <meta property="og:title" content="Intelligent Mønsteranalyse (IMA)">
-  <meta property="og:description" content="Fra dokumentasjon til sporbare hypoteser – med faglig vurdering og beslutning der de hører hjemme.">
+  <meta property="og:description" content="Mønstrene finnes allerede i dokumentasjonen. Ingen har tid til å lete etter dem.">
   <meta property="og:type" content="website">
   <style>
     :root {
@@ -24,7 +24,6 @@
       --teal-soft: #e9f4f5;
       --gold: #ab7518;
       --gold-soft: #fdf5e6;
-      --slate-soft: #eef1f5;
       --r: 10px;
       --r-lg: 14px;
       --shadow-sm: 0 1px 2px rgba(19, 28, 46, .05), 0 4px 12px rgba(19, 28, 46, .05);
@@ -47,20 +46,16 @@
 
     a { color: inherit; }
     img { max-width: 100%; }
-
     .shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
 
     /* ---------- Navigasjon ---------- */
     .topbar {
       position: sticky; top: 0; z-index: 40;
-      background: rgba(255, 255, 255, .86);
+      background: rgba(255, 255, 255, .88);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
-    .nav {
-      min-height: 66px; display: flex; align-items: center;
-      justify-content: space-between; gap: 20px;
-    }
+    .nav { min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .brand { display: flex; align-items: center; gap: 11px; font-weight: 750; white-space: nowrap; }
     .mark {
       width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
@@ -71,33 +66,24 @@
     .navlinks { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
     .navlinks a {
       text-decoration: none; color: var(--muted); font-size: .89rem;
-      padding: 7px 11px; border-radius: 7px; font-weight: 550; transition: background .15s, color .15s;
+      padding: 7px 12px; border-radius: 7px; font-weight: 550; transition: background .15s, color .15s;
     }
     .navlinks a:hover { background: var(--green-soft); color: var(--green); }
+    .navlinks .step { color: var(--faint); font-weight: 800; font-size: .74rem; margin-right: 5px; }
 
     /* ---------- Hero ---------- */
     .hero {
-      display: grid;
-      grid-template-columns: minmax(0, .92fr) minmax(370px, 1.08fr);
-      align-items: center; gap: 46px; padding: 66px 0 74px;
-      scroll-margin-top: 84px;
+      display: grid; grid-template-columns: minmax(0, .92fr) minmax(370px, 1.08fr);
+      align-items: center; gap: 46px; padding: 66px 0 74px; scroll-margin-top: 84px;
     }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
       color: var(--green); font-weight: 700; margin: 0 0 16px;
       letter-spacing: .06em; text-transform: uppercase; font-size: .74rem;
     }
-    .eyebrow::before {
-      content: ""; width: 18px; height: 2px; background: var(--green); border-radius: 2px;
-    }
-    h1 {
-      margin: 0; font-size: clamp(2.5rem, 5vw, 3.9rem);
-      line-height: 1.03; letter-spacing: -.032em; font-weight: 780;
-    }
-    .lead {
-      margin: 22px 0 0; font-size: clamp(1.03rem, 1.5vw, 1.16rem);
-      max-width: 640px; color: var(--ink-2); line-height: 1.62;
-    }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--green); border-radius: 2px; }
+    h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 3.9rem); line-height: 1.03; letter-spacing: -.032em; font-weight: 780; }
+    .lead { margin: 22px 0 0; font-size: clamp(1.03rem, 1.5vw, 1.16rem); max-width: 640px; color: var(--ink-2); line-height: 1.62; }
     .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
     .button {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -110,14 +96,6 @@
     .button.primary { background: var(--green); border-color: var(--green); color: #fff; }
     .button.primary:hover { background: #24593e; }
 
-    .hero-meta {
-      margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line);
-      display: flex; gap: 26px; flex-wrap: wrap;
-    }
-    .hero-meta div { display: grid; gap: 1px; }
-    .hero-meta strong { font-size: 1.02rem; letter-spacing: -.01em; }
-    .hero-meta span { color: var(--faint); font-size: .8rem; font-weight: 600; }
-
     /* ---------- Programvindu ---------- */
     .program-window {
       background: var(--paper); border: 1px solid var(--line-strong);
@@ -129,7 +107,7 @@
     }
     .dots { display: flex; gap: 6px; }
     .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
-    .window-title { font-size: .82rem; color: var(--muted); font-weight: 700; letter-spacing: .01em; }
+    .window-title { font-size: .82rem; color: var(--muted); font-weight: 700; }
     .app-chrome { display: grid; grid-template-columns: 142px 1fr; min-height: 452px; }
     .side-rail {
       border-right: 1px solid var(--line); background: #fafbf8;
@@ -151,9 +129,7 @@
       background: var(--green-soft); color: var(--green); font-size: .78rem; font-weight: 700;
     }
     .mini-grid, .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
-    .mini-panel, .stat-box, .metric {
-      border: 1px solid var(--line); background: #fff; border-radius: var(--r); padding: 11px 12px;
-    }
+    .mini-panel, .stat-box, .metric { border: 1px solid var(--line); background: #fff; border-radius: var(--r); padding: 11px 12px; }
     .mini-label, .metric > span, .stat-box span {
       display: block; color: var(--faint); font-size: .7rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: .05em;
@@ -169,23 +145,16 @@
     /* ---------- Seksjoner ---------- */
     .section { padding: 88px 0; scroll-margin-top: 80px; }
     .section.alt { background: var(--soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .section.ink {
-      background: var(--ink); color: #fff; border: 0;
-    }
+    .section.ink { background: var(--ink); color: #fff; border: 0; }
     .section.ink .section-head p { color: rgba(255, 255, 255, .72); }
     .section.ink .eyebrow { color: #8fd0a9; }
     .section.ink .eyebrow::before { background: #8fd0a9; }
 
-    .section-head { max-width: 720px; margin-bottom: 36px; }
-    h2 {
-      margin: 0; font-size: clamp(1.85rem, 3.4vw, 2.7rem);
-      line-height: 1.1; letter-spacing: -.028em; font-weight: 760;
-    }
+    .section-head { max-width: 730px; margin-bottom: 36px; }
+    h2 { margin: 0; font-size: clamp(1.85rem, 3.4vw, 2.7rem); line-height: 1.1; letter-spacing: -.028em; font-weight: 760; }
     .section-head p { color: var(--muted); font-size: 1.04rem; margin: 15px 0 0; line-height: 1.62; }
 
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .grid.two { grid-template-columns: repeat(2, 1fr); }
-
     .card {
       background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
       padding: 22px; box-shadow: var(--shadow-sm); transition: transform .18s, box-shadow .18s;
@@ -194,80 +163,46 @@
     .card h3 { margin: 0 0 9px; font-size: 1.06rem; letter-spacing: -.012em; }
     .card p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.58; }
 
-    /* ---------- Modell (tre ledd) ---------- */
+    /* ---------- Problem ---------- */
+    .problem-quote {
+      margin: 0 0 30px; padding: 24px 28px; border-left: 3px solid var(--green);
+      background: var(--paper); border-radius: 0 var(--r-lg) var(--r-lg) 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .problem-quote p {
+      margin: 0; font-size: clamp(1.14rem, 2vw, 1.42rem); line-height: 1.45;
+      letter-spacing: -.018em; font-weight: 600; color: var(--ink);
+    }
+
+    /* ---------- Modell ---------- */
     .model { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .model-step {
-      position: relative; background: var(--paper); border: 1px solid var(--line);
+      background: var(--paper); border: 1px solid var(--line);
       border-radius: var(--r-lg); padding: 22px; box-shadow: var(--shadow-sm);
     }
     .model-step .num {
       width: 30px; height: 30px; display: grid; place-items: center; border-radius: 8px;
-      background: var(--green-soft); color: var(--green); font-weight: 800; font-size: .84rem;
-      margin-bottom: 13px;
+      background: var(--green-soft); color: var(--green); font-weight: 800; font-size: .84rem; margin-bottom: 13px;
     }
     .model-step strong { display: block; font-size: 1.06rem; margin-bottom: 6px; letter-spacing: -.012em; }
     .model-step span { color: var(--muted); font-size: .95rem; line-height: 1.58; }
     .model-step .owner {
       display: block; margin-top: 12px; padding-top: 11px; border-top: 1px solid var(--line);
-      color: var(--green); font-weight: 700; font-size: .82rem;
-      text-transform: uppercase; letter-spacing: .04em;
+      color: var(--green); font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em;
     }
 
-    /* ---------- Status: bygget / gjenstår ---------- */
-    .status-split { display: grid; grid-template-columns: 1fr; gap: 16px; }
-    .status-col {
-      background: var(--paper); border: 1px solid var(--line);
-      border-radius: var(--r-lg); padding: 24px; box-shadow: var(--shadow-sm);
+    /* ---------- Guardrail-stripe ---------- */
+    .guardrail {
+      margin-top: 22px; padding: 20px 24px; border-radius: var(--r-lg);
+      background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow-sm);
     }
-    .status-col h3 {
-      margin: 0 0 4px; font-size: 1.12rem; display: flex; align-items: center; gap: 9px;
-      letter-spacing: -.014em;
+    .guardrail strong.gr-title { display: block; margin-bottom: 12px; font-size: .96rem; }
+    .gr-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .gr-items div {
+      padding: 10px 13px; border-radius: var(--r); background: var(--soft);
+      color: var(--muted); font-size: .9rem; line-height: 1.45;
     }
-    .status-col > p { margin: 0 0 16px; color: var(--muted); font-size: .92rem; }
-    .badge {
-      display: inline-grid; place-items: center; width: 22px; height: 22px;
-      border-radius: 6px; font-size: .74rem; font-weight: 800;
-    }
-    .badge.done { background: var(--green-soft); color: var(--green); }
-    .status-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px; }
-    .status-item {
-      display: grid; grid-template-columns: 20px 1fr; gap: 11px; align-items: start;
-      padding: 13px 0; border-top: 1px solid var(--line);
-    }
-    .status-item:nth-child(1), .status-item:nth-child(2) { border-top: 0; padding-top: 2px; }
-    .status-item i {
-      font-style: normal; font-weight: 800; font-size: .84rem; line-height: 1.5;
-    }
-    .status-item.ok i { color: var(--green); }
-    .status-item strong { display: block; font-size: .95rem; margin-bottom: 2px; font-weight: 650; }
-    .status-item span { color: var(--muted); font-size: .89rem; line-height: 1.55; }
-
-    .callout {
-      margin-top: 18px; padding: 16px 18px; border-radius: var(--r);
-      background: var(--teal-soft); border-left: 3px solid var(--teal);
-    }
-    .callout strong { display: block; margin-bottom: 3px; font-size: .95rem; }
-    .callout p { margin: 0; color: #47555f; font-size: .92rem; line-height: 1.56; }
-
-    /* ---------- Faser ---------- */
-    .phase-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-    .phase-card {
-      background: var(--paper); border: 1px solid var(--line);
-      border-radius: var(--r-lg); padding: 24px; box-shadow: var(--shadow-sm);
-    }
-    .phase-card h3 { margin: 0 0 9px; font-size: 1.2rem; letter-spacing: -.016em; }
-    .phase-card > p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.6; }
-    .item-list { display: grid; gap: 8px; margin-top: 17px; }
-    .item {
-      display: grid; grid-template-columns: 28px 1fr; gap: 11px; align-items: start;
-      padding: 12px 13px; border: 1px solid var(--line); border-radius: var(--r); background: #fbfcfa;
-    }
-    .item b {
-      width: 24px; height: 24px; display: grid; place-items: center; border-radius: 7px;
-      background: var(--green-soft); color: var(--green); font-size: .78rem; font-weight: 800;
-    }
-    .item strong { display: block; margin-bottom: 1px; font-size: .93rem; font-weight: 650; }
-    .item span { color: var(--muted); font-size: .89rem; line-height: 1.52; }
+    .gr-note { margin: 13px 0 0; color: var(--muted); font-size: .9rem; line-height: 1.55; }
 
     /* ---------- Demo ---------- */
     .demo-layout { display: grid; grid-template-columns: .4fr .6fr; gap: 18px; align-items: start; }
@@ -340,10 +275,7 @@
     .cluster-caption { margin-top: 10px; display: block; }
 
     .abc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin: 13px 0; }
-    .abc-box {
-      border-radius: var(--r); border: 1px solid var(--line); padding: 13px;
-      min-height: 128px; background: #fbfdfa;
-    }
+    .abc-box { border-radius: var(--r); border: 1px solid var(--line); padding: 13px; min-height: 128px; background: #fbfdfa; }
     .abc-box b {
       display: inline-grid; place-items: center; width: 26px; height: 26px;
       border-radius: 7px; background: var(--ink); color: #fff; margin-bottom: 8px; font-size: .82rem;
@@ -368,13 +300,8 @@
       opacity: 0; transform: translateY(5px); pointer-events: none;
       transition: opacity .16s ease, transform .16s ease;
     }
-    .tooltip::after {
-      content: ""; position: absolute; left: 18px; top: 100%;
-      border: 6px solid transparent; border-top-color: var(--ink);
-    }
-    .explained:hover .tooltip, .explained:focus .tooltip, .explained:focus-within .tooltip {
-      opacity: 1; transform: translateY(0);
-    }
+    .tooltip::after { content: ""; position: absolute; left: 18px; top: 100%; border: 6px solid transparent; border-top-color: var(--ink); }
+    .explained:hover .tooltip, .explained:focus .tooltip, .explained:focus-within .tooltip { opacity: 1; transform: translateY(0); }
     .explained { cursor: help; }
 
     .evidence-list { display: grid; gap: 7px; margin-top: 15px; }
@@ -383,13 +310,11 @@
       border-top: 1px solid var(--line); padding-top: 8px; color: var(--muted); font-size: .88rem; line-height: 1.5;
     }
     .evidence-item strong { color: var(--ink); font-weight: 650; }
-
     .demo-disclaimer {
       margin-top: 16px; padding: 13px 16px; border-radius: var(--r);
-      background: var(--slate-soft); color: var(--muted); font-size: .88rem; line-height: 1.55;
+      background: #eef1f5; color: var(--muted); font-size: .88rem; line-height: 1.55;
     }
 
-    /* ---------- Skjermbilder ---------- */
     .screenshot-block { margin-top: 38px; }
     .screenshot-block h3 { margin: 0 0 16px; font-size: 1.24rem; letter-spacing: -.016em; }
     .screenshot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -405,57 +330,88 @@
     .screenshot-card strong { font-size: 1rem; font-weight: 650; }
     .screenshot-card span { color: var(--muted); font-size: .9rem; line-height: 1.52; }
 
-    /* ---------- Avgrensning ---------- */
-    .compare { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .list-plain { display: grid; gap: 8px; margin-top: 14px; }
-    .list-plain div {
-      padding: 11px 14px; border: 1px solid var(--line); border-radius: var(--r);
-      background: #fff; color: var(--ink-2); font-size: .93rem; line-height: 1.5;
+    /* ---------- Team ---------- */
+    .team-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 16px; align-items: start; }
+    .team-main {
+      background: var(--paper); border: 1px solid var(--line-strong);
+      border-radius: var(--r-lg); padding: 26px; box-shadow: var(--shadow);
     }
-    .compare .card.is-not .list-plain div { color: var(--muted); }
+    .team-name { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .team-initials {
+      width: 52px; height: 52px; border-radius: 13px; display: grid; place-items: center;
+      background: var(--green); color: #fff; font-weight: 800; font-size: 1.1rem; flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(44, 106, 74, .26);
+    }
+    .team-name strong { display: block; font-size: 1.2rem; letter-spacing: -.018em; }
+    .team-name span { color: var(--muted); font-size: .92rem; }
+    .cred-list { display: grid; gap: 12px; }
+    .cred {
+      display: grid; grid-template-columns: 62px 1fr; gap: 14px; align-items: start;
+      padding: 13px 0; border-top: 1px solid var(--line);
+    }
+    .cred:first-child { border-top: 0; padding-top: 0; }
+    .cred b { color: var(--green); font-size: 1.02rem; font-weight: 800; letter-spacing: -.02em; }
+    .cred strong { display: block; font-size: .96rem; font-weight: 650; margin-bottom: 2px; }
+    .cred span { color: var(--muted); font-size: .91rem; line-height: 1.55; }
+    .team-side {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: 24px; box-shadow: var(--shadow-sm);
+    }
+    .team-side h3 { margin: 0 0 10px; font-size: 1.06rem; letter-spacing: -.014em; }
+    .team-side p { margin: 0 0 14px; color: var(--muted); font-size: .94rem; line-height: 1.58; }
+    .team-side ul { margin: 0; padding-left: 19px; color: var(--muted); font-size: .93rem; line-height: 1.7; }
 
-    /* ---------- Regulatorisk ---------- */
-    .reg-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .reg-step {
-      background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14);
-      border-radius: var(--r-lg); padding: 22px; backdrop-filter: blur(6px);
+    /* ---------- Status ---------- */
+    .status-col {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: 24px; box-shadow: var(--shadow-sm);
     }
-    .reg-step .tag {
-      display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .06em;
-      text-transform: uppercase; color: #8fd0a9; margin-bottom: 10px;
+    .status-col h3 { margin: 0 0 4px; font-size: 1.12rem; display: flex; align-items: center; gap: 9px; letter-spacing: -.014em; }
+    .status-col > p { margin: 0 0 16px; color: var(--muted); font-size: .92rem; }
+    .badge { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; font-size: .74rem; font-weight: 800; }
+    .badge.done { background: var(--green-soft); color: var(--green); }
+    .status-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px; }
+    .status-item {
+      display: grid; grid-template-columns: 20px 1fr; gap: 11px; align-items: start;
+      padding: 13px 0; border-top: 1px solid var(--line);
     }
-    .reg-step strong { display: block; font-size: 1.06rem; margin-bottom: 7px; letter-spacing: -.014em; }
-    .reg-step span { color: rgba(255, 255, 255, .7); font-size: .93rem; line-height: 1.58; }
-    .reg-step.current { background: rgba(143, 208, 169, .14); border-color: rgba(143, 208, 169, .4); }
+    .status-item:nth-child(1), .status-item:nth-child(2) { border-top: 0; padding-top: 2px; }
+    .status-item i { font-style: normal; font-weight: 800; font-size: .84rem; line-height: 1.5; color: var(--green); }
+    .status-item strong { display: block; font-size: .95rem; margin-bottom: 2px; font-weight: 650; }
+    .status-item span { color: var(--muted); font-size: .89rem; line-height: 1.55; }
+
+    /* ---------- Markedstall ---------- */
+    .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px; }
+    .big-stat {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
+      padding: 22px; box-shadow: var(--shadow-sm);
+    }
+    .big-stat b {
+      display: block; font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1.05;
+      letter-spacing: -.035em; font-weight: 780; color: var(--green); margin-bottom: 7px;
+    }
+    .big-stat strong { display: block; font-size: .95rem; font-weight: 650; margin-bottom: 3px; }
+    .big-stat span { color: var(--faint); font-size: .82rem; line-height: 1.45; }
+
+    .value-callout {
+      margin-top: 16px; padding: 20px 24px; border-radius: var(--r-lg);
+      background: var(--teal-soft); border-left: 3px solid var(--teal);
+    }
+    .value-callout strong { display: block; margin-bottom: 4px; font-size: 1rem; }
+    .value-callout p { margin: 0; color: #47555f; font-size: .96rem; line-height: 1.58; }
 
     /* ---------- Behov ---------- */
-    .needs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .needs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
     .need {
-      background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
-      padding: 20px; box-shadow: var(--shadow-sm);
+      background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: var(--r-lg); padding: 24px;
     }
-    .need .n {
-      display: block; font-size: .72rem; font-weight: 800; color: var(--green);
-      letter-spacing: .06em; margin-bottom: 9px;
-    }
-    .need strong { display: block; margin-bottom: 6px; font-size: 1rem; letter-spacing: -.012em; }
-    .need span { color: var(--muted); font-size: .91rem; line-height: 1.55; }
-
-    /* ---------- Slides ---------- */
-    .slide-card {
-      background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
-      padding: 20px; box-shadow: var(--shadow-sm); transition: transform .18s, box-shadow .18s;
-    }
-    .slide-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-    .slide-number {
-      color: var(--green); font-weight: 800; font-size: .72rem;
-      text-transform: uppercase; letter-spacing: .06em; margin-bottom: 9px;
-    }
-    .slide-card h3 { margin: 0 0 7px; font-size: 1.02rem; letter-spacing: -.012em; }
-    .slide-card p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+    .need .n { display: block; font-size: .72rem; font-weight: 800; color: #8fd0a9; letter-spacing: .06em; margin-bottom: 10px; }
+    .need strong { display: block; margin-bottom: 7px; font-size: 1.08rem; letter-spacing: -.014em; }
+    .need span { color: rgba(255, 255, 255, .72); font-size: .94rem; line-height: 1.58; }
 
     /* ---------- Footer ---------- */
-    .footer { padding: 46px 0 58px; color: var(--muted); border-top: 1px solid var(--line); background: var(--soft); }
+    .footer { padding: 44px 0 56px; color: var(--muted); border-top: 1px solid var(--line); background: var(--soft); }
     .footer .shell { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
     .footer strong { color: var(--ink); font-weight: 700; }
     .footer span { font-size: .9rem; }
@@ -482,17 +438,13 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .scan-line, .cluster-core, .cluster-dot { animation: none; }
-      .card:hover, .slide-card:hover, .button:hover { transform: none; }
+      .card:hover, .button:hover { transform: none; }
     }
 
     /* ---------- Responsiv ---------- */
     @media (max-width: 1000px) {
-      .hero, .demo-layout, .screenshot-grid, .phase-layout, .compare, .status-split {
-        grid-template-columns: 1fr;
-      }
-      .grid, .model, .needs, .reg-track, .mini-grid, .metrics, .grid.two {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .hero, .demo-layout, .screenshot-grid, .team-layout { grid-template-columns: 1fr; }
+      .grid, .model, .needs, .mini-grid, .metrics, .stat-band, .gr-items { grid-template-columns: repeat(2, 1fr); }
       .hero { padding: 48px 0 56px; gap: 34px; }
       .section { padding: 68px 0; }
     }
@@ -501,7 +453,7 @@
       .nav { align-items: flex-start; flex-direction: column; padding: 12px 0; gap: 8px; }
       .navlinks { justify-content: flex-start; }
       .app-chrome, .mock-row, .grid, .model, .abc-grid, .result-grid,
-      .metrics, .needs, .mini-grid, .reg-track, .grid.two, .status-list {
+      .metrics, .needs, .mini-grid, .status-list, .stat-band, .gr-items, .cred {
         grid-template-columns: 1fr;
       }
       .status-item:nth-child(2) { border-top: 1px solid var(--line); padding-top: 13px; }
@@ -514,6 +466,7 @@
       .explained:hover .tooltip, .explained:focus .tooltip, .explained:focus-within .tooltip { display: block; }
       .screenshot-card img { height: 260px; }
       .section { padding: 56px 0; }
+      .cred b { color: var(--green); }
     }
   </style>
 </head>
@@ -525,13 +478,12 @@
         <span>Intelligent Mønsteranalyse</span>
       </div>
       <div class="navlinks">
-        <a href="#modell">Modell</a>
-        <a href="#status">Status</a>
-        <a href="#tjenesten">Tjenesten</a>
-        <a href="#demo">Demo</a>
-        <a href="#avgrensning">Avgrensning</a>
-        <a href="#regulatorisk">Regulatorisk</a>
-        <a href="#behov">Behov</a>
+        <a href="#problem"><span class="step">01</span>Problemet</a>
+        <a href="#losning"><span class="step">02</span>Løsningen</a>
+        <a href="#demo"><span class="step">03</span>Demo</a>
+        <a href="#team"><span class="step">04</span>Team</a>
+        <a href="#status"><span class="step">05</span>Status</a>
+        <a href="#behov"><span class="step">06</span>Behov</a>
       </div>
     </nav>
   </header>
@@ -540,7 +492,7 @@
     <!-- HERO -->
     <section class="shell hero" id="top">
       <div>
-        <p class="eyebrow">Beslutningsstøtte for omsorgsboliger</p>
+        <p class="eyebrow">Intelligent Mønsteranalyse</p>
         <h1>Mønstrene finnes allerede i dokumentasjonen</h1>
         <p class="lead">
           IMA leser pleiedokumentasjon og løfter fram gjentakende sammenhenger som sporbare
@@ -550,21 +502,7 @@
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#demo">Se demo av analysen</a>
-          <a class="button" href="#status">Hva er faktisk bygget</a>
-        </div>
-        <div class="hero-meta">
-          <div>
-            <strong>Regelbasert kjerne</strong>
-            <span>Deterministisk og sporbar</span>
-          </div>
-          <div>
-            <strong>Lokal lagring</strong>
-            <span>Én isolert base per bolig</span>
-          </div>
-          <div>
-            <strong>Non-klinisk i dag</strong>
-            <span>Syntetiske data</span>
-          </div>
+          <a class="button" href="#status">Hva som er bygget</a>
         </div>
       </div>
 
@@ -584,18 +522,53 @@
       </aside>
     </section>
 
-    <!-- MODELL -->
-    <section class="section alt" id="modell">
+    <!-- 01 PROBLEMET -->
+    <section class="section alt" id="problem">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Modellen</p>
-          <h2>Tre ledd, tre tydelige ansvar</h2>
+          <p class="eyebrow">01 · Problemet</p>
+          <h2>Ingen har tid til å lete</h2>
+        </div>
+
+        <div class="problem-quote">
           <p>
-            Verdien ligger i skillet: hva maskinen gjør, hva fagpersonen gjør, og hvem som
-            faktisk bestemmer. Det gjør prosessen trygg å ta i bruk – og enkel å forklare
-            til ansatte, ledelse og tilsyn.
+            Erfarne ansatte har en magefølelse om hva som utløser hva. Problemet er at
+            magefølelse ikke kan overleveres til en vikar, og at den ikke holder som
+            grunnlag for et vedtak.
           </p>
         </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Boliger står alene med det</h3>
+            <p>Boliger står ofte lenge med utfordrende atferd uten at noen gjør en systematisk analyse. Habiliteringstjenestene har lange ventelister.</p>
+          </article>
+          <article class="card">
+            <h3>Mønstrene er spredt</h3>
+            <p>Sammenhengene ligger i journalnotatene, men fordelt over hundrevis av notater og på tvers av vakter. Personalet står midt i det og ser dem ikke.</p>
+          </article>
+          <article class="card">
+            <h3>Kunnskapen forsvinner</h3>
+            <p>Den som har jobbet lengst vet mest. Når vedkommende har fri, er kunnskapen borte – og nyansatte og vikarer må gjette seg fram.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 LØSNINGEN -->
+    <section class="section" id="losning">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">02 · Løsningen</p>
+          <h2>Teknologi og fag i samme leveranse</h2>
+          <p>
+            Vi gjør strukturert atferdsanalyse etter ABC-modellen av journalnotater ved hjelp
+            av maskinlæring. Men det unike er ikke teknologien alene – det er at analysen
+            leveres sammen med helsefaglig og psykologfaglig vurdering. Vi selger ikke
+            programvare en bolig må finne ut av selv.
+          </p>
+        </div>
+
         <div class="model">
           <div class="model-step">
             <div class="num">1</div>
@@ -617,149 +590,27 @@
           </div>
         </div>
 
-        <div class="grid" style="margin-top: 28px;">
-          <article class="card">
-            <h3>Faglig grunnlag</h3>
-            <p>ABC-modellen, operant betinging og RFT/semantisk ekvivalens brukes som eksplisitte teorilag i analysen, slik at funn kan knyttes til en faglig ramme og ikke bare til statistikk.</p>
-          </article>
-          <article class="card">
-            <h3>Teknisk arkitektur</h3>
-            <p>En regelbasert mønstermotor er kjernen – deterministisk, versjonert og sporbar til regelen bak hvert funn. SBERT-embeddinger, HDBSCAN og Spectral Co-Clustering utgjør et eksplorativt tilleggslag som kan foreslå nye mønstre, men er alltid merket som ikke-klinisk grunnlag.</p>
-          </article>
-          <article class="card">
-            <h3>Datahåndtering</h3>
-            <p>Data lagres lokalt per bolig, ikke i sky-database. Beboere pseudonymiseres, og ingen data deles på tvers av boliger. Diagnoser og medisiner sendes aldri inn i språkmodell-kontekst.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- STATUS -->
-    <section class="section" id="status">
-      <div class="shell">
-        <div class="section-head">
-          <p class="eyebrow">Status</p>
-          <h2>Hva som faktisk er bygget</h2>
-          <p>
-            Verktøyet kjører i dag på syntetiske data i non-klinisk modus. Skillet mellom
-            non-klinisk og klinisk bruk er håndhevet i kode, ikke bare beskrevet i et dokument.
-          </p>
-        </div>
-
-        <div class="status-split">
-          <div class="status-col">
-            <h3><span class="badge done">✓</span> Implementert og testet</h3>
-            <p>Kjørende kode med automatiske tester.</p>
-            <div class="status-list">
-              <div class="status-item ok">
-                <i>✓</i>
-                <div>
-                  <strong>Regelbasert mønstermotor</strong>
-                  <span>Versjonert regelsett med sporbar utgang. Hvert funn kan spores til regel-ID og inndata.</span>
-                </div>
-              </div>
-              <div class="status-item ok">
-                <i>✓</i>
-                <div>
-                  <strong>Capability gate</strong>
-                  <span>Klinisk modus krever signert manifest og fungerende revisjonslogg. Faller fail-safe til non-klinisk.</span>
-                </div>
-              </div>
-              <div class="status-item ok">
-                <i>✓</i>
-                <div>
-                  <strong>Hash-lenket oppslagslogg</strong>
-                  <span>Append-only revisjonslogg med tuklingsdeteksjon, samt rollebasert tilgang med beboer-scope.</span>
-                </div>
-              </div>
-              <div class="status-item ok">
-                <i>✓</i>
-                <div>
-                  <strong>FHIR-adapter</strong>
-                  <span>Pseudonymisering og dataminimering ved grensen, testet mot syntetiske data.</span>
-                </div>
-              </div>
-              <div class="status-item ok">
-                <i>✓</i>
-                <div>
-                  <strong>Eksplorativ «firewall»</strong>
-                  <span>Embedding-funn merkes ikke-klinisk og kan aldri fortrenge regelbaserte funn uten at fagperson forfremmer dem – logget.</span>
-                </div>
-              </div>
-              <div class="status-item ok">
-                <i>✓</i>
-                <div>
-                  <strong>Krypteringssøm</strong>
-                  <span>Nekter lagring uten reell kryptering i klinisk modus.</span>
-                </div>
-              </div>
-            </div>
+        <div class="guardrail">
+          <strong class="gr-title">Det er ikke</strong>
+          <div class="gr-items">
+            <div>Et diagnoseverktøy.</div>
+            <div>En klinisk konklusjon.</div>
+            <div>En påstand om årsak.</div>
+            <div>En erstatning for faglig vurdering.</div>
           </div>
-
-        </div>
-
-        <div class="callout">
-          <strong>Hvorfor dette står så tydelig</strong>
-          <p>
-            I helsesektoren er overselging den raskeste veien til å bli avvist. Et verktøy som er
-            ærlig om egne begrensninger er lettere å vurdere, lettere å pilotere og lettere å
-            forsvare for en kommune som må stå ansvarlig for beslutningen.
+          <p class="gr-note">
+            Vurderingsperioder er avgrenset i tid. Tjenesten er ikke løpende overvåking.
+            Kliniske konklusjoner ligger hos lisensiert psykolog, ikke i systemet.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- TJENESTEN -->
-    <section class="section alt" id="tjenesten">
+    <!-- 03 DEMO -->
+    <section class="section alt" id="demo">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Tjenestemodellen</p>
-          <h2>Fra analyse til forankret beslutning</h2>
-          <p>
-            Tjenesten leveres som avgrensede vurderingsperioder, ikke som løpende overvåking.
-            Analysen alene skaper ingen endring – derfor er møtet og forankringen en del av leveransen.
-          </p>
-        </div>
-
-        <div class="phase-layout">
-          <article class="phase-card">
-            <h3>Analyse</h3>
-            <p>
-              IMA går gjennom dokumentasjon som oppdragsgiver velger å dele, innenfor en avtalt
-              dataramme. Motoren identifiserer triggere, belastningsfaktorer, tidspunkt, overganger
-              og situasjoner med økt belastning.
-            </p>
-            <div class="item-list">
-              <div class="item"><b>1</b><div><strong>Uro og søvn</strong><span>Gjentakende mønstre i uro, utagering og søvn.</span></div></div>
-              <div class="item"><b>2</b><div><strong>Belastning</strong><span>Tidspunkt, situasjoner og overganger med økt belastning.</span></div></div>
-              <div class="item"><b>3</b><div><strong>Rutiner og miljø</strong><span>Sammenheng mellom hverdagssituasjoner, miljø og reaksjoner.</span></div></div>
-              <div class="item"><b>4</b><div><strong>Utvikling over tid</strong><span>Forskjeller mellom perioder, avdelinger eller beboere.</span></div></div>
-            </div>
-          </article>
-
-          <article class="phase-card">
-            <h3>Møte og forankring</h3>
-            <p>
-              Etter analysen presenteres hovedfunn, faglige vurderinger og anbefalte tiltak i et
-              fysisk eller digitalt møte på 45–60 minutter. For mange boliger er det mest nyttig
-              å dele dette i to.
-            </p>
-            <div class="item-list">
-              <div class="item"><b>A</b><div><strong>Møte med ledelsen</strong><span>Beslutning, prioritering, ressursbruk, risiko, forventet gevinst og hvem som eier oppfølgingen.</span></div></div>
-              <div class="item"><b>B</b><div><strong>Møte med ansatte</strong><span>Praktisk gjennomføring, felles språk og lik praksis på tvers av vakter.</span></div></div>
-              <div class="item"><b>✓</b><div><strong>Felles språk</strong><span>Funnene presenteres slik at ansatte kan handle på dem uten å tolke statistikk.</span></div></div>
-              <div class="item"><b>✓</b><div><strong>Etterkontroll</strong><span>Avtalt evalueringspunkt for om tiltakene faktisk virket.</span></div></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- DEMO -->
-    <section class="section" id="demo">
-      <div class="shell">
-        <div class="section-head">
-          <p class="eyebrow">Demo</p>
+          <p class="eyebrow">03 · Demo</p>
           <h2>Fra observasjon til hypotese</h2>
           <p>
             Velg et funn og se hele veien: observasjon, klyngefunn, ABC-kjede, hypotese og
@@ -880,222 +731,189 @@
       </div>
     </section>
 
-    <!-- AVGRENSNING -->
-    <section class="section alt" id="avgrensning">
+    <!-- 04 TEAM -->
+    <section class="section" id="team">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Avgrensning</p>
-          <h2>Hva IMA er – og ikke er</h2>
-          <p>
-            Tjenesten skal gjøre faglige spørsmål tydeligere. Den skal ikke ta vurderingen
-            fra fagpersonen.
-          </p>
+          <p class="eyebrow">04 · Team</p>
+          <h2>Domenekunnskapen er ikke lest seg til</h2>
         </div>
-        <div class="compare">
-          <article class="card">
-            <h3>Det er</h3>
-            <div class="list-plain">
-              <div>Et bidrag til en mer forutsigbar hverdag for beboeren.</div>
-              <div>Et verktøy som synliggjør mønstre i pleiedokumentasjon.</div>
-              <div>Et grunnlag for faglig refleksjon og vurdering.</div>
-              <div>En måte å gjøre hypoteser sporbare og etterprøvbare på.</div>
+
+        <div class="team-layout">
+          <article class="team-main">
+            <div class="team-name">
+              <div class="team-initials" aria-hidden="true">CG</div>
+              <div>
+                <strong>Christian Garmann Schjelderup</strong>
+                <span>Grunnlegger</span>
+              </div>
+            </div>
+            <div class="cred-list">
+              <div class="cred">
+                <b>16 år</b>
+                <div>
+                  <strong>Helsefagarbeider i omsorgsbolig</strong>
+                  <span>Kjenner målgruppen og dokumentasjonspraksisen innenfra. Det er den forståelsen analysen er bygget på – ikke en antakelse om hvordan sektoren fungerer.</span>
+                </div>
+              </div>
+              <div class="cred">
+                <b>ML</b>
+                <div>
+                  <strong>Videreutdanning i anvendt maskinlæring</strong>
+                  <span>Har bygget hele plattformen selv: analysemotor, mønstergjenkjenning, datagenerering og grensesnitt.</span>
+                </div>
+              </div>
+              <div class="cred">
+                <b>BSc</b>
+                <div>
+                  <strong>Bachelor i cybersikkerhet, pågående</strong>
+                  <span>Relevant for personvern, tilgangsstyring og sikker håndtering av helsedata.</span>
+                </div>
+              </div>
             </div>
           </article>
-          <article class="card is-not">
-            <h3>Det er ikke</h3>
-            <div class="list-plain">
-              <div>Et diagnoseverktøy.</div>
-              <div>En klinisk konklusjon.</div>
-              <div>En påstand om årsak.</div>
-              <div>En erstatning for faglig vurdering.</div>
+
+          <aside class="team-side">
+            <h3>Psykologkompetanse i prosjektet</h3>
+            <p>
+              Komplementær faglig styrke som dekker det analysen ikke kan gjøre alene – og
+              som er nøyaktig det gjennomgangsmøtene med personalgruppene krever.
+            </p>
+            <ul>
+              <li>Faglig validering av mønstre og hypoteser</li>
+              <li>Implementering i personalgrupper</li>
+              <li>Konflikthåndtering og arbeidsmiljø</li>
+              <li>Klinisk ansvar for konklusjoner</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 STATUS OG POTENSIAL -->
+    <section class="section alt" id="status">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">05 · Status og potensial</p>
+          <h2>Plattformen kjører allerede</h2>
+          <p>
+            Verktøyet kjører i dag på syntetiske data i non-klinisk modus. Skillet mellom
+            non-klinisk og klinisk bruk er håndhevet i kode, ikke bare beskrevet i et dokument.
+            Neste steg er pilot på reelle data når personvernrammene er på plass.
+          </p>
+        </div>
+
+        <div class="status-col">
+          <h3><span class="badge done">✓</span> Implementert og testet</h3>
+          <p>Kjørende kode med automatiske tester.</p>
+          <div class="status-list">
+            <div class="status-item">
+              <i>✓</i>
+              <div>
+                <strong>Regelbasert mønstermotor</strong>
+                <span>Versjonert regelsett med sporbar utgang. Hvert funn kan spores til regel-ID og inndata.</span>
+              </div>
             </div>
-          </article>
-        </div>
-
-        <div class="phase-card" style="margin-top: 16px;">
-          <h3>Personvern og ansvar</h3>
-          <p>
-            Tjenesten skal passe inn i kommunal praksis og gjeldende regelverk for behandling
-            og deling av helseopplysninger. Deling krever tydelige rammer for behandlingsgrunnlag,
-            databehandleravtale, tilgangsstyring og personvern.
-          </p>
-          <div class="item-list">
-            <div class="item"><b>✓</b><div><strong>Pseudonymisering</strong><span>Beboere omtales med ID, ikke navn. Pseudonymisering skjer ved datagrensen.</span></div></div>
-            <div class="item"><b>✓</b><div><strong>Isolert per bolig</strong><span>Én lokal base per bolig. Data blandes eller deles ikke mellom boliger.</span></div></div>
-            <div class="item"><b>✓</b><div><strong>Dataminimering</strong><span>Kun felt analysen faktisk trenger krysser grensen. Diagnoser og medisiner sendes aldri til språkmodell.</span></div></div>
-            <div class="item"><b>✓</b><div><strong>Avgrenset periode</strong><span>Vurderingsperioder er avgrenset i tid. Tjenesten er ikke løpende overvåking.</span></div></div>
-            <div class="item"><b>✓</b><div><strong>Klinisk ansvar</strong><span>Kliniske konklusjoner ligger hos lisensiert psykolog, ikke i systemet.</span></div></div>
+            <div class="status-item">
+              <i>✓</i>
+              <div>
+                <strong>Capability gate</strong>
+                <span>Klinisk modus krever signert manifest og fungerende revisjonslogg. Faller fail-safe til non-klinisk.</span>
+              </div>
+            </div>
+            <div class="status-item">
+              <i>✓</i>
+              <div>
+                <strong>Hash-lenket oppslagslogg</strong>
+                <span>Append-only revisjonslogg med tuklingsdeteksjon, samt rollebasert tilgang med beboer-scope.</span>
+              </div>
+            </div>
+            <div class="status-item">
+              <i>✓</i>
+              <div>
+                <strong>FHIR-adapter</strong>
+                <span>Pseudonymisering og dataminimering ved grensen, testet mot syntetiske data.</span>
+              </div>
+            </div>
+            <div class="status-item">
+              <i>✓</i>
+              <div>
+                <strong>Eksplorativ «firewall»</strong>
+                <span>Embedding-funn merkes ikke-klinisk og kan aldri fortrenge regelbaserte funn uten at fagperson forfremmer dem – logget.</span>
+              </div>
+            </div>
+            <div class="status-item">
+              <i>✓</i>
+              <div>
+                <strong>Krypteringssøm</strong>
+                <span>Nekter lagring uten reell kryptering i klinisk modus.</span>
+              </div>
+            </div>
           </div>
         </div>
+
+        <div class="stat-band">
+          <div class="big-stat">
+            <b>8 766</b>
+            <strong>bor i omsorgsbolig</strong>
+            <span>Personer med utviklingshemming. Helsedirektoratet, KPR 2022</span>
+          </div>
+          <div class="big-stat">
+            <b>~1 030</b>
+            <strong>kommunale bofellesskap</strong>
+            <span>Anslag beregnet ut fra snitt boenheter per bofellesskap</span>
+          </div>
+          <div class="big-stat">
+            <b>&lt; 4 %</b>
+            <strong>markedsandel</strong>
+            <span>Det som skal til for å bære driften i et realistisk scenario</span>
+          </div>
+          <div class="big-stat">
+            <b>Hele landet</b>
+            <strong>fra dag én</strong>
+            <span>Alle kundemøter gjennomføres på video</span>
+          </div>
+        </div>
+
+        <div class="value-callout">
+          <strong>Verdiargumentet er konkret</strong>
+          <p>
+            Alternativet for kommunen er ofte økt bemanning. Et halvt årsverk koster
+            400–500 000 kroner hvert år, hvert år. En utredning som påvirker vedtak og
+            tiltak betaler seg mange ganger.
+          </p>
+        </div>
+
+        <p class="gr-note" style="max-width: 760px;">
+          Bygget for omsorgsboliger. Første retning er PU, rus og psykiatri. Barnevern og
+          tilgrensende felt senere.
+        </p>
       </div>
     </section>
 
-    <!-- REGULATORISK -->
-    <section class="section ink" id="regulatorisk">
+    <!-- 06 BEHOV -->
+    <section class="section ink" id="behov">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Regulatorisk vei</p>
-          <h2>Bygget for å tåle vurdering</h2>
-          <p>
-            Skillet mellom non-klinisk og klinisk bruk er en teknisk grense i koden, ikke en
-            formulering i et dokument. Det gjør veien mot eventuell CE-merking mulig å gå
-            stegvis, uten å ta i bruk reelle data for tidlig.
-          </p>
-        </div>
-        <div class="reg-track">
-          <div class="reg-step current">
-            <span class="tag">Nå</span>
-            <strong>Non-klinisk</strong>
-            <span>Syntetiske data, metodeutvikling og forskning. Faller etter foreløpig vurdering utenfor MDR. Ingen beslutninger om enkeltpersoner.</span>
-          </div>
-          <div class="reg-step">
-            <span class="tag">Neste</span>
-            <strong>Pilot med rammer</strong>
-            <span>Avgrenset utprøving med DPIA, databehandleravtale, autentisering og faglig forankring på plass før reelle data brukes.</span>
-          </div>
-          <div class="reg-step">
-            <span class="tag">På sikt</span>
-            <strong>Klinisk beslutningsstøtte</strong>
-            <span>Vil sannsynlig kvalifisere som medisinsk utstyr Klasse IIa. Krever CE-løp, klinisk validering og formell risikostyring.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GEVINST -->
-    <section class="section" id="gevinst">
-      <div class="shell">
-        <div class="section-head">
-          <p class="eyebrow">Gevinst</p>
-          <h2>Hvorfor det er verdt å prøve</h2>
-          <p>
-            Erfarne ansatte sitter allerede på verdifull taus kunnskap om beboerne. Problemet er
-            at den er vanskelig å overføre til vikarer, nyansatte og ledelse. Når mønsteret er
-            dokumentert, blir den felles.
-          </p>
-        </div>
-        <div class="grid">
-          <article class="card">
-            <h3>For beboeren</h3>
-            <p>Mer forutsigbar hverdag, mulighet for å gripe inn tidligere med mindre inngripende tiltak, og et strukturert grunnlag for å involvere beboeren selv.</p>
-          </article>
-          <article class="card">
-            <h3>For ansatte</h3>
-            <p>Mindre belastende vakter, tydeligere rutiner, bedre kontinuitet mellom skift, og trygghet for vikarer som ellers må gjette seg fram.</p>
-          </article>
-          <article class="card">
-            <h3>For ledelsen</h3>
-            <p>Et dokumentert grunnlag i kvalitetsarbeidet, enklere prioritering av ressurser, og mulighet til å følge opp om tiltak faktisk virket.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- BEHOV -->
-    <section class="section alt" id="behov">
-      <div class="shell">
-        <div class="section-head">
-          <p class="eyebrow">Behov</p>
-          <h2>Hva vi trenger nå</h2>
-          <p>
-            Verktøyet er bygget. Det som gjenstår er å komme i kontakt med riktig miljø og få
-            rammene rundt en forsvarlig utprøving på plass.
-          </p>
+          <p class="eyebrow">06 · Behov</p>
+          <h2>Verktøyet er bygget. Dette mangler jeg.</h2>
         </div>
         <div class="needs">
           <div class="need">
             <span class="n">01</span>
             <strong>Pilotmiljø</strong>
-            <span>Kontakt med en kommune eller bolig som vil teste i liten skala, og tilgang til de riktige beslutningstakerne.</span>
+            <span>Kontakt med en kommune som vil teste i liten skala, og tilgang til de riktige beslutningstakerne.</span>
           </div>
           <div class="need">
             <span class="n">02</span>
-            <strong>Juridisk bistand</strong>
-            <span>Personvern, behandlingsgrunnlag, DPIA og databehandleravtale for helsedata i kommunal sektor.</span>
+            <strong>Juridisk hjelp med personvern</strong>
+            <span>Behandlingsgrunnlag og databehandleravtale må være på plass før journaldata kan deles.</span>
           </div>
           <div class="need">
             <span class="n">03</span>
             <strong>Forretningsutvikling</strong>
-            <span>Prismodell, avtalestruktur og hvordan tjenesten skal selges inn i en kommunal innkjøpsprosess.</span>
+            <span>Prismodell, avtalestruktur og hvordan man faktisk kommer inn i en kommunal innkjøpsprosess.</span>
           </div>
-          <div class="need">
-            <span class="n">04</span>
-            <strong>Regulatorisk erfaring</strong>
-            <span>Kontakt med noen som har gått CE-løpet for programvare som medisinsk utstyr tidligere.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRESENTASJON -->
-    <section class="section" id="presentasjon">
-      <div class="shell">
-        <div class="section-head">
-          <p class="eyebrow">Oppsummert</p>
-          <h2>Hele presentasjonen</h2>
-        </div>
-
-        <div class="grid">
-          <article class="slide-card">
-            <div class="slide-number">01 · Utfordringen</div>
-            <h3>Mønstrene finnes allerede</h3>
-            <p>Mye registreres i pleiedokumentasjon, men sammenhengene ligger spredt og implisitt. Tid til å lete er knapphetsgodet.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">02 · Løsningen</div>
-            <h3>Gjør det implisitte eksplisitt</h3>
-            <p>IMA løfter fram gjentakende mønstre, foreslår hypoteser med forbehold, og gjør resonnementet sporbart.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">03 · Modellen</div>
-            <h3>Tre ledd og tre ansvar</h3>
-            <p>Motoren finner mønstre. Fagpersonen vurderer. Kommunen eller boligen beslutter.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">04 · Målgruppe</div>
-            <h3>Omsorgsboliger</h3>
-            <p>Bygget for omsorgsboliger. Første retning er PU, rus og psykiatri. Barnevern og tilgrensende felt senere.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">05 · Arkitektur</div>
-            <h3>Regelmotor i kjernen</h3>
-            <p>Deterministisk, versjonert og sporbar beslutningssti. Embedding-basert klynging som eksplorativt tilleggslag, tydelig merket.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">06 · Status</div>
-            <h3>Non-klinisk, syntetiske data</h3>
-            <p>Kjørende kode med tester. Klinisk modus er teknisk sperret til CE og governance er på plass.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">07 · Personvern</div>
-            <h3>Isolert og minimert</h3>
-            <p>Lokal lagring per bolig, pseudonymisering ved grensen, ingen deling på tvers, ingen sensitive felt til språkmodell.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">08 · Ansvar</div>
-            <h3>Konklusjonen ligger hos fagperson</h3>
-            <p>Alle kliniske konklusjoner ligger hos lisensiert psykolog. Systemet leverer grunnlag, ikke vedtak.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">09 · Team</div>
-            <h3>Fag og teknologi i samme prosjekt</h3>
-            <p>16 års erfaring som helsefagarbeider i omsorgsbolig, videreutdanning i anvendt maskinlæring, og psykolog tilknyttet for faglig validering.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">10 · Marked</div>
-            <h3>Underbetjent segment</h3>
-            <p>Digitale verktøy for atferdsanalyse i norske omsorgsboliger er i dag svært begrenset.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">11 · Regulatorisk</div>
-            <h3>Stegvis vei mot CE</h3>
-            <p>Non-klinisk i dag, pilot med rammer som neste steg, klinisk beslutningsstøtte som mulig Klasse IIa på sikt.</p>
-          </article>
-          <article class="slide-card">
-            <div class="slide-number">12 · Neste steg</div>
-            <h3>Pilotdialog</h3>
-            <p>Avklare pilotmiljø, dataramme, taushetsplikt, personvern og forretningsmodell.</p>
-          </article>
         </div>
       </div>
     </section>
