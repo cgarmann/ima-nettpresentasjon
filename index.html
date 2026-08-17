@@ -399,6 +399,10 @@
       margin-top: 22px;
     }
 
+    .pipeline.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     .foundation-grid {
       margin-top: 16px;
     }
@@ -973,7 +977,7 @@
 
     .needs {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
 
@@ -1159,12 +1163,12 @@
         <span>Intelligent Mønsteranalyse</span>
       </div>
       <div class="navlinks">
-        <a href="#losning">Løsning</a>
-        <a href="#pilot">Pilot</a>
+        <a href="#losning">Modell</a>
+        <a href="#pilot">Faser</a>
         <a href="#demo">Demo</a>
-        <a href="#sikkerhet">Sikkerhet</a>
-        <a href="#avklaringer">Avklaringer</a>
-        <a href="#neste-steg">Neste steg</a>
+        <a href="#sikkerhet">Funn</a>
+        <a href="#avklaringer">Gevinst</a>
+        <a href="#neste-steg">Handling</a>
       </div>
     </nav>
   </header>
@@ -1172,12 +1176,13 @@
   <main>
     <section class="shell hero" id="top">
       <div>
-        <p class="eyebrow">IMA · tjeneste bygget på egen metode</p>
-        <h1>Å gjøre atferdsmønstre synlige</h1>
+        <p class="eyebrow">IMA · tjenestebeskrivelse for kommune og bolig</p>
+        <h1>Et bedre beslutningsgrunnlag</h1>
         <p class="lead">
-          Vi tilbyr en analysebasert tjeneste som finner gjentakende sammenhenger i pleienotater og
-          løfter dem fram som sporbare hypoteser til faglig vurdering. Målet er en mer forutsigbar
-          hverdag for beboeren, mindre belastning for ansatte og bedre beslutningsgrunnlag for ledere.
+          IMA gjør eksisterende dokumentasjon om til tydelige funn og sporbare hypoteser.
+          Tjenesten er utviklet for kommuner og boliger som ønsker en mer strukturert måte å forstå
+          uro, utagering, søvnproblemer, belastningsmønstre og andre forhold som påvirker hverdagen
+          til beboere og ansatte.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#demo">Se programdemo</a>
@@ -1206,26 +1211,22 @@
         <div class="section-head">
           <h2>Slik fungerer tjenesten</h2>
           <p>
-            Tjenesten analyserer observasjoner, finner gjentakende sammenhenger og presenterer dem som hypoteser.
-            Vi gir tilbakemelding til leder. Leder og bolig velger hvilke tiltak som settes inn.
+            IMA følger en tydelig modell med tre ledd og tre ansvar. Det skiller data,
+            faglig vurdering og operativt ansvar.
           </p>
         </div>
-        <div class="pipeline" aria-label="Fire steg i IMA">
+        <div class="pipeline three" aria-label="Tre ledd i IMA">
           <div class="step">
-            <div><strong>Data</strong><span>Pleienotater, strukturerte felt, ABC-episoder og observasjonsdomener.</span></div>
+            <div><strong>Motoren</strong><span>Identifiserer mønstre og sammenhenger i dokumentasjonen og løfter frem funn som beslutningsstøtte.</span></div>
             <div class="step-number">1</div>
           </div>
           <div class="step">
-            <div><strong>Mønstermotor</strong><span>Forklarbar analyse av A→B, B→C, A→B→C og signaler over tid.</span></div>
+            <div><strong>Faglig vurdering</strong><span>Psykolog og helsefagarbeider vurderer funnene faglig og formulerer anbefalinger.</span></div>
             <div class="step-number">2</div>
           </div>
           <div class="step">
-            <div><strong>Teori og hypoteser</strong><span>ABC, operant betinging, sensorikk og tidsvindu gir faglig ramme.</span></div>
+            <div><strong>Beslutning</strong><span>Kommunen eller boligen beslutter hvilke tiltak som skal gjennomføres og følger dem opp i praksis.</span></div>
             <div class="step-number">3</div>
-          </div>
-          <div class="step">
-            <div><strong>Tilbakemelding</strong><span>Vi gir funn til leder. Leder og bolig vurderer og velger eventuelle tiltak.</span></div>
-            <div class="step-number">4</div>
           </div>
         </div>
         <div class="grid foundation-grid">
@@ -1238,8 +1239,8 @@
             <p>SBERT, SPLADE og Cross-Encoder for semantisk gjenfinning på norsk. HDBSCAN og Spectral Co-Clustering for mønstergjenkjenning. LocalOutlierFactor for avviksdeteksjon. pgvector i Supabase.</p>
           </article>
           <article class="card">
-            <h3>Avgrensning</h3>
-            <p>Vurderingsperioder er avgrenset til 8-12 uker. Tjenesten er ikke kontinuerlig overvåking.</p>
+            <h3>Arbeidsform</h3>
+            <p>Strukturert tverrfaglig oppfølging med utgangspunkt i brukerens behov, bedre koordinering og tydeligere ansvar.</p>
           </article>
         </div>
       </div>
@@ -1248,31 +1249,36 @@
     <section class="section alt" id="pilot">
       <div class="shell">
         <div class="section-head">
-          <h2>Et trygt pilotprosjekt</h2>
+          <h2>Fase 1 og 2</h2>
           <p>
-            Pilot må være liten, avklart og faglig styrt. Teamet har psykologkompetanse. Målet er å teste tjenesten og nytten, ikke å bruke funn som klinisk fasit.
+            Tjenesten går fra analyse til møte, forankring og praktisk beslutningsgrunnlag.
           </p>
         </div>
         <div class="pilot-layout">
           <article class="pilot-card">
-            <h3>Rammen for pilot</h3>
+            <h3>Fase 1 – Analyse</h3>
             <p>
-              En god pilot bør ha få reelle beboere, tydelig ansvar og en kort evalueringsperiode. Syntetiske data brukes til forberedelse, stresstesting og videre utvikling.
+              IMA går gjennom eksisterende dokumentasjon og relevante journalnotater som kunden velger å dele.
+              Motoren identifiserer triggere, belastningsfaktorer, tidspunkt, overganger og situasjoner med økt belastning.
             </p>
             <div class="pilot-list">
-              <div class="pilot-item"><b>1</b><div><strong>Avgrenset miljø</strong><span>Én tjeneste, én faggruppe eller ett avklart testmiljø.</span></div></div>
-              <div class="pilot-item"><b>2</b><div><strong>Faglig forankring</strong><span>Metode, språk og risiko vurderes med psykologkompetanse i teamet.</span></div></div>
-              <div class="pilot-item"><b>3</b><div><strong>Klare dataregler</strong><span>Hvilke data som brukes, hvor de lagres, hvem som har tilgang, og når de slettes.</span></div></div>
-              <div class="pilot-item"><b>4</b><div><strong>Evalueringspunkt</strong><span>Hva som skal måles: forståelighet, nytte, risiko, tidsbruk og faglig treff.</span></div></div>
+              <div class="pilot-item"><b>1</b><div><strong>Uro og utagering</strong><span>Mønstre i uro, utagering og søvn.</span></div></div>
+              <div class="pilot-item"><b>2</b><div><strong>Belastning</strong><span>Tidspunkt, situasjoner og overganger med økt belastning.</span></div></div>
+              <div class="pilot-item"><b>3</b><div><strong>Rutiner og miljø</strong><span>Sammenheng mellom hverdagssituasjoner, miljø og reaksjoner.</span></div></div>
+              <div class="pilot-item"><b>4</b><div><strong>Perioder</strong><span>Forskjeller mellom beboere, avdelinger eller perioder over tid.</span></div></div>
             </div>
           </article>
           <article class="pilot-card">
-            <h3>Hva piloten skal svare på</h3>
+            <h3>Fase 2 – Møte og forankring</h3>
+            <p>
+              Etter analysen gjennomføres et fysisk eller digitalt møte, normalt på 45–60 minutter.
+              Hovedfunn, faglige vurderinger og anbefalte tiltak presenteres som beslutningsgrunnlag.
+            </p>
             <div class="privacy-list">
-              <div class="privacy-item"><b>?</b><div><strong>Ser fagpersoner nytte?</strong><span>Gir tjenesten bedre oversikt over mønstre som ellers tar tid å finne?</span></div></div>
-              <div class="privacy-item"><b>?</b><div><strong>Er språket forsvarlig?</strong><span>Blir hypoteser formulert nøkternt, presist og uten å overdrive sikkerhet?</span></div></div>
-              <div class="privacy-item"><b>?</b><div><strong>Er risikoen håndterbar?</strong><span>Er det tydelig nok at funn er samvariasjon og må vurderes av fagperson?</span></div></div>
-              <div class="privacy-item"><b>?</b><div><strong>Finnes det en forretning?</strong><span>Er nytten stor nok til en tydelig betalingsmodell og videre samarbeid?</span></div></div>
+              <div class="privacy-item"><b>1</b><div><strong>Ledelse</strong><span>Beslutning, prioritering, ressursbruk, risiko, gevinst og videre ansvar.</span></div></div>
+              <div class="privacy-item"><b>2</b><div><strong>Ansatte</strong><span>Praktisk gjennomføring, rutiner og lik praksis på tvers av vakter.</span></div></div>
+              <div class="privacy-item"><b>✓</b><div><strong>Felles språk</strong><span>Funnene presenteres slik at ledelse og ansatte får et tydelig grunnlag for videre oppfølging.</span></div></div>
+              <div class="privacy-item"><b>✓</b><div><strong>Forankring</strong><span>Strukturert oppfølging krever tydelige rutiner og samarbeid på tvers av fag og nivåer.</span></div></div>
             </div>
           </article>
         </div>
@@ -1404,42 +1410,42 @@
     <section class="section alt" id="sikkerhet">
       <div class="shell">
         <div class="section-head">
-          <h2>Trygghet og avgrensning</h2>
+          <h2>Hva kunden får presentert</h2>
           <p>
-            Tjenesten skal gjøre faglige spørsmål tydeligere. Den skal ikke ta vurderingen fra leder eller bolig.
+            IMA presenterer både funn og anbefalinger på en måte som gjør dem anvendelige i praksis.
           </p>
         </div>
         <div class="compare">
           <article class="card">
-            <h3>Det er</h3>
+            <h3>Funn</h3>
             <div class="do-dont">
-              <div>Et bidrag til en mer forutsigbar hverdag for beboeren.</div>
-              <div>En analysebasert tjeneste for å synliggjøre mønstre i pleienotater.</div>
-              <div>Et grunnlag for faglig refleksjon og vurdering.</div>
-              <div>En måte å gjøre hypoteser sporbare på.</div>
+              <div>Identifiserte triggere og belastningsfaktorer.</div>
+              <div>Tidspunkt eller situasjoner med økt risiko for uro eller utagering.</div>
+              <div>Sammenhenger mellom hverdagssituasjoner og atferd.</div>
+              <div>Mønstre som påvirker beboer, ansatte eller arbeidsmiljø.</div>
             </div>
           </article>
           <article class="card">
-            <h3>Det er ikke</h3>
+            <h3>Anbefalinger</h3>
             <div class="do-dont">
-              <div>Et diagnoseverktøy.</div>
-              <div>En klinisk konklusjon.</div>
-              <div>En påstand om årsak.</div>
-              <div>En erstatning for faglig vurdering.</div>
+              <div>Bedre arbeidsflyt og tydeligere rutiner.</div>
+              <div>Mer forutsigbare overganger og skiftbytter.</div>
+              <div>Miljøterapeutiske grep som skjerming og sanseregulering.</div>
+              <div>Søvn, døgnrytme, kosthold, hygiene og eventuell samkjøring med lege.</div>
             </div>
           </article>
         </div>
         <div class="pilot-card" style="margin-top: 16px;">
-          <h3>Taushetsplikt, GDPR og personvern</h3>
+          <h3>Trygghet og ansvar</h3>
           <p>
-            Dette må være avklart før pilot med reelle beboere. Beboere anonymiseres med ID-nummer, og hver bolig får egen isolert database. Data deles ikke på tvers av boliger.
+            Tjenesten skal passe inn i kommunal praksis og gjeldende regelverk for behandling og deling av helseopplysninger.
+            Deling krever tydelige rammer for behandlingsgrunnlag, databehandleravtale, tilgangsstyring og personvern.
           </p>
           <div class="privacy-list">
-            <div class="privacy-item"><b>✓</b><div><strong>Taushetserklæring</strong><span>Alle som får innsyn i prosjektet må ha tydelig rolle og taushetsplikt.</span></div></div>
-            <div class="privacy-item"><b>✓</b><div><strong>Anonymisering</strong><span>Beboere omtales med ID-nummer, ikke navn.</span></div></div>
-            <div class="privacy-item"><b>✓</b><div><strong>Isolert database</strong><span>Én database per bolig. Ingen data blandes eller deles mellom boliger.</span></div></div>
-            <div class="privacy-item"><b>✓</b><div><strong>Avgrenset periode</strong><span>Vurderingsperioden settes til 8-12 uker, ikke løpende overvåking.</span></div></div>
-            <div class="privacy-item"><b>✓</b><div><strong>Klinisk ansvar</strong><span>Kliniske konklusjoner ligger hos lisensert psykolog, ikke i systemet.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Nødvendighet</strong><span>Opplysninger må være relevante og nødvendige for formålet.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Tydelig tilgang</strong><span>Tilgang avgrenses til personer som har saklig behov.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Avgrenset periode</strong><span>Vurderingsperioden settes til 8-12 uker, ikke kontinuerlig overvåking.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Faglig ansvar</strong><span>Psykolog og helsefagarbeider vurderer funnene. Kommunen eller boligen beslutter tiltak.</span></div></div>
           </div>
         </div>
       </div>
@@ -1448,24 +1454,19 @@
     <section class="section" id="avklaringer">
       <div class="shell">
         <div class="section-head">
-          <h2>Vanlige avklaringer</h2>
+          <h2>Gevinst for kommunen og boligen</h2>
           <p>
-            Kort svar på det viktigste før noen går videre med pilot.
+            Når dokumentasjon, observasjoner og mønstre samles i én faglig vurdering,
+            blir det lettere å prioritere riktige tiltak og følge opp effekten over tid.
           </p>
         </div>
-        <div class="faq-grid">
-          <details open>
-            <summary>Kan tjenesten brukes klinisk nå?</summary>
-            <p>Nei. Dagens versjon er en pilotrettet tjeneste for metodeutvikling og faglig vurderingsgrunnlag. Den skal ikke brukes til kliniske beslutninger om reelle personer.</p>
-          </details>
-          <details>
-            <summary>Hva får pilotmiljøet igjen?</summary>
-            <p>En strukturert gjennomgang av hvordan tjenesten kan støtte faglig refleksjon, mønsterforståelse og evaluering av tiltak. Pilotmiljøet får påvirke metode og retning tidlig.</p>
-          </details>
-          <details>
-            <summary>Hva må være på plass før oppstart?</summary>
-            <p>Pilotkontakt, formål, dataramme, taushetsplikt, GDPR-avklaring, evalueringskriterier og en enkel avtale om ansvar og videre prosess.</p>
-          </details>
+        <div class="grid">
+          <article class="card"><h3>For beboeren</h3><p>Mindre uro, færre utageringsepisoder og mer forutsigbar hverdag.</p></article>
+          <article class="card"><h3>For ansatte</h3><p>Mindre fysisk og psykisk belastning, likere praksis og enklere opplæring av nye og vikarierende ansatte.</p></article>
+          <article class="card"><h3>For ledelse</h3><p>Bedre dokumentasjon, tydeligere oppfølging og bedre grunnlag for styring, kvalitet og ressursbruk.</p></article>
+          <article class="card"><h3>Tidlig varsling</h3><p>Negativ utvikling kan oppdages tidligere, før situasjoner eskalerer.</p></article>
+          <article class="card"><h3>Kontinuitet</h3><p>Felles språk og mer stabil praksis på tvers av vakter.</p></article>
+          <article class="card"><h3>Prioritering</h3><p>Lettere å velge hvilke tiltak som bør prøves først og hvordan effekt skal følges opp.</p></article>
         </div>
       </div>
     </section>
@@ -1473,16 +1474,17 @@
     <section class="section alt" id="neste-steg">
       <div class="shell">
         <div class="section-head">
-          <h2>Hva vi trenger videre</h2>
+          <h2>En tjeneste som skaper handling</h2>
           <p>
-            Neste steg er kontakt med et pilotprosjekt og tydelige rammer for en forsvarlig utprøving.
+            IMA hjelper kommunen og boligen med å gå fra dokumentasjon til innsikt,
+            fra innsikt til faglige anbefalinger, og fra anbefalinger til mer målrettede tiltak i praksis.
           </p>
         </div>
         <div class="needs">
-          <div class="need"><strong>Pilotprosjekt</strong><span>Et konkret miljø som vil teste tjenesten i liten skala.</span></div>
-          <div class="need"><strong>Personvern og taushetsplikt</strong><span>Avklare tilgang, rettslig grunnlag, dataminimering, lagring og sletting.</span></div>
-          <div class="need"><strong>Dataramme</strong><span>Velge periode, bolig, beboer-ID-er og hvilke observasjoner som skal inngå.</span></div>
-          <div class="need"><strong>Forretning</strong><span>Avklare pilotkostnad, ansvar, betalingsmodell og veien videre.</span></div>
+          <div class="need"><strong>Dokumentasjon</strong><span>Eksisterende journalnotater og relevant dokumentasjon samles innenfor avklart dataramme.</span></div>
+          <div class="need"><strong>Innsikt</strong><span>Funnene struktureres som hypoteser, mønstre og belastningsfaktorer.</span></div>
+          <div class="need"><strong>Anbefalinger</strong><span>Psykolog og helsefagarbeider gjør faglig vurdering og formulerer anbefalinger.</span></div>
+          <div class="need"><strong>Handling</strong><span>Kommunen eller boligen velger tiltak, forankrer ansvar og følger opp praksis.</span></div>
         </div>
       </div>
     </section>
@@ -1495,76 +1497,68 @@
         <div class="grid">
           <article class="slide-card">
             <div class="slide-number">01 · Invitasjon</div>
-            <h3>Å gjøre atferdsmønstre synlige</h3>
-            <p>En invitasjon til samarbeid om en tjeneste som støtter faglig vurdering.</p>
+            <h3>Et bedre beslutningsgrunnlag</h3>
+            <p>IMA gjør eksisterende dokumentasjon om til tydelige funn og sporbare hypoteser.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">02 · Utfordringen</div>
-            <h3>Mønstrene finnes allerede</h3>
-            <ul>
-              <li>Mye registreres i pleienotater.</li>
-              <li>ABC-sammenhenger ligger spredt og implisitt.</li>
-              <li>Tid er knapphetsgodet.</li>
-            </ul>
+            <div class="slide-number">02 · Målgruppe</div>
+            <h3>Kommune og bolig</h3>
+            <p>For kommuner og boliger som trenger bedre oversikt over uro, utagering, søvn, belastning og hverdagsmønstre.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">03 · Hva tjenesten er</div>
-            <h3>Gjør det implisitte eksplisitt</h3>
-            <ul>
-              <li>Løfter fram gjentakende mønstre.</li>
-              <li>Foreslår hypoteser med forbehold.</li>
-              <li>Gjør resonnementet sporbart.</li>
-            </ul>
+            <div class="slide-number">03 · Modell</div>
+            <h3>Tre ledd og tre ansvar</h3>
+            <p>Motoren finner mønstre. Psykolog og helsefagarbeider vurderer funnene. Kommunen eller boligen beslutter tiltak.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">04 · Avgrensning</div>
-            <h3>Hva det er, og hva det ikke er</h3>
-            <p>Tjenesten synliggjør mønstre, gir hypotesegrunnlag og støtter faglig vurdering. Det er ikke diagnose, årsaksbevis eller erstatning for faglig vurdering.</p>
+            <div class="slide-number">04 · Fase 1</div>
+            <h3>Analyse</h3>
+            <p>Eksisterende dokumentasjon og relevante journalnotater analyseres for triggere, belastningsfaktorer, tidspunkt, overganger og situasjoner med økt belastning.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">05 · Fagfeltet</div>
-            <h3>Bygget for omsorgsboliger</h3>
-            <p>Tjenesten er bygget for omsorgsboliger. Første pilotmiljø avklares med partner, med særlig relevans for PU, ROP, rus og psykisk helse. ABC, sensorisk regulering og observasjonsdomener er sentralt.</p>
+            <div class="slide-number">05 · Analysefunn</div>
+            <h3>Hva analysen kan synliggjøre</h3>
+            <p>Mønstre i uro, utagering og søvn, belastning knyttet til tid og situasjon, og sammenheng mellom rutiner, miljø og reaksjoner.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">06 · Arbeidsflyt</div>
-            <h3>Fra notat til hypotese</h3>
-            <p>Data går gjennom en forklarbar mønstermotor, videre til hypoteser med forbehold, og ender i faglig vurdering.</p>
+            <div class="slide-number">06 · Fase 2</div>
+            <h3>Møte og forankring</h3>
+            <p>Hovedfunn, faglige vurderinger og anbefalte tiltak presenteres i et fysisk eller digitalt møte, normalt på 45-60 minutter.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">07 · Eksempel</div>
-            <h3>Ukjent person til stede</h3>
-            <p>Mønster: ukjent person til stede → krevende dag. Lift 3,95. Støtte 5 av 6 dager. Vurdering: hypotese, ikke konklusjon.</p>
+            <div class="slide-number">07 · Ledelse</div>
+            <h3>Beslutning og prioritering</h3>
+            <p>Ledelsen får grunnlag for beslutning, ressursbruk, risiko, forventet gevinst og videre ansvar.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">08 · Ambisjon</div>
-            <h3>To nivåer</h3>
-            <p>Først pilotert tjeneste med IMA som intern motor. På sikt kan regulert klinisk beslutningsstøtte vurderes som eget utviklingsspor.</p>
+            <div class="slide-number">08 · Ansatte</div>
+            <h3>Lik praksis i hverdagen</h3>
+            <p>Ansatte får praktisk forklaring av tiltak, felles språk og tydeligere rutiner på tvers av vakter.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">09 · Teknisk arkitektur</div>
-            <h3>Semantisk gjenfinning og mønstergjenkjenning</h3>
-            <p>SBERT, SPLADE og Cross-Encoder brukes for semantisk gjenfinning på norsk. HDBSCAN, Spectral Co-Clustering og LocalOutlierFactor brukes til mønster- og avviksanalyse.</p>
+            <div class="slide-number">09 · Anbefalinger</div>
+            <h3>Fra funn til faglig vurdering</h3>
+            <p>Anbefalinger kan gjelde arbeidsflyt, rutiner, overganger, skiftbytter, skjerming, sanseregulering, søvn, døgnrytme, kosthold og hygiene.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">10 · Personvern</div>
-            <h3>Avgrenset og isolert</h3>
-            <p>Beboere anonymiseres med ID-nummer. Hver bolig har isolert database. Data deles ikke på tvers av boliger. Vurderingsperioder er avgrenset til 8-12 uker.</p>
+            <div class="slide-number">10 · Gevinst</div>
+            <h3>For beboer, ansatte og ledelse</h3>
+            <p>Mindre uro, lavere belastning, likere praksis, enklere opplæring, bedre dokumentasjon og bedre grunnlag for styring og kvalitet.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">11 · Ansvar</div>
-            <h3>Kliniske konklusjoner ligger hos fagperson</h3>
-            <p>Alle kliniske konklusjoner ligger hos lisensert psykolog, ikke i systemet.</p>
+            <div class="slide-number">11 · Trygghet</div>
+            <h3>Rammer og ansvar</h3>
+            <p>Behandlingsgrunnlag, databehandleravtale, tilgangsstyring og personvern må være tydelig avklart.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">12 · Partnerskap</div>
-            <h3>Hva vi tilbyr og ber om</h3>
-            <p>Faglig påvirkning fra start, metode-/forskningssamarbeid og validering av at funnene er forsvarlige.</p>
+            <div class="slide-number">12 · Handling</div>
+            <h3>Fra innsikt til praksis</h3>
+            <p>Resultatet er bedre forankring, tydeligere ansvar og et sterkere grunnlag for ro, forutsigbarhet og tryggere hverdager.</p>
           </article>
           <article class="slide-card">
             <div class="slide-number">13 · Neste steg</div>
-            <h3>Pilotdialog</h3>
-            <p>Første steg er å avklare pilotmiljø, taushetsplikt, GDPR og forretningsmodell.</p>
+            <h3>Avklare første bolig</h3>
+            <p>Første steg er å avklare bolig, dataramme, ansvar, personvern og hvordan møtene skal gjennomføres.</p>
           </article>
         </div>
       </div>
