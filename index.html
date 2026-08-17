@@ -214,7 +214,7 @@
     }
 
     /* ---------- Status: bygget / gjenstår ---------- */
-    .status-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .status-split { display: grid; grid-template-columns: 1fr; gap: 16px; }
     .status-col {
       background: var(--paper); border: 1px solid var(--line);
       border-radius: var(--r-lg); padding: 24px; box-shadow: var(--shadow-sm);
@@ -229,18 +229,16 @@
       border-radius: 6px; font-size: .74rem; font-weight: 800;
     }
     .badge.done { background: var(--green-soft); color: var(--green); }
-    .badge.todo { background: var(--gold-soft); color: var(--gold); }
-    .status-list { display: grid; gap: 9px; }
+    .status-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px; }
     .status-item {
       display: grid; grid-template-columns: 20px 1fr; gap: 11px; align-items: start;
-      padding: 11px 0; border-top: 1px solid var(--line);
+      padding: 13px 0; border-top: 1px solid var(--line);
     }
-    .status-item:first-child { border-top: 0; padding-top: 2px; }
+    .status-item:nth-child(1), .status-item:nth-child(2) { border-top: 0; padding-top: 2px; }
     .status-item i {
       font-style: normal; font-weight: 800; font-size: .84rem; line-height: 1.5;
     }
     .status-item.ok i { color: var(--green); }
-    .status-item.pending i { color: var(--gold); }
     .status-item strong { display: block; font-size: .95rem; margin-bottom: 2px; font-weight: 650; }
     .status-item span { color: var(--muted); font-size: .89rem; line-height: 1.55; }
 
@@ -503,9 +501,10 @@
       .nav { align-items: flex-start; flex-direction: column; padding: 12px 0; gap: 8px; }
       .navlinks { justify-content: flex-start; }
       .app-chrome, .mock-row, .grid, .model, .abc-grid, .result-grid,
-      .metrics, .needs, .mini-grid, .reg-track, .grid.two {
+      .metrics, .needs, .mini-grid, .reg-track, .grid.two, .status-list {
         grid-template-columns: 1fr;
       }
+      .status-item:nth-child(2) { border-top: 1px solid var(--line); padding-top: 13px; }
       .side-rail { border-right: 0; border-bottom: 1px solid var(--line); grid-template-columns: repeat(3, 1fr); display: grid; }
       .rail-item { text-align: center; font-size: .84rem; }
       .analysis-top { display: block; }
@@ -639,8 +638,8 @@
     <section class="section" id="status">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Ærlig status</p>
-          <h2>Hva som er bygget – og hva som gjenstår</h2>
+          <p class="eyebrow">Status</p>
+          <h2>Hva som faktisk er bygget</h2>
           <p>
             Verktøyet kjører i dag på syntetiske data i non-klinisk modus. Skillet mellom
             non-klinisk og klinisk bruk er håndhevet i kode, ikke bare beskrevet i et dokument.
@@ -697,54 +696,6 @@
             </div>
           </div>
 
-          <div class="status-col">
-            <h3><span class="badge todo">→</span> Gjenstår før reell bruk</h3>
-            <p>Må på plass før data om virkelige beboere brukes.</p>
-            <div class="status-list">
-              <div class="status-item pending">
-                <i>→</i>
-                <div>
-                  <strong>Behandlingsgrunnlag og DPIA</strong>
-                  <span>Rettslig grunnlag og personvernkonsekvensvurdering må gjøres av dataansvarlig virksomhet med jurist.</span>
-                </div>
-              </div>
-              <div class="status-item pending">
-                <i>→</i>
-                <div>
-                  <strong>Autentisering</strong>
-                  <span>Innlogging mot virksomhetens IdP eller Helsenett-ID. Tilgangsstyringen finnes, innloggingen gjenstår.</span>
-                </div>
-              </div>
-              <div class="status-item pending">
-                <i>→</i>
-                <div>
-                  <strong>Nøkkelhåndtering og drift</strong>
-                  <span>KMS, transportkryptering og hostingmodell er driftsbeslutninger som ikke er tatt.</span>
-                </div>
-              </div>
-              <div class="status-item pending">
-                <i>→</i>
-                <div>
-                  <strong>Klinisk validering</strong>
-                  <span>Ingen del av analysen er validert mot reelle data. Mønstre i syntetiske data sier først og fremst noe om generatoren.</span>
-                </div>
-              </div>
-              <div class="status-item pending">
-                <i>→</i>
-                <div>
-                  <strong>Formell risikovurdering</strong>
-                  <span>Risikovurdering etter Normen og full WCAG-revisjon gjenstår.</span>
-                </div>
-              </div>
-              <div class="status-item pending">
-                <i>→</i>
-                <div>
-                  <strong>Endelig MDR-kvalifisering</strong>
-                  <span>Foreløpig vurdering: dagens non-kliniske formål faller utenfor MDR. Klinisk beslutningsstøtte vil sannsynlig bli Klasse IIa.</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="callout">
