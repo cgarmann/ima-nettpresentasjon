@@ -399,6 +399,10 @@
       margin-top: 22px;
     }
 
+    .foundation-grid {
+      margin-top: 16px;
+    }
+
     .step {
       min-height: 166px;
       display: flex;
@@ -1164,8 +1168,10 @@
         <p class="eyebrow">HelseAgent · tjeneste bygget på egen metode</p>
         <h1>Å gjøre atferdsmønstre synlige</h1>
         <p class="lead">
-          Vi tilbyr en tjeneste som synliggjør gjentakende mønstre i observasjoner og løfter dem
-          fram som sporbare hypoteser. IMA er den interne mønstermotoren og vår forretningshemmelighet.
+          Vi tilbyr en analysebasert tjeneste som finner gjentakende sammenhenger i pleienotater og
+          løfter dem fram som sporbare hypoteser til faglig vurdering. Målet er en mer forutsigbar
+          hverdag for beboeren, mindre belastning for ansatte og bedre beslutningsgrunnlag for ledere.
+          IMA er vår interne metode og forretningshemmelighet.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#demo">Se programdemo</a>
@@ -1215,6 +1221,20 @@
             <div><strong>Faglig vurdering</strong><span>Fagpersonen vurderer, forkaster, justerer eller tester tiltak.</span></div>
             <div class="step-number">4</div>
           </div>
+        </div>
+        <div class="grid foundation-grid">
+          <article class="card">
+            <h3>Faglig grunnlag</h3>
+            <p>ABC-modellen (Skinner), operant betinging og Relational Frame Theory (RFT).</p>
+          </article>
+          <article class="card">
+            <h3>Teknisk arkitektur</h3>
+            <p>SBERT, SPLADE og Cross-Encoder for semantisk gjenfinning på norsk. HDBSCAN og Spectral Co-Clustering for mønstergjenkjenning. LocalOutlierFactor for avviksdeteksjon. pgvector i Supabase.</p>
+          </article>
+          <article class="card">
+            <h3>Avgrensning</h3>
+            <p>Vurderingsperioder er avgrenset til 8-12 uker. Tjenesten er ikke kontinuerlig overvåking.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -1386,7 +1406,7 @@
           <article class="card">
             <h3>Det er</h3>
             <div class="do-dont">
-              <div>En tjeneste for å synliggjøre mønstre i observasjoner.</div>
+              <div>En analysebasert tjeneste for å synliggjøre mønstre i pleienotater.</div>
               <div>Et grunnlag for faglig refleksjon og vurdering.</div>
               <div>En måte å gjøre hypoteser sporbare på.</div>
               <div>Et hjelpemiddel for kvalitet, prioritering og læring.</div>
@@ -1405,14 +1425,14 @@
         <div class="pilot-card" style="margin-top: 16px;">
           <h3>Taushetsplikt, GDPR og personvern</h3>
           <p>
-            Dette må være avklart før pilot med reelle beboere. Syntetiske data kan brukes til forberedelse, men selve piloten må ha tydelige personvernrammer.
+            Dette må være avklart før pilot med reelle beboere. Beboere anonymiseres med ID-nummer, og hver bolig får egen isolert database. Data deles ikke på tvers av boliger.
           </p>
           <div class="privacy-list">
             <div class="privacy-item"><b>✓</b><div><strong>Taushetserklæring</strong><span>Alle som får innsyn i prosjektet må ha tydelig rolle og taushetsplikt.</span></div></div>
-            <div class="privacy-item"><b>✓</b><div><strong>Dataminimering</strong><span>Kun data som er nødvendig for pilotformålet skal brukes.</span></div></div>
-            <div class="privacy-item"><b>✓</b><div><strong>Tilgangsstyring</strong><span>Fagpersoner skal bare se det de har saklig behov for å se.</span></div></div>
-            <div class="privacy-item"><b>✓</b><div><strong>Avtaler</strong><span>Databehandleravtale, behandlingsgrunnlag og eventuell personvernkonsekvensvurdering må vurderes før ekte data.</span></div></div>
-            <div class="privacy-item"><b>✓</b><div><strong>Sletting</strong><span>Pilotdata skal ha definert lagringstid og slettes når formålet er oppfylt.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Anonymisering</strong><span>Beboere omtales med ID-nummer, ikke navn.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Isolert database</strong><span>Én database per bolig. Ingen data blandes eller deles mellom boliger.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Avgrenset periode</strong><span>Vurderingsperioden settes til 8-12 uker, ikke løpende overvåking.</span></div></div>
+            <div class="privacy-item"><b>✓</b><div><strong>Klinisk ansvar</strong><span>Kliniske konklusjoner ligger hos lisensert psykolog, ikke i systemet.</span></div></div>
           </div>
         </div>
       </div>
@@ -1515,19 +1535,19 @@
             <p>Først pilotert tjeneste med IMA som intern motor. På sikt klinisk beslutningsstøtte bygget mot CE-merking.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">09 · Standard</div>
-            <h3>Bygget til standard fra dag én</h3>
-            <p>MDR, ISO 14971 og IEC 62304 brukes som rettesnor lenge før eventuell sertifisering.</p>
+            <div class="slide-number">09 · Teknisk arkitektur</div>
+            <h3>Semantisk gjenfinning og mønstergjenkjenning</h3>
+            <p>SBERT, SPLADE og Cross-Encoder brukes for semantisk gjenfinning på norsk. HDBSCAN, Spectral Co-Clustering og LocalOutlierFactor brukes til mønster- og avviksanalyse.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">10 · Sikkerhet</div>
-            <h3>Forsiktighet er innebygd</h3>
-            <p>Ikke-klinisk standardmodus, streng aktivering av klinisk modus, pseudonymisering, logging og krav til kryptering.</p>
+            <div class="slide-number">10 · Personvern</div>
+            <h3>Avgrenset og isolert</h3>
+            <p>Beboere anonymiseres med ID-nummer. Hver bolig har isolert database. Data deles ikke på tvers av boliger. Vurderingsperioder er avgrenset til 8-12 uker.</p>
           </article>
           <article class="slide-card">
-            <div class="slide-number">11 · Behov</div>
-            <h3>Her trengs fagligheten</h3>
-            <p>Språk, risikovurdering, prognosegrenser og klinisk validering må vurderes sammen med fagpersoner.</p>
+            <div class="slide-number">11 · Ansvar</div>
+            <h3>Kliniske konklusjoner ligger hos fagperson</h3>
+            <p>Alle kliniske konklusjoner ligger hos lisensert psykolog, ikke i systemet.</p>
           </article>
           <article class="slide-card">
             <div class="slide-number">12 · Partnerskap</div>
