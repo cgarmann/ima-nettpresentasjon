@@ -331,7 +331,7 @@
     .screenshot-card span { color: var(--muted); font-size: .9rem; line-height: 1.52; }
 
     /* ---------- Team ---------- */
-    .team-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 16px; align-items: start; }
+    .team-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
     .team-main {
       background: var(--paper); border: 1px solid var(--line-strong);
       border-radius: var(--r-lg); padding: 26px; box-shadow: var(--shadow);
@@ -353,13 +353,14 @@
     .cred b { color: var(--green); font-size: 1.02rem; font-weight: 800; letter-spacing: -.02em; }
     .cred strong { display: block; font-size: .96rem; font-weight: 650; margin-bottom: 2px; }
     .cred span { color: var(--muted); font-size: .91rem; line-height: 1.55; }
-    .team-side {
-      background: var(--paper); border: 1px solid var(--line);
-      border-radius: var(--r-lg); padding: 24px; box-shadow: var(--shadow-sm);
+    .team-initials.teal { background: var(--teal); box-shadow: 0 6px 18px rgba(37, 111, 125, .26); }
+    .cred b.teal-t { color: var(--teal); }
+    .team-combo {
+      margin-top: 16px; padding: 20px 24px; border-radius: var(--r-lg);
+      background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow-sm);
     }
-    .team-side h3 { margin: 0 0 10px; font-size: 1.06rem; letter-spacing: -.014em; }
-    .team-side p { margin: 0 0 14px; color: var(--muted); font-size: .94rem; line-height: 1.58; }
-    .team-side ul { margin: 0; padding-left: 19px; color: var(--muted); font-size: .93rem; line-height: 1.7; }
+    .team-combo strong { display: block; margin-bottom: 4px; font-size: 1rem; }
+    .team-combo p { margin: 0; color: var(--muted); font-size: .96rem; line-height: 1.58; max-width: 880px; }
 
     /* ---------- Status ---------- */
     .status-col {
@@ -736,7 +737,11 @@
       <div class="shell">
         <div class="section-head">
           <p class="eyebrow">04 · Team</p>
-          <h2>Domenekunnskapen er ikke lest seg til</h2>
+          <h2>To fagfelt som utfyller hverandre</h2>
+          <p>
+            Domenekunnskapen er ikke lest seg til, og den kliniske vurderingen ligger hos
+            en psykolog. Det er kombinasjonen som gjør leveransen mulig.
+          </p>
         </div>
 
         <div class="team-layout">
@@ -773,19 +778,47 @@
             </div>
           </article>
 
-          <aside class="team-side">
-            <h3>Psykologkompetanse i prosjektet</h3>
-            <p>
-              Komplementær faglig styrke som dekker det analysen ikke kan gjøre alene – og
-              som er nøyaktig det gjennomgangsmøtene med personalgruppene krever.
-            </p>
-            <ul>
-              <li>Faglig validering av mønstre og hypoteser</li>
-              <li>Implementering i personalgrupper</li>
-              <li>Konflikthåndtering og arbeidsmiljø</li>
-              <li>Klinisk ansvar for konklusjoner</li>
-            </ul>
-          </aside>
+          <article class="team-main">
+            <div class="team-name">
+              <div class="team-initials teal" aria-hidden="true">ØS</div>
+              <div>
+                <strong>Øivind Stålesen</strong>
+                <span>Psykolog</span>
+              </div>
+            </div>
+            <div class="cred-list">
+              <div class="cred">
+                <b class="teal-t">7 år</b>
+                <div>
+                  <strong>Psykolog med klinisk erfaring</strong>
+                  <span>Klinisk psykolog i spesialisthelsetjenesten og i bedriftshelsetjeneste. Har det kliniske ansvaret for konklusjoner i leveransene.</span>
+                </div>
+              </div>
+              <div class="cred">
+                <b class="teal-t">Spes.</b>
+                <div>
+                  <strong>Spesialisering i organisasjonspsykologi</strong>
+                  <span>Cand.psychol. med spesialisering. Arbeidsmiljøkartlegging, organisasjonsutvikling og lederstøtte.</span>
+                </div>
+              </div>
+              <div class="cred">
+                <b class="teal-t">Fag</b>
+                <div>
+                  <strong>Konflikthåndtering og veiledning</strong>
+                  <span>Faglig validering av mønstre og hypoteser, og gjennomføring av møtene med personalgruppene der tiltakene skal settes i praksis.</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="team-combo">
+          <strong>Hvorfor kombinasjonen betyr noe</strong>
+          <p>
+            En analysemotor uten fagperson gir funn ingen tør handle på. En fagperson uten
+            analysen rekker ikke gjennom hundrevis av notater. Og et tiltak som ikke er
+            forankret i personalgruppen blir ikke gjennomført. Leveransen krever alle tre.
+          </p>
         </div>
       </div>
     </section>
