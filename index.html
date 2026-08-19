@@ -504,6 +504,7 @@
         <div class="hero-actions">
           <a class="button primary" href="#demo">Se demo av analysen</a>
           <a class="button" href="#status">Hva som er bygget</a>
+          <a class="button" href="assets/IMA_tjenestebeskrivelse.pdf" download>Last ned tjenestebeskrivelse (PDF)</a>
         </div>
       </div>
 
@@ -570,8 +571,7 @@
           <p>
             Vi gjør strukturert atferdsanalyse etter ABC-modellen av journalnotater ved hjelp
             av maskinlæring. Men det unike er ikke teknologien alene – det er at analysen
-            leveres sammen med helsefaglig og psykologfaglig vurdering. Vi selger ikke
-            programvare en bolig må finne ut av selv.
+            leveres sammen med helsefaglig og psykologfaglig vurdering.
           </p>
         </div>
 
@@ -620,20 +620,21 @@
           <h2>Fra observasjon til hypotese</h2>
           <p>
             Velg et funn og se hele veien: observasjon, klyngefunn, ABC-kjede, hypotese og
-            forsiktighetsmerking. Alle eksempler er syntetiske.
+            forsiktighetsmerking. Eksemplene er hentet fra faktiske kjøringer av verktøyet.
           </p>
         </div>
 
         <div class="demo-layout">
           <div>
             <div class="tabs" role="tablist" aria-label="Demovalg">
-              <button class="tab" type="button" role="tab" aria-selected="true" data-tab="ukjent">Ukjent person</button>
-              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="overgang">Overgang</button>
+              <button class="tab" type="button" role="tab" aria-selected="true" data-tab="aktivitet">Aktivitetsbytte</button>
               <button class="tab" type="button" role="tab" aria-selected="false" data-tab="sensorikk">Sensorikk</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="mat">Matsituasjon</button>
             </div>
             <div class="note-list" id="notes"></div>
             <div class="demo-disclaimer">
-              Eksemplene er generert fra fiktive profiler. De viser hvordan analysen presenteres,
+              Eksemplene er hentet fra faktiske analysekjøringer i verktøyet, på syntetisk
+              testdata (beboer nn_005). De viser hvordan analysen presenteres,
               ikke funn om virkelige personer.
             </div>
           </div>
@@ -941,7 +942,7 @@
       <div class="shell">
         <div class="section-head">
           <p class="eyebrow">06 · Behov</p>
-          <h2>Verktøyet er bygget. Dette mangler jeg.</h2>
+          <h2>Verktøyet er bygget. Dette mangler vi.</h2>
         </div>
         <div class="needs">
           <div class="need">
@@ -967,6 +968,7 @@
   <footer class="footer">
     <div class="shell">
       <span><strong>Intelligent Mønsteranalyse (IMA)</strong></span>
+      <a href="assets/IMA_tjenestebeskrivelse.pdf" download>Last ned tjenestebeskrivelse (PDF)</a>
     </div>
   </footer>
 
@@ -1005,88 +1007,62 @@
     };
 
     const demoData = {
-      ukjent: [
+      aktivitet: [
         {
-          title: "Ukjent person til stede",
-          note: "I fem av seks krevende dager var ukjent person eller vikar registrert i miljøet.",
-          intro: "Motoren kobler et gjentakende miljøsignal til krevende dag, men viser det som samvariasjon.",
-          a: "Ukjent person er til stede, ofte samtidig med endring i rutine eller overgang.",
-          b: "Beboer viser uro, søker bort eller trenger mer støtte enn vanlig.",
-          c: "Personalet skjermer, reduserer krav og bruker kjent personale som støtte.",
-          hypothesis: "Ukjent person kan være et varseltegn eller en forvekslingsfaktor. Faglig vurdering må avklare om signalet handler om personen, overgangen, bemanningen eller noe annet.",
-          safety: "Kan ikke brukes som årsakspåstand. Alternative forklaringer må vurderes.",
-          lift: "3,95", support: "5/6", source: "M1 + T1", confidence: "Lav",
-          cluster: "Klynge 1 samler notater med ukjent person, endret rutine og krevende dag. Ett punkt holdes utenfor som avvik.",
-          evidence: [["Mønster", "Signalet dukker oftere opp før krevende dager enn i grunnivået."], ["Teori", "ABC-modellen gjør foranledning og konsekvens relevant."], ["Til vurdering", "Varslet introduksjon, kjent personale og roligere overgang kan vurderes av fagperson og bolig."]]
-        },
-        {
-          title: "Ukjent person og kveld",
-          note: "Tre episoder oppstår på kveldsvakt. Det er ikke nok til å skille vakt fra personfaktor.",
-          intro: "IMA markerer mulig forvekslingsfaktor før funnet brukes som hypotese.",
-          a: "Ukjent person og kveldsovergang opptrer samtidig i flere notater.",
-          b: "Beboer spør gjentatte ganger hva som skal skje og forlater fellesrom.",
-          c: "Personalet gjentar planen og tilbyr kjent aktivitet.",
-          hypothesis: "Det kan være kveldsovergangen, ikke den ukjente personen, som driver uroen.",
-          safety: "Merket som usikkert fordi to signaler opptrer samtidig.",
-          lift: "2,10", support: "3/5", source: "M4", confidence: "Lav",
-          cluster: "Motoren finner en liten klynge, men markerer at kveldsvakt og ukjent person overlapper.",
-          evidence: [["Forveksling", "Kveldsvakt og ukjent person overlapper i datagrunnlaget."], ["Behov", "Se etter dager med kveldsovergang uten ukjent person."], ["Til vurdering", "Praksis bør ikke endres før mønsteret er vurdert manuelt."]]
-        }
-      ],
-      overgang: [
-        {
-          title: "Overgang uten tydelig varsel",
-          note: "Ved rask overgang fra frokost til morgenstell blir beboer urolig og går bort fra badet.",
-          intro: "IMA henter ut en mulig ABC-kjede fra observasjonen.",
-          a: "Overgang til morgenstell skjer raskt, uten tydelig forvarsel.",
-          b: "Beboer går bort fra situasjonen og viser uro.",
-          c: "Personalet senker tempo, gir valg og bruker visuell støtte.",
-          hypothesis: "Uvarslede overganger kan være en foranledning til uro. Mer forutsigbar varsling kan prøves og evalueres.",
-          safety: "Tiltak bør testes skånsomt og evalueres over tid.",
-          lift: "2,80", support: "4/6", source: "ABC", confidence: "Middels",
-          cluster: "Flere observasjoner samles rundt raske overganger uten varsel. Klyngen peker mot en mulig A→B-sammenheng.",
-          evidence: [["A→B", "Rask overgang kommer før uro i flere notater."], ["B→C", "Redusert tempo og valg følges ofte av roligere forløp."], ["Til vurdering", "Varsel fem minutter før, visuell støtte og to konkrete valg kan vurderes av fagperson og bolig."]]
-        },
-        {
-          title: "Fast kveldsovergang",
-          note: "Når kveldsovergangen følger samme rekkefølge, bruker beboer kortere tid på å falle til ro.",
-          intro: "Motoren sammenligner like tidsrom på tvers av dager.",
-          a: "Kveldsovergang følger fast rekkefølge med kjent visuell støtte.",
-          b: "Beboer deltar og søker mindre bekreftelse.",
-          c: "Personalet bekrefter planen og holder strukturen lik.",
-          hypothesis: "Fast rekkefølge kan gjøre kvelden mer forutsigbar og redusere stress.",
-          safety: "Positivt mønster, men fortsatt bare grunnlag for evaluering.",
-          lift: "1,90", support: "5/6", source: "M2", confidence: "Middels",
-          cluster: "Notater med fast kveldsovergang grupperes tett og skiller seg fra dager med uvarslede endringer.",
-          evidence: [["Trend", "Lavere uro på dager med fast rekkefølge."], ["Teori", "Forutsigbarhet kan redusere behov for bekreftelse."], ["Til vurdering", "Fast rekkefølge og systematisk avvikslogg kan vurderes av fagperson og bolig."]]
+          title: "Aktivitetsbytte og avvik fra dagsplan",
+          note: "Aktivitetsbytter og avvik fra dagsplan er sterkt forbundet med krevende og krise-dager, med forhøyet agitasjon som tidlig signal.",
+          intro: "Seks understøttende mønstre (M1–M6) knytter avvik fra dagsplan til krevende og krise-dager.",
+          a: "Aktivitetsbytte eller avvik fra planlagt dagsplan oppstår.",
+          b: "Forhøyet agitasjon opptrer som tidlig signal i samme kjede.",
+          c: "Dagen utvikler seg videre til en krevende eller krise-dag.",
+          hypothesis: "Uforutsigbarhet i struktur kan fungere som en etablerende operasjon (MO) som øker sannsynligheten for utfordrende atferd samme dag.",
+          safety: "Konsistensen er høy, men årsaksretningen må fortsatt bekreftes gjennom faglig vurdering.",
+          lift: "4,091", support: "22/22", source: "M1–M6", confidence: "Høy",
+          cluster: "Seks mønstre (M1–M6) støtter samme sammenheng med konsistens 1,0.",
+          evidence: [["Foreslått tiltak", "Innfør tydelig visuell dagsplan som varsler om mulige endringer i god tid. Bruk en fast «endringsprotokoll» med forberedende signal ved uunngåelige endringer."], ["Teori", "ABC-modellen og operant betinging predikerer at uforutsigbarhet som MO øker unngåelses-/fluktmotivasjon."], ["Til vurdering", "Drøft med team hvilke aktivitetsbytter som kan forutses og hvilke som kan minimeres."]]
         }
       ],
       sensorikk: [
         {
-          title: "Høyt lydnivå i fellesrom",
-          note: "Beboer trekker seg unna og holder hendene over ørene under travel middagssituasjon.",
-          intro: "IMA skiller mellom miljøsignal, observerbar respons og personalrespons.",
-          a: "Fellesrommet har høyt lydnivå og mange personer samtidig.",
-          b: "Beboer trekker seg unna og skjermer ørene.",
-          c: "Personalet tilbyr roligere plass og kort pause.",
-          hypothesis: "Sensorisk belastning kan bidra til stress. Roligere rammer rundt måltid kan vurderes.",
-          safety: "Krever observasjoner på tvers av flere måltider før tiltak låses.",
-          lift: "2,35", support: "3/5", source: "T3", confidence: "Lav",
-          cluster: "Sensoriske signaler samles i én klynge, men støtten er lav. Funnet bør leses som et spørsmål.",
-          evidence: [["Domene", "Miljø og sensorisk regulering er registrert samtidig."], ["Respons", "Skjerming av ører og tilbaketrekning gjentas."], ["Til vurdering", "Roligere plass, tydelig start og slutt, og lavere lydnivå kan vurderes av fagperson og bolig."]]
+          title: "Sensorisk antesedent og alternativtilbud",
+          note: "ABC-kjeden sensorisk antesedent → slag/dunking eller vegring → tilbudt alternativ gjentar seg konsistent.",
+          intro: "To mønstre (M9, M10) støtter samme A→B→C-struktur.",
+          a: "Sensoriske stimuli som støy, berøring, lukt eller lys er til stede.",
+          b: "Slag/dunking eller vegring/tilbaketrekning.",
+          c: "Personalet tilbyr et alternativ, som reduserer den sensoriske belastningen.",
+          hypothesis: "Sensoriske stimuli kan fungere som utløsende antesedenter, og atferden fører i neste omgang til redusert sensorisk belastning via alternativ aktivitet.",
+          safety: "Datamengden er noe begrenset (n=5), men høy konsistens og lift gir god støtte til hypotesen.",
+          lift: "4,8", support: "5/5", source: "M9, M10", confidence: "Høy",
+          cluster: "Teorispor T3 og T4 støtter at strukturen er funksjonelt meningsfull.",
+          evidence: [["Foreslått tiltak", "Gjennomfør strukturert sensorisk kartlegging for å identifisere hvilke stimuli som er mest belastende."], ["Tilrettelegging", "Reduser unødvendig støy, tilby sensoriske hjelpemidler (øreplugger, solbriller, tyngdedyne) og identifiser trygge lav-stimuli-soner."], ["Til vurdering", "Vurderes sammen med fagperson før tiltak tas i bruk."]]
         },
         {
-          title: "Skjermet pause før eskalering",
-          note: "Kort pause før ny aktivitet ser ut til å dempe uro i situasjoner med mange krav.",
-          intro: "IMA løfter fram sammenhenger som ofte kommer før positiv endring.",
-          a: "Beboer møter flere krav tett etter hverandre.",
-          b: "Tempoet går ned, blikket flakker og beboer blir urolig.",
-          c: "Personalet gir kort skjermet pause før aktiviteten tas opp igjen.",
-          hypothesis: "Planlagte pauser før nye krav kan forebygge eskalering og gjøre dagen mer håndterbar.",
-          safety: "Tiltaket må vurderes slik at pause ikke utilsiktet forsterker unngåelse.",
-          lift: "2,60", support: "6/9", source: "M7 + T2", confidence: "Middels",
-          cluster: "Motoren skiller planlagte pauser før krav fra pauser etter eskalering. Det gjør funnet lettere å vurdere.",
-          evidence: [["Operant", "Pause etter uro kan være faglig relevant å se nærmere på."], ["Mønster", "Planlagt pause før krav henger sammen med roligere forløp."], ["Til vurdering", "Skillet mellom forebyggende pause og pause etter eskalering kan vurderes av fagperson og bolig."]]
+          title: "Alternativtilbud etter slag/dunking",
+          note: "Slag/dunking og vegring etterfølges konsistent av at personalet tilbyr et alternativ.",
+          intro: "Operant betinging tilsier at konsekvensmønsteret kan ha en forsterkende funksjon.",
+          a: "Krevende situasjon eller vegring oppstår.",
+          b: "Slag/dunking eller vegring/tilbaketrekning.",
+          c: "Personalet tilbyr et foretrukket alternativ.",
+          hypothesis: "Alternativtilbudet kan enten gi tilgang til noe foretrukket eller fungere som unngåelse av en krevende situasjon – det er mulig atferden utilsiktet er blitt instrumentell for å oppnå alternativet.",
+          safety: "Sikkerheten settes til middels fordi alternativtilbudet også kan representere god faglig praksis (deeskalering) fremfor utilsiktet forsterkning.",
+          lift: "4,8", support: "5/5", source: "M7, M8", confidence: "Middels",
+          cluster: "Mønstrene M7 og M8 støtter samme B→C-kobling med konsistens 1,0.",
+          evidence: [["Foreslått tiltak", "Drøft i fagteamet om alternativtilbudet primært fungerer som forebygging eller utilsiktet forsterkning."], ["Alternativ tilnærming", "Vurder å tilby alternativet proaktivt – før atferd oppstår – basert på tidlige signaler som agitasjon."], ["Til vurdering", "Bør vurderes faglig før praksis endres."]]
+        }
+      ],
+      mat: [
+        {
+          title: "Matsituasjon og vokalisering",
+          note: "Matsituasjoner er konsistent forbundet med vokalisering, som igjen etterfølges av skjerming.",
+          intro: "Motoren finner et gjentakende mønster rundt måltider (M11, M12).",
+          a: "Matsituasjon med sensorisk belastning, krav, sosial tetthet og tempo.",
+          b: "Vokalisering/rop.",
+          c: "Personalet tilbyr skjerming/pause.",
+          hypothesis: "Vokalisering kan fungere som kommunikasjon for å oppnå pause eller skjerming når matsituasjonen oppleves krevende.",
+          safety: "Lift på 2,0 er lavere enn for de sensoriske og strukturelle mønstrene, men fortsatt konsistent.",
+          lift: "2,0", support: "12/12", source: "M11, M12", confidence: "Middels",
+          cluster: "Mønstrene M11 og M12 støtter sammenhengen med konsistens 1,0.",
+          evidence: [["Foreslått tiltak", "Kartlegg matsituasjonens elementer systematisk: hvem er til stede, støynivå, tempo, type mat, plassering."], ["Tilpasning", "Vurder redusert antall personer rundt bordet, fast plass, rolig atmosfære og alternativ kommunikasjon (ASK)."], ["Til vurdering", "Tilby skjerming proaktivt dersom tegn til uro observeres tidlig."]]
         }
       ]
     };
@@ -1131,7 +1107,7 @@
     const notesEl = document.getElementById("notes");
     const evidenceEl = document.getElementById("evidence");
     const tabs = Array.from(document.querySelectorAll(".tab"));
-    let activeTab = "ukjent";
+    let activeTab = "aktivitet";
     let activeIndex = 0;
 
     function renderNotes() {
