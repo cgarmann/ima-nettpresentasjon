@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Intelligent Mønsteranalyse (IMA)</title>
-  <meta name="description" content="IMA finner gjentakende mønstre i pleiedokumentasjon og løfter dem fram som sporbare hypoteser til faglig vurdering.">
+  <meta name="description" content="IMA er en analysetjeneste for ledere i omsorgsboliger. Én rapport forteller om én vakt – IMA skal vise hva hundre vakter forteller sammen.">
   <meta property="og:title" content="Intelligent Mønsteranalyse (IMA)">
-  <meta property="og:description" content="Mønstrene finnes allerede i dokumentasjonen. Ingen har tid til å lete etter dem.">
+  <meta property="og:description" content="Én rapport forteller om én vakt – IMA skal vise hva hundre vakter forteller sammen.">
   <meta property="og:type" content="website">
   <style>
     :root {
@@ -280,7 +280,9 @@
       display: inline-grid; place-items: center; width: 26px; height: 26px;
       border-radius: 7px; background: var(--ink); color: #fff; margin-bottom: 8px; font-size: .82rem;
     }
+    .abc-box strong { display: block; margin-bottom: 4px; font-size: .9rem; font-weight: 650; }
     .abc-box p { margin: 0; color: var(--muted); font-size: .89rem; line-height: 1.52; }
+    .screenshot-grid.single { grid-template-columns: minmax(0, 1fr); }
 
     .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 13px 0; }
     .hypothesis, .safety-box { padding: 13px 15px; border-radius: var(--r); }
@@ -403,7 +405,7 @@
     .value-callout p { margin: 0; color: #47555f; font-size: .96rem; line-height: 1.58; }
 
     /* ---------- Behov ---------- */
-    .needs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .needs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .need {
       background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .15);
       border-radius: var(--r-lg); padding: 24px;
@@ -469,6 +471,7 @@
       .screenshot-card img { height: 260px; }
       .section { padding: 56px 0; }
       .cred b { color: var(--green); }
+      .stat-band.stat-band-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -482,7 +485,7 @@
       <div class="navlinks">
         <a href="#problem"><span class="step">01</span>Problemet</a>
         <a href="#losning"><span class="step">02</span>Løsningen</a>
-        <a href="#demo"><span class="step">03</span>Demo</a>
+        <a href="#demo"><span class="step">03</span>Eksempel</a>
         <a href="#team"><span class="step">04</span>Team</a>
         <a href="#status"><span class="step">05</span>Status</a>
         <a href="#behov"><span class="step">06</span>Behov</a>
@@ -495,17 +498,16 @@
     <section class="shell hero" id="top">
       <div>
         <p class="eyebrow">Intelligent Mønsteranalyse</p>
-        <h1>Mønstrene finnes allerede i dokumentasjonen</h1>
+        <h1>Én rapport forteller om én vakt</h1>
         <p class="lead">
-          IMA leser pleiedokumentasjon og løfter fram gjentakende sammenhenger som sporbare
-          hypoteser. Målet er en mer forutsigbar hverdag for beboeren, mindre belastning for
-          ansatte, og et tydeligere beslutningsgrunnlag for ledere. Fagpersonen vurderer.
-          Systemet konkluderer aldri.
+          IMA skal vise hva hundre vakter forteller sammen. Vi utvikler en analysetjeneste
+          for ledere i omsorgsboliger, som løfter fram gjentakende situasjoner, utvikling og
+          mulige sammenhenger i rapportene boligen allerede skriver. Lederen får et grunnlag
+          for å vurdere hva som fungerer, og hva som bør følges opp.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#demo">Se demo av analysen</a>
+          <a class="button primary" href="#demo">Se hvordan et funn ser ut</a>
           <a class="button" href="#status">Hva som er bygget</a>
-          <a class="button" href="assets/IMA_tjenestebeskrivelse.pdf" download>Last ned tjenestebeskrivelse (PDF)</a>
         </div>
       </div>
 
@@ -541,23 +543,23 @@
 
         <div class="problem-quote">
           <p>
-            Ansatte sitter ofte på verdifull kunnskap om beboeren. Den er bare vanskelig
-            å sette ord på, og dermed vanskelig å formidle videre.
+            Kunnskapen finnes i personalgruppa og i rapportene. Det som mangler, er en måte
+            å se den samlet på.
           </p>
         </div>
 
         <div class="grid">
           <article class="card">
-            <h3>Analysen blir sjelden gjort</h3>
-            <p>Systematisk atferdsanalyse krever tid, kompetanse og struktur på én gang. I en travel hverdag blir den lett nedprioritert, også når behovet er der.</p>
+            <h3>Sammenhengene ligger spredt</h3>
+            <p>Et mønster kan strekke seg over hundrevis av rapporter, mange uker og skiftende personale. Ingen enkeltperson har hele bildet foran seg.</p>
           </article>
           <article class="card">
-            <h3>Sammenhengene ligger spredt</h3>
-            <p>Et mønster kan strekke seg over hundrevis av notater, mange uker og skiftende personale. Ingen enkeltperson har hele bildet foran seg.</p>
+            <h3>Oppfølgingen er vanskelig å vurdere</h3>
+            <p>I vår lederundersøkelse er felles forståelse av oppfølgingen det mest valgte forbedringsbehovet. Lederne ønsker også oversikt over utviklingen og å vite om endringene virker.</p>
           </article>
           <article class="card">
             <h3>Kunnskapen er taus</h3>
-            <p>Erfaring som ikke er satt ord på, kan heller ikke overleveres. Vikarer, nyansatte og ledelse får ikke tilgang til den – og den holder ikke som grunnlag for et vedtak.</p>
+            <p>Erfaring som ikke er satt ord på, kan heller ikke overleveres. Vikarer, nyansatte og ledelse får ikke tilgang til den.</p>
           </article>
         </div>
       </div>
@@ -568,46 +570,45 @@
       <div class="shell">
         <div class="section-head">
           <p class="eyebrow">02 · Løsningen</p>
-          <h2>Teknologi og fag i samme leveranse</h2>
+          <h2>Fra dokumenterte erfaringer til læring og videre oppfølging</h2>
           <p>
-            Vi gjør strukturert atferdsanalyse etter ABC-modellen av journalnotater ved hjelp
-            av maskinlæring. Men det unike er ikke teknologien alene – det er at analysen
-            leveres sammen med helsefaglig og psykologfaglig vurdering.
+            Boligen endrer ingenting i journalsystemet for å komme i gang. IMA arbeider med
+            rapportene som allerede finnes, og lederen beslutter hva som skal skje videre.
           </p>
         </div>
 
         <div class="model">
           <div class="model-step">
-            <div class="num">1</div>
-            <strong>Motoren finner mønstre</strong>
-            <span>Identifiserer gjentakende sammenhenger i dokumentasjonen og løfter dem fram som funn med tallgrunnlag – aldri som konklusjon.</span>
-            <span class="owner">Maskin</span>
+            <div class="num">01</div>
+            <strong>Kartlegge</strong>
+            <span>IMA skal sammenstille boligens rapporter over tid og identifisere gjentakende situasjoner, utvikling og mulige sammenhenger knyttet til rutiner og praksis.</span>
+            <span class="owner">Analysemotoren</span>
           </div>
           <div class="model-step">
-            <div class="num">2</div>
-            <strong>Fagpersonen vurderer</strong>
-            <span>Psykolog og helsefagarbeider vurderer funnene faglig, forkaster det som ikke holder, og formulerer anbefalinger.</span>
-            <span class="owner">Menneske</span>
+            <div class="num">02</div>
+            <strong>Prioritere og velge</strong>
+            <span>Lederen får prioriterte funn med grunnlag i rapportene, usikkerheter og spørsmål til drøfting. Lederen bestemmer hva som skal følges opp, og hvordan personalgruppa involveres.</span>
+            <span class="owner">Lederen</span>
           </div>
           <div class="model-step">
-            <div class="num">3</div>
-            <strong>Boligen beslutter</strong>
-            <span>Kommunen eller boligen velger hvilke tiltak som settes i verk, hvem som eier oppfølgingen, og hvordan effekt måles.</span>
-            <span class="owner">Oppdragsgiver</span>
+            <div class="num">03</div>
+            <strong>Følge opp</strong>
+            <span>Etter tre måneder skal en ny analyse vise utviklingen. Sammen med lederens opplysninger om gjennomførte endringer gir den grunnlag for å vurdere hva som bør videreføres eller justeres.</span>
+            <span class="owner">Lederen og IMA</span>
           </div>
         </div>
 
         <div class="guardrail">
-          <strong class="gr-title">Det er ikke</strong>
+          <strong class="gr-title">IMA er ikke</strong>
           <div class="gr-items">
+            <div>En vurdering av ansatte.</div>
+            <div>Råd om behandling av enkeltbeboere.</div>
             <div>Et diagnoseverktøy.</div>
-            <div>En klinisk konklusjon.</div>
             <div>En påstand om årsak.</div>
-            <div>En erstatning for faglig vurdering.</div>
           </div>
           <p class="gr-note">
-            Vurderingsperioder er avgrenset i tid. Tjenesten er ikke løpende overvåking.
-            Kliniske konklusjoner ligger hos lisensiert psykolog, ikke i systemet.
+            Målet er færre krevende situasjoner, mindre belastning på ansatte og på sikt lavere
+            sykefravær. Dataflyt og juridiske rammer avklares før pilot på reelle data.
           </p>
         </div>
       </div>
@@ -617,26 +618,26 @@
     <section class="section alt" id="demo">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">03 · Demo</p>
-          <h2>Fra observasjon til hypotese</h2>
+          <p class="eyebrow">03 · Eksempel</p>
+          <h2>Slik ser et funn ut</h2>
           <p>
-            Velg et funn og se hele veien: observasjon, klyngefunn, ABC-kjede, hypotese og
-            forsiktighetsmerking. Eksemplene er hentet fra faktiske kjøringer av verktøyet.
+            Hvert funn presenteres i samme format: funn, hva det kan bety, og spørsmål til
+            drøfting – alltid med usikkerheten synlig. Lederen og personalgruppa vurderer
+            funnet opp mot egen erfaring.
           </p>
         </div>
 
         <div class="demo-layout">
           <div>
-            <div class="tabs" role="tablist" aria-label="Demovalg">
-              <button class="tab" type="button" role="tab" aria-selected="true" data-tab="aktivitet">Aktivitetsbytte</button>
-              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="sensorikk">Sensorikk</button>
-              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="mat">Matsituasjon</button>
+            <div class="tabs" role="tablist" aria-label="Eksempelvalg">
+              <button class="tab" type="button" role="tab" aria-selected="true" data-tab="vaktbytte">Vaktbytte</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="overganger">Overganger</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-tab="rolig">Rolige perioder</button>
             </div>
             <div class="note-list" id="notes"></div>
             <div class="demo-disclaimer">
-              Eksemplene er hentet fra faktiske analysekjøringer i verktøyet, på syntetisk
-              testdata (beboer nn_005). De viser hvordan analysen presenteres,
-              ikke funn om virkelige personer.
+              Illustrasjon av hvordan et funn presenteres, laget med syntetiske data.
+              Tallene er eksempler, ikke funn om virkelige boliger eller personer.
             </div>
           </div>
 
@@ -678,37 +679,33 @@
             </div>
 
             <div class="abc-grid">
-              <div class="abc-box"><b>A</b><p id="abc-a"></p></div>
-              <div class="abc-box"><b>B</b><p id="abc-b"></p></div>
-              <div class="abc-box"><b>C</b><p id="abc-c"></p></div>
+              <div class="abc-box"><b>1</b><strong>Funn</strong><p id="f-funn"></p></div>
+              <div class="abc-box"><b>2</b><strong>Hva det kan bety</strong><p id="f-betydning"></p></div>
+              <div class="abc-box"><b>3</b><strong>Spørsmål til drøfting</strong><p id="f-sporsmal"></p></div>
             </div>
 
             <div class="result-grid">
               <div class="hypothesis">
-                <strong>Mulig hypotese</strong>
-                <p id="hypothesis-text"></p>
+                <strong>Usikkerhet</strong>
+                <p id="safety-text"></p>
               </div>
               <div class="safety-box">
-                <strong>Forsiktighet</strong>
-                <p id="safety-text"></p>
+                <strong>Lederen bestemmer</strong>
+                <p>IMA peker på hvor det kan være verdt å se nærmere. Lederen beslutter om og hvordan funnet skal følges opp.</p>
               </div>
             </div>
 
             <div class="metrics">
               <div class="metric explained" tabindex="0">
-                <span>Lift</span>
-                <strong id="metric-lift"></strong>
-                <div class="tooltip" role="tooltip">Lift viser hvor mye oftere et signal opptrer sammen med et utfall enn forventet i resten av datagrunnlaget. Høy lift betyr sterkere samvariasjon, ikke bevist årsak.</div>
-              </div>
-              <div class="metric explained" tabindex="0">
                 <span>Støtte</span>
                 <strong id="metric-support"></strong>
-                <div class="tooltip" role="tooltip">Støtte viser hvor mange relevante observasjoner mønsteret bygger på. Lav støtte betyr at funnet må tolkes ekstra forsiktig.</div>
+                <div class="tooltip" role="tooltip">Støtte viser hvor mange rapporterte situasjoner funnet bygger på. Lav støtte betyr at funnet må tolkes ekstra forsiktig.</div>
               </div>
+              <div class="metric"><span>Periode</span><strong id="metric-period"></strong></div>
               <div class="metric explained" tabindex="0">
-                <span>Kilde</span>
-                <strong id="metric-source"></strong>
-                <div class="tooltip" role="tooltip">Kilde viser hva hypotesen bygger på. M betyr mønster funnet i data. T betyr teorispor eller faglig modell som brukes i vurderingen.</div>
+                <span>Nivå</span>
+                <strong>Bolig</strong>
+                <div class="tooltip" role="tooltip">Funnene gjelder boligen samlet, ikke enkeltbeboere eller enkeltansatte.</div>
               </div>
               <div class="metric"><span>Vurdering</span><strong>Hypotese</strong></div>
             </div>
@@ -718,20 +715,13 @@
         </div>
 
         <div class="screenshot-block">
-          <h3>Skjermbilder fra programmet</h3>
-          <div class="screenshot-grid">
+          <h3>Skjermbilde fra programmet</h3>
+          <div class="screenshot-grid single">
             <figure class="screenshot-card">
-              <img src="assets/analyserom.png" alt="Skjermbilde av IMA Analyserom med nøkkeltall, mønstre og hypoteser." loading="lazy">
-              <figcaption>
-                <strong>Analyserom</strong>
-                <span>Mønstre, hypoteser, nøkkeltall og faglig vurderingsgrunnlag.</span>
-              </figcaption>
-            </figure>
-            <figure class="screenshot-card">
-              <img src="assets/kvalitetsrom.png" alt="Skjermbilde av IMA Kvalitetsrom med dager, kvalitetspanel og forhåndsvisning." loading="lazy">
+              <img src="assets/kvalitetsrom.png" alt="Skjermbilde av IMA Kvalitetsrom med dager, kvalitetspanel og forhåndsvisning av syntetiske rapporter." loading="lazy">
               <figcaption>
                 <strong>Kvalitetsrom</strong>
-                <span>Dager, avvik, forhåndsvisning og manuell godkjenning.</span>
+                <span>Kontroll av datagrunnlaget før analysen: dager, avvik, forhåndsvisning og manuell godkjenning. Syntetiske data.</span>
               </figcaption>
             </figure>
           </div>
@@ -744,10 +734,10 @@
       <div class="shell">
         <div class="section-head">
           <p class="eyebrow">04 · Team</p>
-          <h2>To fagfelt som utfyller hverandre</h2>
+          <h2>Teknologi og erfaring fra helse og omsorg</h2>
           <p>
-            Domenekunnskapen er ikke lest seg til, og den kliniske vurderingen ligger hos
-            en psykolog. Det er kombinasjonen som gjør leveransen mulig.
+            Domenekunnskapen er ikke lest seg til. Den kommer fra mange år i feltet, og den
+            er grunnlaget analysemotoren er bygget på.
           </p>
         </div>
 
@@ -764,8 +754,8 @@
               <div class="cred">
                 <b>16 år</b>
                 <div>
-                  <strong>Helsefagarbeider i omsorgsbolig</strong>
-                  <span>Kjenner målgruppen og dokumentasjonspraksisen innenfra. Det er den forståelsen analysen er bygget på – ikke en antakelse om hvordan sektoren fungerer.</span>
+                  <strong>Helse og omsorg</strong>
+                  <span>Terapeutiske roller og ledelse, med erfaring fra omsorgsbolig. Kjenner målgruppen og dokumentasjonspraksisen innenfra. Tidligere daglig leder i industrien.</span>
                 </div>
               </div>
               <div class="cred">
@@ -794,32 +784,18 @@
 
           <article class="team-main">
             <div class="team-name">
-              <div class="team-initials teal" aria-hidden="true">ØS</div>
+              <div class="team-initials teal" aria-hidden="true">ES</div>
               <div>
-                <strong>Øivind Stålesen</strong>
-                <span>Psykolog</span>
+                <strong>Even Sørli</strong>
+                <span>Faglig rådgiver</span>
               </div>
             </div>
             <div class="cred-list">
               <div class="cred">
-                <b class="teal-t">7 år</b>
-                <div>
-                  <strong>Psykolog med klinisk erfaring</strong>
-                  <span>Klinisk psykolog i spesialisthelsetjenesten og i bedriftshelsetjeneste. Har det kliniske ansvaret for konklusjoner i leveransene.</span>
-                </div>
-              </div>
-              <div class="cred">
-                <b class="teal-t">Spes.</b>
-                <div>
-                  <strong>Spesialisering i organisasjonspsykologi</strong>
-                  <span>Cand.psychol. med spesialisering. Arbeidsmiljøkartlegging, organisasjonsutvikling og lederstøtte.</span>
-                </div>
-              </div>
-              <div class="cred">
                 <b class="teal-t">Fag</b>
                 <div>
-                  <strong>Konflikthåndtering og veiledning</strong>
-                  <span>Faglig validering av mønstre og hypoteser, og gjennomføring av møtene med personalgruppene der tiltakene skal settes i praksis.</span>
+                  <strong>Spesialpedagog</strong>
+                  <span>Faglig rådgiver for metoden og for hvordan funnene presenteres.</span>
                 </div>
               </div>
             </div>
@@ -827,11 +803,10 @@
         </div>
 
         <div class="team-combo">
-          <strong>Hvorfor kombinasjonen betyr noe</strong>
+          <strong>Vi søker salgskompetanse</strong>
           <p>
-            En analysemotor uten fagperson gir funn ingen tør handle på. En fagperson uten
-            analysen rekker ikke gjennom hundrevis av notater. Og et tiltak som ikke er
-            forankret i personalgruppen blir ikke gjennomført. Leveransen krever alle tre.
+            Teamet har teknologien og erfaringen fra feltet. Det som mangler, er en som åpner
+            dører hos ledere i private og kommunale omsorgsboliger.
           </p>
         </div>
       </div>
@@ -841,12 +816,14 @@
     <section class="section alt" id="status">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">05 · Status og potensial</p>
+          <p class="eyebrow">05 · Status og marked</p>
           <h2>Plattformen kjører allerede</h2>
           <p>
-            Verktøyet kjører i dag på syntetiske data i non-klinisk modus. Skillet mellom
-            non-klinisk og klinisk bruk er håndhevet i kode, ikke bare beskrevet i et dokument.
-            Neste steg er pilot på reelle data når personvernrammene er på plass.
+            Verktøyet kjører i dag på syntetiske data. Skillet mellom testdata og reelle data er
+            håndhevet i kode, ikke bare beskrevet i et dokument. Neste steg er en pilot på
+            reelle data når dataflyt og juridiske rammer er avklart. En leder i bransjen har
+            sagt ja til å teste IMA, men testen er ikke gjennomført. Vi har ingen betalende
+            kunder ennå.
           </p>
         </div>
 
@@ -864,15 +841,15 @@
             <div class="status-item">
               <i>✓</i>
               <div>
-                <strong>Capability gate</strong>
-                <span>Klinisk modus krever signert manifest og fungerende revisjonslogg. Faller fail-safe til non-klinisk.</span>
+                <strong>Sperre for reelle data</strong>
+                <span>Bruk av reelle data krever signert oppsett og fungerende revisjonslogg. Faller automatisk tilbake til testmodus.</span>
               </div>
             </div>
             <div class="status-item">
               <i>✓</i>
               <div>
                 <strong>Hash-lenket oppslagslogg</strong>
-                <span>Append-only revisjonslogg med tuklingsdeteksjon, samt rollebasert tilgang med beboer-scope.</span>
+                <span>Revisjonslogg som ikke kan endres i ettertid, med tuklingsdeteksjon, og rollebasert tilgang avgrenset til oppdraget.</span>
               </div>
             </div>
             <div class="status-item">
@@ -885,15 +862,15 @@
             <div class="status-item">
               <i>✓</i>
               <div>
-                <strong>Eksplorativ «firewall»</strong>
-                <span>Embedding-funn merkes ikke-klinisk og kan aldri fortrenge regelbaserte funn uten at fagperson forfremmer dem – logget.</span>
+                <strong>Skille mellom utforskende og regelbaserte funn</strong>
+                <span>Funn fra embeddings merkes som utforskende og kan aldri fortrenge regelbaserte funn uten at et menneske godkjenner dem. Godkjenningen logges.</span>
               </div>
             </div>
             <div class="status-item">
               <i>✓</i>
               <div>
                 <strong>Krypteringssøm</strong>
-                <span>Nekter lagring uten reell kryptering i klinisk modus.</span>
+                <span>Nekter lagring uten reell kryptering når reelle data brukes.</span>
               </div>
             </div>
           </div>
@@ -901,28 +878,28 @@
 
         <div class="stat-band stat-band-3">
           <div class="big-stat">
-            <b>~2 270</b>
-            <strong>boligbaser og bofellesskap</strong>
-            <span>Nasjonalt, med ca. 30 000 boenheter samlet. SSB</span>
+            <b>2 273</b>
+            <strong>bemannede boligbaser i Norge</strong>
+            <span>Med til sammen nesten 30 000 boenheter. Flere målgrupper. SSB, hjemmetjenestekartlegging 2021</span>
           </div>
           <div class="big-stat">
-            <b>&lt; 4 %</b>
-            <strong>markedsandel</strong>
-            <span>Det som skal til for å bære driften i et realistisk scenario</span>
+            <b>2 500 kr</b>
+            <strong>per plass per år</strong>
+            <span>Minst 12 500 kr per bolig. Prishypotese som skal testes i pilot.</span>
           </div>
           <div class="big-stat">
-            <b>Hele landet</b>
-            <strong>fra dag én</strong>
-            <span>Kundemøter gjennomføres fysisk der det er mulig, ellers på video</span>
+            <b>100–130</b>
+            <strong>boliger per årsverk</strong>
+            <span>Med fire analyserunder i året og dagens anslag på 2–3 timer per runde. Målet er 1 time per runde.</span>
           </div>
         </div>
 
         <div class="value-callout">
-          <strong>Verdiargumentet er konkret</strong>
+          <strong>Verdien for lederen</strong>
           <p>
-            Alternativet for kommunen er ofte økt bemanning. Et halvt årsverk koster
-            400–500 000 kroner hvert år, hvert år. En utredning som påvirker vedtak og
-            tiltak betaler seg mange ganger.
+            Oversikt over utviklingen og et grunnlag for å vurdere hva som bør videreføres
+            eller justeres, uten å lese tusenvis av rapporter. Kundemøter gjennomføres fysisk
+            der det er mulig, ellers på video.
           </p>
         </div>
 
@@ -938,23 +915,29 @@
       <div class="shell">
         <div class="section-head">
           <p class="eyebrow">06 · Behov</p>
-          <h2>Verktøyet er bygget. Dette mangler vi.</h2>
+          <h2>Vi søker en mentor</h2>
+          <p>Neste steg for IMA er en pilotbolig. Vi søker hjelp med:</p>
         </div>
         <div class="needs">
           <div class="need">
-            <span class="n">01 · Viktigst</span>
-            <strong>Juridisk hjelp med GDPR</strong>
-            <span>Behandlingsgrunnlag, databehandleravtale og DPIA må være på plass før journaldata kan deles. Kjernespørsmålet er om dataminimering holder når analysen forutsetter en tidsserie.</span>
+            <span class="n">01</span>
+            <strong>Første pilot</strong>
+            <span>Å lande den første piloten hos en privat eller kommunal bolig.</span>
           </div>
           <div class="need">
             <span class="n">02</span>
-            <strong>Søknadshjelp</strong>
-            <span>Bistand med søknader om vekstmidler og offentlig finansiering til å komme fra ferdig plattform til gjennomført pilot.</span>
+            <strong>Salg og markedsføring</strong>
+            <span>Å finne salgskompetanse og åpne dører til ledere i omsorgsboliger.</span>
           </div>
           <div class="need">
             <span class="n">03</span>
-            <strong>Forretningsmodellering</strong>
-            <span>Prismodell, pakkestruktur og hvordan tjenesten faktisk selges inn i en kommunal innkjøpsprosess.</span>
+            <strong>Juss og sikker dataflyt</strong>
+            <span>Lovlig tilgang og trygg håndtering av rapportdata i tråd med GDPR, helselovgivningen og kundenes sikkerhetskrav, før pilot.</span>
+          </div>
+          <div class="need">
+            <span class="n">04</span>
+            <strong>Tilbud, pris og søknad</strong>
+            <span>Å spisse tilbud og pris, og søknaden om oppstartstilskudd fra Innovasjon Norge.</span>
           </div>
         </div>
       </div>
@@ -964,10 +947,7 @@
   <footer class="footer">
     <div class="shell">
       <span><strong>Intelligent Mønsteranalyse (IMA)</strong></span>
-      <div style="display:flex; gap:18px; flex-wrap:wrap;">
-        <a href="assets/IMA_tjenestebeskrivelse.pdf" download>Last ned tjenestebeskrivelse (PDF)</a>
-        <a href="assets/IMA_K2_talepunkter.pdf" download>Talepunkter til K2-møte (PDF)</a>
-      </div>
+      <span>Christian Garmann Schjelderup · <a href="mailto:garmann@schjoldr.io">garmann@schjoldr.io</a></span>
     </div>
   </footer>
 
@@ -976,92 +956,76 @@
       control: {
         title: "Kontrollrom",
         pill: "Klar til kjøring",
-        stats: [["Beboer", "nn_005", "syntetisk"], ["Periode", "90", "dager"], ["Status", "Fase 1", "valgt"], ["Kjøring", "v2", "sporbar"]],
-        leftTitle: "Pipeline",
-        leftRows: [["1", "Generer syntetiske pleienotater"], ["2", "Kjør fase 1: ingest og analyse"], ["3", "Finn mønstre og teorifunn"]],
+        stats: [["Data", "Test", "syntetiske"], ["Periode", "90", "dager"], ["Nivå", "Bolig", "samlet"], ["Kjøring", "v2", "sporbar"]],
+        leftTitle: "Løp",
+        leftRows: [["1", "Hent inn rapporter for avtalt periode"], ["2", "Fjern navn og signaturer"], ["3", "Kjør mønsteranalyse"]],
         rightTitle: "Logg",
-        rightRows: [["09:14", "Daglager validert"], ["09:16", "ABC-episoder funnet"], ["09:18", "Mønstermotor fullført"]],
-        footer: "Tunge kjøringer går i bakgrunnen, slik at programmet ikke låser seg mens analysen står på."
+        rightRows: [["09:14", "Datagrunnlag validert"], ["09:16", "Navn og signaturer fjernet"], ["09:18", "Analyse fullført"]],
+        footer: "Hver kjøring logges, og hvert funn kan spores tilbake til regel og inndata."
       },
       quality: {
         title: "Kvalitetsrom",
         pill: "Manuell kontroll",
-        stats: [["Dager", "90", "komplette"], ["ABC", "18%", "episoder"], ["Avvik", "3", "til kontroll"], ["Vurdert", "12", "godkjent"]],
+        stats: [["Dager", "90", "komplette"], ["Rapporter", "990", "syntetiske"], ["Avvik", "3", "til kontroll"], ["Vurdert", "12", "godkjent"]],
         leftTitle: "Kvalitetssjekk",
-        leftRows: [["01", "Mangler i observasjonsdomener"], ["02", "Uvanlige verdier i datagrunnlag"], ["03", "Tekst som trenger faglig blikk"]],
-        rightTitle: "Eksempelnotat",
-        rightRows: [["07:30", "Uro ved rask overgang"], ["11:15", "Ro etter skjermet pause"], ["18:40", "Stress ved uvarslet endring"]],
-        footer: "Kvalitetsrommet viser hva et menneske bør lese manuelt før analysen brukes videre."
+        leftRows: [["01", "Dager uten rapport"], ["02", "Uvanlige verdier i datagrunnlaget"], ["03", "Tekst som trenger menneskelig blikk"]],
+        rightTitle: "Eksempelrapport",
+        rightRows: [["07:30", "Uro ved rask overgang"], ["15:10", "Urolig rundt vaktbytte"], ["18:40", "Rolig kveld med planlagt aktivitet"]],
+        footer: "Kvalitetsrommet viser hva et menneske bør se på før analysen brukes videre."
       },
       analysis: {
         title: "Analyserom",
-        pill: "Hypoteser klare",
-        stats: [["Obs", "990", "observasjoner"], ["Avvik", "14", "til vurdering"], ["ABC", "22%", "andel"], ["Klynger", "6", "+ støy"]],
-        leftTitle: "Mønstre",
-        leftRows: [["M1", "Ukjent person → krevende dag"], ["M2", "Overgang uten varsel → uro"], ["T1", "ABC-kjede støttet av teori"]],
-        rightTitle: "Hypotese",
-        rightRows: [["Lift", "3,95"], ["Støtte", "5 av 6 dager"], ["Vurdering", "Hypotese, ikke konklusjon"]],
-        footer: "Analyserommet viser mønstre, teorispor, hypoteser, avvik og trender – alltid med tallgrunnlaget synlig."
+        pill: "Funn klare",
+        stats: [["Rapporter", "990", "syntetiske"], ["Funn", "6", "prioritert"], ["Avvik", "14", "til vurdering"], ["Nivå", "Bolig", "samlet"]],
+        leftTitle: "Funn",
+        leftRows: [["F1", "Hendelser samler seg etter vaktbytte"], ["F2", "Overgang uten varsel → uro"], ["F3", "Rolige dager har planlagte aktiviteter"]],
+        rightTitle: "Grunnlag",
+        rightRows: [["Støtte", "31 av 58"], ["Periode", "90 dager"], ["Vurdering", "Hypotese, ikke konklusjon"]],
+        footer: "Analyserommet viser funn, utvikling og avvik – alltid med grunnlaget og usikkerheten synlig. Illustrasjon med syntetiske data."
       }
     };
 
     const demoData = {
-      aktivitet: [
+      vaktbytte: [
         {
-          title: "Aktivitetsbytte og avvik fra dagsplan",
-          note: "Aktivitetsbytter og avvik fra dagsplan er sterkt forbundet med krevende og krise-dager, med forhøyet agitasjon som tidlig signal.",
-          intro: "Seks understøttende mønstre (M1–M6) knytter avvik fra dagsplan til krevende og krise-dager.",
-          a: "Aktivitetsbytte eller avvik fra planlagt dagsplan oppstår.",
-          b: "Forhøyet agitasjon opptrer som tidlig signal i samme kjede.",
-          c: "Dagen utvikler seg videre til en krevende eller krise-dag.",
-          hypothesis: "Uforutsigbarhet i struktur kan fungere som en etablerende operasjon (MO) som øker sannsynligheten for utfordrende atferd samme dag.",
-          safety: "Konsistensen er høy, men årsaksretningen må fortsatt bekreftes gjennom faglig vurdering.",
-          lift: "4,091", support: "22/22", source: "M1–M6", confidence: "Høy",
-          cluster: "Seks mønstre (M1–M6) støtter samme sammenheng med konsistens 1,0.",
-          evidence: [["Foreslått tiltak", "Innfør tydelig visuell dagsplan som varsler om mulige endringer i god tid. Bruk en fast «endringsprotokoll» med forberedende signal ved uunngåelige endringer."], ["Teori", "ABC-modellen og operant betinging predikerer at uforutsigbarhet som MO øker unngåelses-/fluktmotivasjon."], ["Til vurdering", "Drøft med team hvilke aktivitetsbytter som kan forutses og hvilke som kan minimeres."]]
+          title: "Hendelser rundt vaktbytte",
+          note: "Krevende situasjoner samler seg i timen etter vaktbytte på ettermiddagen.",
+          intro: "Mønsteret går igjen gjennom hele perioden, på tvers av ukedager.",
+          funn: "Over halvparten av de rapporterte krevende situasjonene skjer i timen etter vaktbytte på ettermiddagen.",
+          betydning: "Overgangen mellom vaktene kan være en sårbar periode i boligen.",
+          sporsmal: "Hvordan er overgangen organisert i dag, og hvilken informasjon følger med fra vakt til vakt?",
+          safety: "Rapportene beskriver ikke alltid hva som skjedde før situasjonen. Funnet viser samvariasjon, ikke årsak.",
+          support: "31 av 58", period: "90 dager", confidence: "Middels",
+          cluster: "Rapporter fra samme tidsrom samles. Enkeltstående hendelser blir liggende utenfor.",
+          evidence: [["Grunnlag", "Rapporter for hele perioden, sammenstilt på bolignivå."], ["Personvern", "Navn og signaturer er fjernet. Tall som kan peke ut én person, slås sammen."], ["Videre", "Lederen vurderer funnet sammen med personalgruppa."]]
         }
       ],
-      sensorikk: [
+      overganger: [
         {
-          title: "Sensorisk antesedent og alternativtilbud",
-          note: "ABC-kjeden sensorisk antesedent → slag/dunking eller vegring → tilbudt alternativ gjentar seg konsistent.",
-          intro: "To mønstre (M9, M10) støtter samme A→B→C-struktur.",
-          a: "Sensoriske stimuli som støy, berøring, lukt eller lys er til stede.",
-          b: "Slag/dunking eller vegring/tilbaketrekning.",
-          c: "Personalet tilbyr et alternativ, som reduserer den sensoriske belastningen.",
-          hypothesis: "Sensoriske stimuli kan fungere som utløsende antesedenter, og atferden fører i neste omgang til redusert sensorisk belastning via alternativ aktivitet.",
-          safety: "Datamengden er noe begrenset (n=5), men høy konsistens og lift gir god støtte til hypotesen.",
-          lift: "4,8", support: "5/5", source: "M9, M10", confidence: "Høy",
-          cluster: "Teorispor T3 og T4 støtter at strukturen er funksjonelt meningsfull.",
-          evidence: [["Foreslått tiltak", "Gjennomfør strukturert sensorisk kartlegging for å identifisere hvilke stimuli som er mest belastende."], ["Tilrettelegging", "Reduser unødvendig støy, tilby sensoriske hjelpemidler (øreplugger, solbriller, tyngdedyne) og identifiser trygge lav-stimuli-soner."], ["Til vurdering", "Vurderes sammen med fagperson før tiltak tas i bruk."]]
-        },
-        {
-          title: "Alternativtilbud etter slag/dunking",
-          note: "Slag/dunking og vegring etterfølges konsistent av at personalet tilbyr et alternativ.",
-          intro: "Operant betinging tilsier at konsekvensmønsteret kan ha en forsterkende funksjon.",
-          a: "Krevende situasjon eller vegring oppstår.",
-          b: "Slag/dunking eller vegring/tilbaketrekning.",
-          c: "Personalet tilbyr et foretrukket alternativ.",
-          hypothesis: "Alternativtilbudet kan enten gi tilgang til noe foretrukket eller fungere som unngåelse av en krevende situasjon – det er mulig atferden utilsiktet er blitt instrumentell for å oppnå alternativet.",
-          safety: "Sikkerheten settes til middels fordi alternativtilbudet også kan representere god faglig praksis (deeskalering) fremfor utilsiktet forsterkning.",
-          lift: "4,8", support: "5/5", source: "M7, M8", confidence: "Middels",
-          cluster: "Mønstrene M7 og M8 støtter samme B→C-kobling med konsistens 1,0.",
-          evidence: [["Foreslått tiltak", "Drøft i fagteamet om alternativtilbudet primært fungerer som forebygging eller utilsiktet forsterkning."], ["Alternativ tilnærming", "Vurder å tilby alternativet proaktivt – før atferd oppstår – basert på tidlige signaler som agitasjon."], ["Til vurdering", "Bør vurderes faglig før praksis endres."]]
+          title: "Overganger uten varsel",
+          note: "Uro beskrives oftere på dager der planlagte aktiviteter ble endret på kort varsel.",
+          intro: "Sammenhengen går igjen i flere deler av perioden.",
+          funn: "Rapporter som nevner endringer i dagens plan, beskriver oftere uro samme dag.",
+          betydning: "Forutsigbarhet i hverdagen kan ha betydning for hvordan dagen utvikler seg.",
+          sporsmal: "Hvilke endringer i planen kan forutses, og hvordan varsles de i dag?",
+          safety: "Endringer kan være dokumentert ulikt. Funnet bør vurderes opp mot personalgruppas erfaring.",
+          support: "19 av 34", period: "90 dager", confidence: "Lav",
+          cluster: "Rapporter som nevner endret plan samles. Avvik blir liggende utenfor.",
+          evidence: [["Grunnlag", "Fritekst i rapportene, lest på tvers av perioden."], ["Usikkerhet", "Lav støtte. Funnet bør følges i neste analyse før det vektlegges."], ["Videre", "Lederen bestemmer om funnet skal drøftes."]]
         }
       ],
-      mat: [
+      rolig: [
         {
-          title: "Matsituasjon og vokalisering",
-          note: "Matsituasjoner er konsistent forbundet med vokalisering, som igjen etterfølges av skjerming.",
-          intro: "Motoren finner et gjentakende mønster rundt måltider (M11, M12).",
-          a: "Matsituasjon med sensorisk belastning, krav, sosial tetthet og tempo.",
-          b: "Vokalisering/rop.",
-          c: "Personalet tilbyr skjerming/pause.",
-          hypothesis: "Vokalisering kan fungere som kommunikasjon for å oppnå pause eller skjerming når matsituasjonen oppleves krevende.",
-          safety: "Lift på 2,0 er lavere enn for de sensoriske og strukturelle mønstrene, men fortsatt konsistent.",
-          lift: "2,0", support: "12/12", source: "M11, M12", confidence: "Middels",
-          cluster: "Mønstrene M11 og M12 støtter sammenhengen med konsistens 1,0.",
-          evidence: [["Foreslått tiltak", "Kartlegg matsituasjonens elementer systematisk: hvem er til stede, støynivå, tempo, type mat, plassering."], ["Tilpasning", "Vurder redusert antall personer rundt bordet, fast plass, rolig atmosfære og alternativ kommunikasjon (ASK)."], ["Til vurdering", "Tilby skjerming proaktivt dersom tegn til uro observeres tidlig."]]
+          title: "Hva kjennetegner de rolige periodene",
+          note: "Rolige dager har oftere planlagte aktiviteter beskrevet i rapportene.",
+          intro: "IMA ser også etter det som fungerer, ikke bare det som er krevende.",
+          funn: "På dager uten krevende situasjoner beskriver rapportene oftere planlagte aktiviteter og faste rutiner.",
+          betydning: "Struktur i dagen kan være en del av det som fungerer i boligen i dag.",
+          sporsmal: "Hva er felles for de rolige dagene, og hva skal til for å få flere av dem?",
+          safety: "Rolige dager kan også være mindre beskrevet. Funnet sier noe om det som er dokumentert.",
+          support: "42 av 61", period: "90 dager", confidence: "Middels",
+          cluster: "Dager med like kjennetegn samles. Dager som skiller seg ut, blir liggende utenfor.",
+          evidence: [["Grunnlag", "Hele perioden, på bolignivå."], ["Hvorfor", "Det personalgruppa allerede gjør som fungerer, er like viktig å se som det som er krevende."], ["Videre", "Kan brukes i personalmøter og opplæring av nye ansatte."]]
         }
       ]
     };
@@ -1106,7 +1070,7 @@
     const notesEl = document.getElementById("notes");
     const evidenceEl = document.getElementById("evidence");
     const tabs = Array.from(document.querySelectorAll(".tab"));
-    let activeTab = "aktivitet";
+    let activeTab = "vaktbytte";
     let activeIndex = 0;
 
     function renderNotes() {
@@ -1130,14 +1094,12 @@
       const item = demoData[activeTab][activeIndex];
       document.getElementById("analysis-title").textContent = item.title;
       document.getElementById("analysis-intro").textContent = item.intro;
-      document.getElementById("abc-a").textContent = item.a;
-      document.getElementById("abc-b").textContent = item.b;
-      document.getElementById("abc-c").textContent = item.c;
-      document.getElementById("hypothesis-text").textContent = item.hypothesis;
+      document.getElementById("f-funn").textContent = item.funn;
+      document.getElementById("f-betydning").textContent = item.betydning;
+      document.getElementById("f-sporsmal").textContent = item.sporsmal;
       document.getElementById("safety-text").textContent = item.safety;
-      document.getElementById("metric-lift").textContent = item.lift;
       document.getElementById("metric-support").textContent = item.support;
-      document.getElementById("metric-source").textContent = item.source;
+      document.getElementById("metric-period").textContent = item.period;
       document.getElementById("confidence-text").textContent = item.confidence;
       document.getElementById("cluster-caption").textContent = item.cluster;
       evidenceEl.innerHTML = item.evidence
