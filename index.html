@@ -473,9 +473,17 @@
       .cred b { color: var(--green); }
       .stat-band.stat-band-3 { grid-template-columns: 1fr; }
     }
+    .draft-banner {
+      background: var(--gold-soft); border-bottom: 1px solid #f0dcb4; color: #6b4a10;
+      font-size: .9rem; line-height: 1.5; padding: 10px 0; text-align: center;
+    }
+    .draft-banner strong { font-weight: 750; }
   </style>
 </head>
 <body>
+  <div class="draft-banner" role="note">
+    <div class="shell"><strong>Utkast.</strong> Dette er et utkast til nettside for IMA. Innholdet er under arbeid og kan endres.</div>
+  </div>
   <header class="topbar">
     <nav class="shell nav" aria-label="Hovednavigasjon">
       <div class="brand">
@@ -787,7 +795,7 @@
               <div class="team-initials teal" aria-hidden="true">ES</div>
               <div>
                 <strong>Even Sørli</strong>
-                <span>Faglig rådgiver</span>
+                <span>Rådgiver</span>
               </div>
             </div>
             <div class="cred-list">
@@ -802,7 +810,6 @@
                 <b class="teal-t">Fag</b>
                 <div>
                   <strong>Spesialpedagog</strong>
-                  <span>Faglig rådgiver for metoden og for hvordan funnene presenteres.</span>
                 </div>
               </div>
               <div class="cred">
